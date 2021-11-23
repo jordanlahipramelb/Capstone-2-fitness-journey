@@ -6,13 +6,16 @@ CREATE TABLE User (
     last_name      TEXT NOT NULL,
     city           TEXT NOT NULL,
     state          TEXT NOT NULL,
-    fitness_type   TEXT NOT NULL,
+    email          TEXT NOT NULL
+                    CHECK (position('@' IN email) > 1),
+    fitness_type   TEXT,
     bio            TEXT NOT NULL,
     image_url      TEXT NOT NULL,
     votes          INTEGER DEFAULT 0,
 -- One to Many Relationship; One badge can have many users
     badge_id       INTEGER NOT NULL
                     REFERENCES Badge ON DELETE CASCADE,
+    is_admin       BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE Badge (
@@ -130,7 +133,7 @@ CREATE TABLE Routine (
     name        TEXT NOT NULL
     user_id     INTEGER
                     REFERENCES User ON DELETE SET NULL,
-    is_private  INTEGER BOOLEAN NOT NULL DEFAULT false,
+    is_private  BOOLEAN NOT NULL DEFAULT FALSE,
 )
 
 
