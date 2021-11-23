@@ -123,6 +123,9 @@ CREATE TABLE RoutineExercise (
                     REFERENCES Routine ON DELETE CASCADE,
     exercise_id INTEGER NOT NULL
                     REFERENCES Exercise ON DELETE CASCADE,
+    dayOfWeek INTEGER NULL, --added
+    reps INTEGER NULL, --added
+    [sets] INTEGER NULL --added
 )
 
 
@@ -151,3 +154,13 @@ CREATE TABLE Logs (
     weight              INTEGER,
     
 )
+
+--Example of storing multiples
+--API (receives multiple logs)
+-- API creates SQL statement with multiple inserts at the same time
+-- INSERT INTO Logs (set_number, reps, weight) VALUES 
+-- (1, 5, 400),
+-- (1, 5, 400),
+-- (1, 5, 400),
+-- (1, 5, 400)
+

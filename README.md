@@ -8,3 +8,6 @@ The users of my application will consist of users who want to learn how to perfo
 The user will either log in or register for the application. Once logged in, the app will redirect the user to the main page which will be a feed of posts/workouts from users on the app. The user will be able to comment on these posts or provide a “thumbs up” for them. In the nav bar, the user will be able to click the exercise tab. This tab will consist of exercises in our database; name, equipment type, description, instructions, and image instructions. There will also be another tab which will direct to a link where the user will be able to log their workout, picking the exercises from our database.
 
 My database schema will consist of numerous tables: exercises, routines, muscles, equipment, routines-exercises (lookup table consisting of list of which exercises are a part of which routine), logs (list of log entries for each routine and exercise), users, posts, and comments. I may run into problems of incorrect column types due to many columns referencing different tables.
+
+
+**This looks good! I think you are ready to start**
