@@ -13,12 +13,12 @@ CREATE TABLE User (
     image_url      TEXT NOT NULL,
     votes          INTEGER DEFAULT 0,
 -- One to Many Relationship; One badge can have many users
-    badge_id       INTEGER NOT NULL
-                    REFERENCES Badge ON DELETE CASCADE,
+    rank_id        INTEGER NOT NULL
+                    REFERENCES [Rank] ON DELETE CASCADE,
     is_admin       BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE Badge (
+CREATE TABLE [Rank] (
     id          SERIAL PRIMARY KEY,
     title       TEXT NOT NULL,
     graphic     TEXT NOT NULL,
@@ -56,16 +56,6 @@ CREATE TABLE Post (
     --routine_id  optional fk to Routine
 );
 
--- CREATE TABLE UserPostVote
---user_id
---post_id
---value (+1, -1)
-
--- CREATE TABLE UserCommentVote 
---user_id
---comment_id
---value (+1, -1)
-
 
 CREATE TABLE Comment (
     id          SERIAL PRIMARY KEY,
@@ -81,6 +71,21 @@ CREATE TABLE Comment (
 );
 
 
+CREATE TABLE UserPostVote (
+    user_id     INTEGER
+                    REFERENCES User ON DELETE SET NULL,
+    post_id     INTEGER 
+                    REFERENCES Post ON DELETE SET NULL,
+    -- value (+1, -1)
+);
+
+CREATE TABLE UserCommentVote (
+    user_id     INTEGER
+                    REFERENCES User ON DELETE SET NULL,
+    comment_id  INTEGER 
+                    REFERENCES Comment ON DELETE SET NULL,
+    -- value (+1, -1)
+);
 
 
 
@@ -123,9 +128,10 @@ CREATE TABLE RoutineExercise (
                     REFERENCES Routine ON DELETE CASCADE,
     exercise_id INTEGER NOT NULL
                     REFERENCES Exercise ON DELETE CASCADE,
-    dayOfWeek INTEGER NULL, --added
-    reps INTEGER NULL, --added
-    [sets] INTEGER NULL --added
+                    -- number of the day of the week
+    dayOfWeek   INTEGER, --added
+    reps        INTEGER, --added
+    [sets]      INTEGER --added
 )
 
 
@@ -133,7 +139,7 @@ CREATE TABLE RoutineExercise (
 -- List of Routines
 CREATE TABLE Routine (
     id          SERIAL PRIMARY KEY,
-    name        TEXT NOT NULL
+    [name]      TEXT NOT NULL
     user_id     INTEGER
                     REFERENCES User ON DELETE SET NULL,
     is_private  BOOLEAN NOT NULL DEFAULT FALSE,
@@ -144,14 +150,14 @@ CREATE TABLE Routine (
 -- List of log entries for each routine and exercise
 CREATE TABLE Logs (
     id                  SERIAL PRIMARY KEY,
-    date                DATETIME NOT NULL,
+    [date]              DATETIME NOT NULL,
     user_id             INTEGER NOT NULL
                             REFERENCES User ON DELETE CASCADE,
     routine_exercise_id INTEGER
                             REFERENCES RoutineExercise ON DELETE SET NULL,
     set_number          INTEGER,
     reps                INTEGER,
-    weight              INTEGER,
+    [weight]            INTEGER,
     
 )
 
