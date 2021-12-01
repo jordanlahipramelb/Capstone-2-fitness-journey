@@ -5,8 +5,8 @@
 const jsonschema = require("jsonschema");
 const express = require("express");
 const router = new express.Router();
-const { createToken } = require("../helpers/tokens");
 const { BadRequestError } = require("../expressError");
+const { createToken } = require("../helpers/tokens");
 
 const User = require("../models/userModel");
 const userAuthSchema = require("../schemas/userAuth.json");
@@ -51,6 +51,7 @@ router.post("/token", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userRegisterSchema);
+    // if json is not valid, return errors
     if (!validator.valid) {
       const errs = validator.errors.map((er) => er.stack);
 
@@ -66,3 +67,5 @@ router.post("/register", async (req, res, next) => {
     return next(err);
   }
 });
+
+module.exports = router;

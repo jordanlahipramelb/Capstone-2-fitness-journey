@@ -29,9 +29,9 @@ VALUES  ('Bodybuilding', 'This is where you talk about building muscle.'),
         ('Cardio', 'This is where you talk about cardio.');
 
 
-INSERT INTO posts (username, category_id, subject, body, date)
-VALUES  ('testuser', 2, 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?','2016-06-22 19:10:25-07'),
-        ('testadmin', 1, NULL, 'Hi guys. I want to get BIG arms. What exercises will do this?','2018-06-22 19:10:25-07');
+INSERT INTO posts (username, subject, body, date)
+VALUES  ('testuser', 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?','2016-06-22 19:10:25-07'),
+        ('testadmin', NULL, 'Hi guys. I want to get BIG arms. What exercises will do this?','2018-06-22 19:10:25-07');
 
 INSERT INTO comments (username, body, date, post_id)
 VALUES  ('testuser', 'I really like doing the big three; squats, deadlifts, and bench press.','2016-06-22 19:12:25-07', 1),
@@ -118,3 +118,26 @@ VALUES
         '1. To get into the starting position, hold your body at arm''s length with your arms nearly locked above the bars. 2. Now, inhale and slowly lower yourself downward. Your torso should remain upright and your elbows should stay close to your body. This helps to better focus on tricep involvement. Lower yourself until there is a 90 degree angle formed between the upper arm and forearm. 3. Then, exhale and push your torso back up using your triceps to bring your body back to the starting position. 4. Repeat the movement for the prescribed amount of repetitions.', '/images/exercises/triceps-dip.gif'),
 
         ('Triceps Pushdown', 4, 12, NULL, 'The triceps push-down is a popular gym exercise for targeting the triceps. It utilizes an angled bar, which can allow you to move heavier weights more comfortably than a straight bar or rope. It is usually performed for moderate to high reps, such as 8-12 reps or more per set, as part of an upper-body or arm-focused workout.', '1. Attach a straight or angled bar to a high pulley and grab with an overhand grip (palms facing down) at shoulder width. 2. Standing upright with the torso straight and a very small inclination forward, bring the upper arms close to your body and perpendicular to the floor. The forearms should be pointing up towards the pulley as they hold the bar. This is your starting position. 3. Using the triceps, bring the bar down until it touches the front of your thighs and the arms are fully extended perpendicular to the floor. The upper arms should always remain stationary next to your torso and only the forearms should move. Exhale as you perform this movement. 4. After a second hold at the contracted position, bring the bar slowly up to the starting point. Breathe in as you perform this step. 5. Repeat for the recommended amount of repetitions.', '/images/exercises/triceps-pushdown.gif');
+
+INSERT INTO routines (name, username, is_private)
+VALUES ('Get big', 'testuser', FALSE),
+        ('Powerbuiding', 'testadmin', FALSE),
+        ('The best workout', 'testadmin', FALSE);
+
+INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets)
+VALUES (1, 2, 1, '10', '3'),
+        (1, 4, 1, '10', '3'),
+        (1, 6, 1, '10', '3'),
+        (1, 8, 1, '15', '2'),
+        (2, 1, 1, '10', '3'),
+        (2, 3, 1, '5', '10'),
+        (2, 5, 1, '10', '3'),
+        (2, 7, 1, '15', '2');
+
+INSERT INTO logs (date, username, routine_exercise_id, set_number, reps, weight)
+VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
+        ('2019-06-04', 'testuser', 2, '1', '10', '100'),
+        ('2019-06-04', 'testuser', 3, '1', '15', '100'),
+        ('2019-06-04', 'testuser', 4, '1', '10', '100'),
+        ('2019-06-04', 'testadmin', 5, '1', '10', '150'),
+        ('2019-06-04', 'testadmin', 6, '1', '10', '125');

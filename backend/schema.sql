@@ -45,8 +45,8 @@ CREATE TABLE posts (
     username    TEXT NOT NULL
                     REFERENCES users ON DELETE SET NULL,
 -- One to Many Relationship; One category can have many posts
-    category_id INTEGER NOT NULL
-                    REFERENCES categories ON DELETE SET NULL,
+    -- category_id INTEGER NOT NULL
+    --                 REFERENCES categories ON DELETE SET NULL,
     subject     TEXT,
     body        VARCHAR(140) NOT NULL,
     date        TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -113,8 +113,8 @@ CREATE TABLE exercises (
                             REFERENCES muscles ON DELETE CASCADE,
     secondary_muscle_id INTEGER
                             REFERENCES muscles ON DELETE SET NULL,
-    description         TEXT NOT NULL,
-    instructions        TEXT NOT NULL,
+    description         TEXT,
+    instructions        TEXT,
     image_url           TEXT
 );
 
@@ -139,8 +139,8 @@ CREATE TABLE routines_exercises (
                     REFERENCES exercises ON DELETE CASCADE,
                     -- number of the day of the week
     dayOfWeek   INTEGER, --added
-    reps        INTEGER, --added
-    sets        INTEGER --added
+    reps        TEXT, --added
+    sets        TEXT --added
 );
 
 
@@ -149,14 +149,14 @@ CREATE TABLE routines_exercises (
 -- List of log entries for each routine and exercise
 CREATE TABLE Logs (
     id                  SERIAL PRIMARY KEY,
-    date                TIMESTAMPTZ NOT NULL,
+    date                TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     username            TEXT NOT NULL
                             REFERENCES users ON DELETE CASCADE,
     routine_exercise_id INTEGER
-                            REFERENCES routines_exercises ON DELETE SET NULL,
-    set_number          INTEGER,
-    reps                INTEGER,
-    weight              INTEGER
+                            REFERENCES routines_exercises ON DELETE CASCADE,
+    set_number          TEXT,
+    reps                TEXT,
+    weight              TEXT
 );
 
 --Example of storing multiples
