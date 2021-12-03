@@ -7,7 +7,11 @@ const express = require("express");
 const router = new express.Router();
 
 const { BadRequestError } = require("../expressError");
-const { ensureAdminOrCorrectUser, ensureAdmin } = require("../middleware/auth");
+const {
+  ensureAdminOrCorrectUser,
+  ensureLoggedIn,
+  ensureAdmin,
+} = require("../middleware/auth");
 const { createToken } = require("../helpers/tokens");
 
 const User = require("../models/userModel");
@@ -46,10 +50,10 @@ router.post("/", ensureAdmin, async (req, res, next) => {
  *
  * Returns list of all users.
  *
- * Authorization required: admin
+ * Authorization required: logged in
  **/
 
-router.get("/", ensureAdmin, async (req, res, next) => {
+router.get("/", ensureLoggedIn, async (req, res, next) => {
   try {
     const users = await User.findAll();
 
@@ -64,10 +68,10 @@ router.get("/", ensureAdmin, async (req, res, next) => {
  * Returns { username, firstName, lastName, isAdmin, routines }
  *   where routines is { id, name, username }
  *
- * Authorization required: admin or same user-as-:username
+ * Authorization required: logged in
  **/
 
-router.get("/:username", ensureAdminOrCorrectUser, async (req, res, next) => {
+router.get("/:username", ensureLoggedIn, async (req, res, next) => {
   try {
     const user = await User.get(req.params.username);
 

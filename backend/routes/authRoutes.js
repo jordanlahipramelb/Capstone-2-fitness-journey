@@ -12,7 +12,7 @@ const User = require("../models/userModel");
 const userAuthSchema = require("../schemas/userAuth.json");
 const userRegisterSchema = require("../schemas/userRegister.json");
 
-/**  POST /auth/token: { username, password } => { token }
+/**  POST /auth/login: { username, password } => { token }
  *
  * Authenticates username and password of user.
  * Returns JWT token which can be used to authenticate further requests.
@@ -20,7 +20,7 @@ const userRegisterSchema = require("../schemas/userRegister.json");
  * Authorization required: none
  */
 
-router.post("/token", async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userAuthSchema);
 
