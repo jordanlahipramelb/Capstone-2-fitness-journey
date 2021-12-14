@@ -48,7 +48,8 @@ CREATE TABLE posts (
     -- category_id INTEGER NOT NULL
     --                 REFERENCES categories ON DELETE SET NULL,
     subject     TEXT NOT NULL,
-    body        VARCHAR(140) NOT NULL
+    body        VARCHAR(140) NOT NULL,
+    date        TEXT
 
     --routine_id  optional fk to Routine
 );
@@ -59,7 +60,7 @@ CREATE TABLE comments (
     username    TEXT NOT NULL 
                     REFERENCES users ON DELETE SET NULL,
     body        TEXT NOT NULL,
-
+    date        TEXT,
     -- One to Many Relationship; One post can have many comments
     post_id     INTEGER NOT NULL
                     REFERENCES posts ON DELETE CASCADE

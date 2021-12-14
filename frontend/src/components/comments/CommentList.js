@@ -10,7 +10,6 @@ import Comment from "./Comment";
  */
 
 const CommentList = ({ comments = [], deleteComment }) => {
-  console.log(comments);
   return (
     <div className="CommentList container">
       {comments.map((comment) => (
@@ -19,6 +18,7 @@ const CommentList = ({ comments = [], deleteComment }) => {
           id={comment.id}
           username={comment.username}
           body={comment.body}
+          date={comment.date}
           deleteComment={deleteComment}
         />
       ))}

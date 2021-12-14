@@ -29,14 +29,14 @@ VALUES  ('Bodybuilding', 'This is where you talk about building muscle.'),
         ('Cardio', 'This is where you talk about cardio.');
 
 
-INSERT INTO posts (username, subject, body)
-VALUES  ('testuser', 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?'),
-        ('testadmin', 'Big arms!!!', 'Hi guys. I want to get BIG arms. What exercises will do this?');
+INSERT INTO posts (username, subject, body, date)
+VALUES  ('testuser', 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?', 'Tue Dec 1 2021 10:07:42 GMT-0800 (Pacific Standard Time)'),
+        ('testadmin', 'Big arms!!!', 'Hi guys. I want to get BIG arms. What exercises will do this?', 'Tue Nov 14 2021 10:07:42 GMT-0800 (Pacific Standard Time)');
 
-INSERT INTO comments (username, body, post_id)
-VALUES  ('testuser', 'I really like doing the big three; squats, deadlifts, and bench press.', 1),
-        ('testadmin', 'Biceps curls and triceps pushdowns if you want to do isolation exercises.', 2),
-        ('testadmin', 'Also, doing compiund lifts help', 2);
+INSERT INTO comments (username, body, date, post_id)
+VALUES  ('testuser', 'I really like doing the big three; squats, deadlifts, and bench press.', '12-27-2018', 1),
+        ('testadmin', 'Biceps curls and triceps pushdowns if you want to do isolation exercises.', 'Tue Dec 9 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2),
+        ('testadmin', 'Also, doing compiund lifts help', 'Tue Dec 11 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2);
 
 INSERT INTO equipment (type)
 VALUES  ('Band'),           

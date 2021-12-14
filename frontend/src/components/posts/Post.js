@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams, useHistory } from "react-router-dom";
 import "./Post.css";
 
 import LoadingPage from "../common/LoadingPage";
@@ -8,7 +8,6 @@ import PostForm from "./PostForm";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
 import FitnessJourney from "../../api";
-import UserContext from "../auth/UserContext";
 
 /** Main Post Component
  *
@@ -26,10 +25,10 @@ import UserContext from "../auth/UserContext";
  */
 
 const Post = () => {
+  const history = useHistory();
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const history = useHistory();
 
   /** Request post from API via postId */
 
@@ -47,17 +46,21 @@ const Post = () => {
     [postId]
   );
 
+  console.log(postId);
+
   if (!post) return <LoadingPage />;
 
   /** Toggles editing post on/off */
 
   const toggleEdit = () => {
-    setIsEditing((editting) => !editting);
+    setIsEditing((editing) => !editing);
   };
 
-  /** Handles deleting a post */
+  const deletePost = async () => {
+    await FitnessJourney.deletePost(postId);
 
-  const deletePost = () => {};
+    history.push("/forum");
+  };
 
   /** Handles adding a comment */
 
@@ -69,7 +72,7 @@ const Post = () => {
       {isEditing ? (
         <PostForm post={post} cancel={toggleEdit} />
       ) : (
-        <PostView post={post} toggleEdit={toggleEdit} />
+        <PostView post={post} deletePost={deletePost} toggleEdit={toggleEdit} />
       )}
 
       <div className="Post-comments mb-3">

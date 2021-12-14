@@ -8,15 +8,16 @@ import "./Comment.css";
  * Displays text.
  */
 
-const Comment = ({ id, username, body, deleteComment }) => {
+const Comment = ({ id, username, body, date, deleteComment }) => {
   // const handleDelete = () => {
   //   deleteComment(id);
   // };
 
   return (
-    <div className="Comment">
+    <div className="Comment" key={id}>
       <h6>{username}:</h6>
       <p>{body}</p>
+      <p>{date}</p>
       <div className="Comment-right">
         <i className="fa fa-times text-danger mr-2" />
       </div>

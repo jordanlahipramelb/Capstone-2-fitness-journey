@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import UserContext from "../auth/UserContext";
+
 import "./PostView.css";
 
 /** Render a Single Post
@@ -10,11 +11,9 @@ import "./PostView.css";
  */
 
 const PostView = ({ post, toggleEdit, deletePost }) => {
-  const { username, subject, body } = post;
+  const { username, subject, body, date } = post;
   const { currentUser } = useContext(UserContext);
   let sameUser;
-
-  console.log(currentUser);
 
   if (currentUser.username === username) {
     sameUser = true;
@@ -26,7 +25,7 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
     return (
       <div className="PostView-editArea">
         <i className="fas fa-edit text-primary" onClick={toggleEdit} />
-        <i className="fas fa-times text-danger" />
+        <i className="fas fa-times text-danger" onClick={deletePost} />
       </div>
     );
   };
@@ -39,6 +38,7 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
           <i>{username}</i>
         </p>
         <div>{body}</div>
+        <div>{date}</div>
       </div>
       <div className="PostView-right">{sameUser ? userEditBtns() : null}</div>
     </div>

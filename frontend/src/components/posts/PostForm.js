@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 /** Reusable Post Edit Form Component
  *
@@ -11,6 +11,7 @@ const PostForm = ({ save, post, cancel }) => {
     username: post.username,
     subject: post.subject,
     body: post.body,
+    date: post.date,
   });
 
   const handleChange = (evt) => {
@@ -31,7 +32,7 @@ const PostForm = ({ save, post, cancel }) => {
     <div className="PostForm">
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="form-group">
-          <label for="subject">Subject: </label>
+          <label htmlFor="subject">Subject: </label>
           <input
             className="form-control"
             type="text"
@@ -39,10 +40,11 @@ const PostForm = ({ save, post, cancel }) => {
             id="subject"
             value={formData.subject}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
-          <label for="body">Body: </label>
+          <label htmlFor="body">Body: </label>
           <textarea
             onChange={handleChange}
             id="body"
@@ -50,6 +52,7 @@ const PostForm = ({ save, post, cancel }) => {
             className="form-control"
             rows={10}
             value={formData.body}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary container mt-2">
@@ -61,10 +64,6 @@ const PostForm = ({ save, post, cancel }) => {
       </form>
     </div>
   );
-};
-
-PostForm.defaultProps = {
-  post: { subject: "", body: "" },
 };
 
 export default PostForm;

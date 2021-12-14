@@ -16,13 +16,13 @@ class Post {
    * Returns {id, username, subject, body}
    */
 
-  static async create({ username, subject, body }) {
+  static async create({ username, subject, body, date }) {
     const result = await db.query(
       `INSERT INTO posts 
-          (username, subject, body)
-        VALUES ($1, $2, $3)
-        RETURNING username, subject, body`,
-      [username, subject, body]
+          (username, subject, body, date)
+        VALUES ($1, $2, $3, $4)
+        RETURNING username, subject, body, date`,
+      [username, subject, body, date]
     );
 
     const post = result.rows[0];
@@ -36,7 +36,7 @@ class Post {
    */
 
   static async findAll(searchFilters = {}) {
-    let query = `SELECT id, username, subject, body
+    let query = `SELECT id, username, subject, body, date
                       FROM posts `;
 
     // WHERE part of sql query
@@ -66,9 +66,9 @@ class Post {
       return postRes.rows;
     } else {
       const postRes = await db.query(
-        `SELECT id, username, subject, body
+        `SELECT id, username, subject, body, date
           FROM posts 
-          ORDER BY subject`
+          ORDER BY date DESC`
       );
 
       return postRes.rows;
@@ -87,9 +87,10 @@ class Post {
       `SELECT p.id, 
                 p.username, 
                 p.subject, 
-                p.body, 
+                p.body,
+                p.date, 
                 CASE WHEN COUNT(c.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
-        JSON_BUILD_OBJECT('id', c.id, 'username', c.username, 'body', c.body)
+        JSON_BUILD_OBJECT('id', c.id, 'username', c.username, 'body', c.body, 'date', c.date)
     ) END AS comments
             FROM posts p
                 LEFT JOIN comments c ON c.post_id = p.id
@@ -124,7 +125,7 @@ class Post {
     const querySql = `UPDATE posts 
                       SET ${setCols} 
                       WHERE id = ${idVarIdx} 
-                      RETURNING id, username, subject, body`;
+                      RETURNING id, username, subject, body, date`;
     const result = await db.query(querySql, [...values, id]);
     const post = result.rows[0];
 

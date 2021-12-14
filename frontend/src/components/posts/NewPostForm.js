@@ -10,21 +10,24 @@ const NewPost = () => {
   const history = useHistory();
   const { currentUser } = useContext(UserContext);
   const username = currentUser.username;
+  let date = new Date();
+
   const [post, setPost] = useState({
     username: username,
     subject: "",
     body: "",
+    date: `${date}`,
   });
 
   console.log(post);
 
   /** Add Post */
-  const addPost = async ({ username, subject, body }) => {
-    const res = await FitnessJourney.addPost({ username, subject, body });
+
+  const addPost = async (post) => {
+    let res = await FitnessJourney.addPost(post);
     setPost(res);
 
     history.push(`/forum`);
-
   };
 
   /** Cancel post and redirect to forum */

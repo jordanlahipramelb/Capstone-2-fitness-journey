@@ -83,6 +83,10 @@ class FitnessJourney {
     return res.post;
   }
 
+  static async deletePost(postId) {
+    await this.request(`forum/${postId}`, "post");
+  }
+
   /************ End Post Routes *************************/
 
   /*********** Start Exercise Routes ************************/

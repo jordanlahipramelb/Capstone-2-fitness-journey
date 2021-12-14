@@ -20,9 +20,9 @@
     },
     "date": {
       "type": "string",
-      "format": "date"
+      "minLength": 1
     }
   },
   "additionalProperties": false,
-  "required": ["username", "subject", "body"]
+  "required": ["username", "subject", "body", "date"]
 }

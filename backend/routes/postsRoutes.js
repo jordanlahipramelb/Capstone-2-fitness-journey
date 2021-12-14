@@ -84,7 +84,7 @@ router.post("/", ensureLoggedIn, async (req, res, next) => {
     // if json is not valid, return errors
     if (!validator.valid) {
       const errs = validator.errors.map((er) => er.stack);
-
+      console.error("Error with creating new post", errs);
       throw new BadRequestError(errs);
     }
 
@@ -129,11 +129,11 @@ router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
  * Authorization required: admin
  */
 
-router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     await Post.remove(req.params.id);
 
-    return res.json({ deleted: +req.params.id });
+    return res.json({ success: true, deleted: req.params.id });
   } catch (err) {
     return next(err);
   }
