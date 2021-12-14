@@ -11,18 +11,18 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Post {
   /** Create a post (from data), update db, return new post data.
-   * - data should be {username, subject, body, date}
+   * - data should be {username, subject, body}
    *
-   * Returns {id, username, subject, body, date}
+   * Returns {id, username, subject, body}
    */
 
-  static async create({ username, subject, body, date }) {
+  static async create({ username, subject, body }) {
     const result = await db.query(
       `INSERT INTO posts 
-          (username, subject, body, date)
-        VALUES ($1, $2, $3, $4)
-        RETURNING username, subject, body, date`,
-      [username, subject, body, date]
+          (username, subject, body)
+        VALUES ($1, $2, $3)
+        RETURNING username, subject, body`,
+      [username, subject, body]
     );
 
     const post = result.rows[0];
@@ -32,22 +32,52 @@ class Post {
 
   /** Find all posts
    *
-   * Returns  [{id, username, subject, body, date}, ...]
+   * Returns  [{id, username, subject, body}, ...]
    */
 
-  static async findAll() {
-    const postsRes = await db.query(
-      `SELECT id, username, subject, body, date
-            FROM posts 
-            ORDER BY date DESC`
-    );
+  static async findAll(searchFilters = {}) {
+    let query = `SELECT id, username, subject, body
+                      FROM posts `;
 
-    return postsRes.rows;
+    // WHERE part of sql query
+    let whereExpressions = [];
+    // values of above queries
+    let queryValues = [];
+
+    const { subject } = searchFilters;
+
+    if (subject) {
+      // push possible query search terms to whereExpressions and queryValues in order to generate the correct SQL query
+      // push subject to query values
+      queryValues.push(`%${subject}%`);
+      // matches query value to its index in the whereExpressions array
+      whereExpressions.push(`subject ILIKE $${queryValues.length}`);
+
+      // if there is something in the array, join the initial query SQL statement with WHERE and AND between each value of the array
+      if (whereExpressions.length > 0) {
+        query += " WHERE " + whereExpressions.join(" AND ");
+      }
+
+      // finalize query
+      query += " ORDER BY subject";
+
+      const postRes = await db.query(query, queryValues);
+
+      return postRes.rows;
+    } else {
+      const postRes = await db.query(
+        `SELECT id, username, subject, body
+          FROM posts 
+          ORDER BY subject`
+      );
+
+      return postRes.rows;
+    }
   }
 
   /** Given post id, return data about post including its comments.
    *
-   * Returns [{id, username, subject, body, date}, ...]
+   * Returns [{id, username, subject, body}, ...]
    *
    * Throws NotFoundError if id not found
    */
@@ -58,7 +88,6 @@ class Post {
                 p.username, 
                 p.subject, 
                 p.body, 
-                p.date, 
                 CASE WHEN COUNT(c.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
         JSON_BUILD_OBJECT('id', c.id, 'username', c.username, 'body', c.body)
     ) END AS comments
@@ -81,9 +110,9 @@ class Post {
    * This is a "partial update" --- it's fine if data doesn't contain all the
    * fields; this only changes provided ones.
    *
-   * Data can include: {username, subject, body, date}
+   * Data can include: {username, subject, body}
    *
-   * Returns {id, username, subject, body, date}
+   * Returns {id, username, subject, body}
    *
    * Throws NotFoundError if not found.
    */
@@ -95,7 +124,7 @@ class Post {
     const querySql = `UPDATE posts 
                       SET ${setCols} 
                       WHERE id = ${idVarIdx} 
-                      RETURNING id, username, subject, body, date`;
+                      RETURNING id, username, subject, body`;
     const result = await db.query(querySql, [...values, id]);
     const post = result.rows[0];
 

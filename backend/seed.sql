@@ -29,13 +29,14 @@ VALUES  ('Bodybuilding', 'This is where you talk about building muscle.'),
         ('Cardio', 'This is where you talk about cardio.');
 
 
-INSERT INTO posts (username, subject, body, date)
-VALUES  ('testuser', 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?','2016-06-22 19:10:25-07'),
-        ('testadmin', NULL, 'Hi guys. I want to get BIG arms. What exercises will do this?','2018-06-22 19:10:25-07');
+INSERT INTO posts (username, subject, body)
+VALUES  ('testuser', 'Tips on increasing strength?', 'Hi guys. I''m trying to make a routine that helps me increase my strength. What exercises will do this?'),
+        ('testadmin', 'Big arms!!!', 'Hi guys. I want to get BIG arms. What exercises will do this?');
 
-INSERT INTO comments (username, body, date, post_id)
-VALUES  ('testuser', 'I really like doing the big three; squats, deadlifts, and bench press.','2016-06-22 19:12:25-07', 1),
-        ('testadmin', 'Biceps curls and triceps pushdowns if you want to do isolation exercises.','2018-06-22 19:12:25-07', 2);
+INSERT INTO comments (username, body, post_id)
+VALUES  ('testuser', 'I really like doing the big three; squats, deadlifts, and bench press.', 1),
+        ('testadmin', 'Biceps curls and triceps pushdowns if you want to do isolation exercises.', 2),
+        ('testadmin', 'Also, doing compiund lifts help', 2);
 
 INSERT INTO equipment (type)
 VALUES  ('Band'),           

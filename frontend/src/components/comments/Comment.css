@@ -1,0 +1,12 @@
+.Comment {
+  position: relative;
+}
+
+.Comment-right {
+  position: absolute;
+  right: 0;
+  top: 1em;
+  text-align: right;
+}
+
+/*  */

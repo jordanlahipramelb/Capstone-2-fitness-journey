@@ -23,18 +23,19 @@ app.use(morgan("tiny"));
 app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
-app.use("/users", usersRoutes);
+app.use("/athletes", usersRoutes);
 app.use("/exercises", exercisesRoutes);
 app.use("/forum", postsRoutes);
+// mergeParams route for comments to access post_id
 app.use("/forum/:post_id/comments", postsCommentsRoutes);
 
 /** Handle 404 errors -- this matches everything */
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   return next(new NotFoundError());
 });
 
 /** Generic error handler; anything unhandled goes here. */
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   if (process.env.NODE_ENV !== "test") console.error(err.stack);
   const status = err.status || 500;
   const message = err.message;

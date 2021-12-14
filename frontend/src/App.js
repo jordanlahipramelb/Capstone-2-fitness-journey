@@ -4,8 +4,11 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 import FitnessJourneyApi from "./api";
 import "./App.css";
+
 import LoadingPage from "./components/common/LoadingPage";
 import UserContext from "./components/auth/UserContext";
+import Navbar from "./components/navbar/Navbar";
+import Routes from "./routes/Routes";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "fitnessjourney-token";
@@ -98,7 +101,7 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <div>
-          <Navigation logout={logout} />
+          <Navbar logout={logout} />
           <Routes login={login} register={register} />
         </div>
       </UserContext.Provider>

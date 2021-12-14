@@ -47,9 +47,9 @@ CREATE TABLE posts (
 -- One to Many Relationship; One category can have many posts
     -- category_id INTEGER NOT NULL
     --                 REFERENCES categories ON DELETE SET NULL,
-    subject     TEXT,
-    body        VARCHAR(140) NOT NULL,
-    date        TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    subject     TEXT NOT NULL,
+    body        VARCHAR(140) NOT NULL
+
     --routine_id  optional fk to Routine
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE comments (
     username    TEXT NOT NULL 
                     REFERENCES users ON DELETE SET NULL,
     body        TEXT NOT NULL,
-    date        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
     -- One to Many Relationship; One post can have many comments
     post_id     INTEGER NOT NULL
                     REFERENCES posts ON DELETE CASCADE

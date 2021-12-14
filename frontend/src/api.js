@@ -35,7 +35,7 @@ class FitnessJourney {
   /** Get the current user. */
 
   static async getCurrentUser(username) {
-    let res = await this.request(`users/${username}`);
+    let res = await this.request(`athletes/${username}`);
     return res.user;
   }
 
@@ -56,7 +56,7 @@ class FitnessJourney {
   /** Save user profile page. */
 
   static async saveProfile(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
+    let res = await this.request(`athlete/${username}`, data, "patch");
     return res.user;
   }
 
@@ -66,15 +66,20 @@ class FitnessJourney {
 
   /** Get all posts (filtered by date if not undefined) */
 
-  static async getPosts(date) {
-    let res = await this.request("forum", { date });
+  static async getPosts(subject) {
+    let res = await this.request("forum", { subject });
     return res.posts;
   }
 
   /** Get a single posts including its comments */
 
-  static async getPost(id) {
-    let res = await this.request(`forum/${id}`);
+  static async getPost(postId) {
+    let res = await this.request(`forum/${postId}`);
+    return res.post;
+  }
+
+  static async addPost(data) {
+    let res = await this.request("forum", data, "post");
     return res.post;
   }
 

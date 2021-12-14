@@ -1,5 +1,15 @@
+.Navbar {
+  background-color: #dcdcdd;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+}
+
 nav a {
   margin-right: 1em;
+  color: #5c9ead;
+}
+
+nav a:hover {
+  color: #d64045;
 }
 
 nav a.active {

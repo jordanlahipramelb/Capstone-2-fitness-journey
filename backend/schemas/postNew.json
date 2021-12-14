@@ -11,7 +11,7 @@
     "subject": {
       "type": "string",
       "minLength": 0,
-      "maxLength": 20
+      "maxLength": 50
     },
     "body": {
       "type": "string",
@@ -24,5 +24,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["username", "body", "date"]
+  "required": ["username", "subject", "body"]
 }

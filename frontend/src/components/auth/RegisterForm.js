@@ -16,6 +16,71 @@ const RegisterForm = ({ register }) => {
     fitnessType: "",
   });
   const [formErrors, setFormErrors] = useState([]);
+  const states = [
+    "---",
+    "AK",
+    "AL",
+    "AR",
+    "AS",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "PR",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY",
+  ];
+  const fitnessTypes = ["---", "Bodybuilder", "Powerlifter", "Powerbuilder"];
+  const listStates = states.map((state) => (
+    <option value={state}>{state}</option>
+  ));
+  const listTypes = fitnessTypes.map((type) => (
+    <option value={type}>{type}</option>
+  ));
 
   /** Handle form submission. */
   const handleSubmit = async (evt) => {
@@ -35,96 +100,143 @@ const RegisterForm = ({ register }) => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
+  const {
+    username,
+    password,
+    email,
+    firstName,
+    lastName,
+    city,
+    state,
+    bio,
+    fitnessType,
+  } = formData;
+
   return (
     <div className="SignupForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h2 className="mb-3">Sign Up</h2>
-        <div className="card">
+        <div className="card mb-5">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Username</label>
+                <label for="username" className="mt-2">
+                  Username
+                </label>
                 <input
+                  id="username"
                   name="username"
                   className="form-control"
-                  value={formData.username}
+                  value={username}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label for="password" className="mt-2">
+                  Password
+                </label>
                 <input
+                  id="password"
                   type="password"
                   name="password"
                   className="form-control"
-                  value={formData.password}
+                  value={password}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="form-group">
-                <label>First name</label>
+                <label for="firstName" className="mt-2">
+                  First name
+                </label>
                 <input
+                  id="firstName"
                   name="firstName"
                   className="form-control"
-                  value={formData.firstName}
+                  value={firstName}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label>Last name</label>
+                <label for="lastName" className="mt-2">
+                  Last name
+                </label>
                 <input
+                  id="lastName"
                   name="lastName"
                   className="form-control"
-                  value={formData.lastName}
+                  value={lastName}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label>Email</label>
+                <label for="email" className="mt-2">
+                  Email
+                </label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   className="form-control"
-                  value={formData.email}
+                  value={email}
                   onChange={handleChange}
                 />
+                <small id="emailHelp" class="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
               </div>
               <div className="form-group">
-                <label>City</label>
+                <label for="city" className="mt-2">
+                  City
+                </label>
                 <input
+                  id="city"
                   name="city"
                   className="form-control"
-                  value={formData.city}
+                  value={city}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label>State</label>
-                <input
+                <label for="state" className="mt-2">
+                  State
+                </label>
+                <select
+                  id="state"
                   name="state"
                   className="form-control"
-                  value={formData.state}
+                  value={state}
                   onChange={handleChange}
-                />
+                >
+                  {listStates}
+                </select>
               </div>
               <div className="form-group">
-                <label>Bio</label>
-                <input
+                <label for="bio" className="mt-2">
+                  Bio
+                </label>
+                <textarea
+                  id="bio"
                   name="bio"
                   className="form-control"
-                  value={formData.bio}
+                  value={bio}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label>Fitness Type</label>
-                <input
-                  name="Firness Type"
+                <label for="fitnessType" className="mt-2">
+                  Fitness Type
+                </label>
+                <select
+                  id="fitnessType"
+                  name="fitnessType"
                   className="form-control"
-                  value={formData.fitnessType}
+                  value={fitnessType}
                   onChange={handleChange}
-                />
+                >
+                  {listTypes}
+                </select>
               </div>
 
               {formErrors.length ? (
@@ -133,7 +245,7 @@ const RegisterForm = ({ register }) => {
 
               <button
                 type="submit"
-                className="btn btn-primary float-right"
+                className="btn btn-primary mt-3"
                 onSubmit={handleSubmit}
               >
                 Submit

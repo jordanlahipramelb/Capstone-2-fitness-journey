@@ -6,9 +6,14 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 
 const { NotFoundError, BadRequestError } = require("../expressError");
-const { ensureAdmin } = require("../middleware/auth");
+const {
+  ensureAdminOrCorrectUser,
+  ensureAdmin,
+  ensureLoggedIn,
+} = require("../middleware/auth");
 const Post = require("../models/postModel");
 const postNewSchema = require("../schemas/postNew.json");
+const postSearchSchema = require("../schemas/postSearch.json");
 const postUpdateSchema = require("../schemas/postUpdate.json");
 const router = new express.Router();
 
@@ -21,8 +26,20 @@ const router = new express.Router();
  */
 
 router.get("/", async (req, res, next) => {
+  const searchTerm = req.query;
+
   try {
-    const posts = await Post.findAll();
+    const validator = jsonschema.validate(searchTerm, postSearchSchema);
+
+    // if json is not valid, return errors
+    if (!validator.valid) {
+      const errs = validator.errors.map((er) => er.stack);
+
+      throw new BadRequestError(errs);
+    }
+
+    // perform search
+    const posts = await Post.findAll(searchTerm);
 
     return res.json({ posts });
   } catch (err) {
@@ -32,7 +49,7 @@ router.get("/", async (req, res, next) => {
 
 /** GET /[ id ]  =>  { post }
  *
- * get single post
+ * get single post with comments
  *
  *  Returns { id, username, subject, body, date, comments: [ { id, username, body }, ... ] }
  *
@@ -53,14 +70,14 @@ router.get("/:id", async (req, res, next) => {
  *
  * create new post
  *
- * post should be { username, subject, body, date }
+ * post should be { username, subject, body }
  *
- * Returns { id, username, subject, body, date  }
+ * Returns { id, username, subject, body  }
  *
- * Authorization required: admin
+ * Authorization required: Logged in user
  */
 
-router.post("/", ensureAdmin, async (req, res, next) => {
+router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, postNewSchema);
 
@@ -89,7 +106,7 @@ router.post("/", ensureAdmin, async (req, res, next) => {
  * Authorization required: admin
  */
 
-router.put("/:id", ensureAdmin, async (req, res, next) => {
+router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, postUpdateSchema);
 
@@ -112,7 +129,7 @@ router.put("/:id", ensureAdmin, async (req, res, next) => {
  * Authorization required: admin
  */
 
-router.delete("/:id", ensureAdmin, async (req, res, next) => {
+router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
   try {
     await Post.remove(req.params.id);
 
