@@ -14,14 +14,13 @@
       "maxLength": 300
     },
     "date": {
-      "type": "string",
-      "format": "date"
+      "minLength": 1
     },
-    "postId": {
+    "post_id": {
       "type": "integer",
       "minimum": 0
     }
   },
   "additionalProperties": false,
-  "required": ["username", "body", "date", "postId"]
+  "required": ["username", "body", "date", "post_id"]
 }

@@ -20,7 +20,7 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
   } else {
     sameUser = false;
   }
-
+  console.log(post);
   const userEditBtns = () => {
     return (
       <div className="PostView-editArea">

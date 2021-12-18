@@ -56,6 +56,8 @@ const Post = () => {
     setIsEditing((editing) => !editing);
   };
 
+  /** Handles editing a post */
+
   const deletePost = async () => {
     await FitnessJourney.deletePost(postId);
 
@@ -64,7 +66,17 @@ const Post = () => {
 
   /** Handles adding a comment */
 
+  const addComment = async (comment) => {
+    await FitnessJourney.addComment(postId, comment);
+  };
+
   /** Handles deleting a comment via comment id */
+
+  const deleteComment = async (commentId) => {
+    await FitnessJourney.removeComment(postId, commentId);
+
+    window.location.reload(true);
+  };
 
   return (
     <div className="Post container">
@@ -77,8 +89,8 @@ const Post = () => {
 
       <div className="Post-comments mb-3">
         <h4>Comments</h4>
-        <CommentList comments={post.comments} />
-        <CommentForm />
+        <CommentList deleteComment={deleteComment} comments={post.comments} />
+        <CommentForm addComment={addComment} postId={postId} />
       </div>
     </div>
   );

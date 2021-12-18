@@ -6,7 +6,11 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 
 const { NotFoundError, BadRequestError } = require("../expressError");
-const { ensureAdmin } = require("../middleware/auth");
+const {
+  ensureAdmin,
+  ensureLoggedIn,
+  ensureAdminOrCorrectUser,
+} = require("../middleware/auth");
 
 const PostComment = require("../models/postCommentModel");
 const commentNewSchema = require("../schemas/commentNew.json");
@@ -38,10 +42,10 @@ router.get("/", async (req, res, next) => {
  * comment should be { username, body, date, post_id }
  * Returns { id, username, body, date  }
  *
- * Authorization required: admin
+ * Authorization required: Logged in user
  */
 
-router.post("/", ensureAdmin, async (req, res, next) => {
+router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, commentNewSchema);
 
@@ -93,11 +97,11 @@ router.put("/:id", ensureAdmin, async (req, res, next) => {
  * Authorization required: admin
  */
 
-router.delete("/:id", ensureAdmin, async (req, res, next) => {
+router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
   try {
     await PostComment.remove(req.params.id);
 
-    return res.json({ deleted: +req.params.id });
+    return res.json({ deleted: "comment deleted" });
   } catch (err) {
     return next(err);
   }

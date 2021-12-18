@@ -77,8 +77,7 @@ class PostComment {
 
   static async remove(id) {
     const result = await db.query(
-      `DELETE
-           FROM comments
+      `DELETE FROM comments
            WHERE id = $1
            RETURNING id`,
       [id]

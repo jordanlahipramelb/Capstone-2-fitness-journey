@@ -1,22 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import FitnessJourney from "../../api";
+import UserContext from "../auth/UserContext";
 
 /** Renders Comment Form
  *
  * Used for adding/editing a comment.
  */
 
-const CommentForm = ({ addComment }) => {
-  const [comment, setComment] = useState();
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    // addComment(comment);
-    // setComment("");
+const CommentForm = ({ postId, addComment }) => {
+  const { currentUser } = useContext(UserContext);
+  const username = currentUser.username;
+  let date = new Date();
+  let initialState = {
+    username: username,
+    body: "",
+    date: `${date}`,
+    post_id: parseInt(postId),
   };
+  const [comment, setComment] = useState(initialState);
+
+  console.log(comment);
 
   /** Allows form to be used */
   const handleChange = (evt) => {
-    setComment(evt.target.value);
+    const { name, value } = evt.target;
+    setComment((formData) => ({
+      ...formData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (evt) => {
+    addComment(comment);
+
+    setComment(initialState);
   };
 
   return (
@@ -25,11 +42,11 @@ const CommentForm = ({ addComment }) => {
         <div className="input-group">
           <input
             type="text"
-            name="text"
+            name="body"
             size="40"
             placeholder="New Comment"
             className="form-control"
-            value={comment}
+            value={comment.body}
             onChange={handleChange}
           />
           <div className="input-group-append">

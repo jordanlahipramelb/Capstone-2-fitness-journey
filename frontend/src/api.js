@@ -84,7 +84,24 @@ class FitnessJourney {
   }
 
   static async deletePost(postId) {
-    await this.request(`forum/${postId}`, "post");
+    try {
+      await axios.delete(`${BASE_URL}/forum/${postId}`, "no");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async addComment(postId, data) {
+    let res = await this.request(`forum/${postId}/comments/`, data, "post");
+    return res.comment;
+  }
+
+  static async removeComment(postId, commentId) {
+    try {
+      await axios.delete(`${BASE_URL}/forum/${postId}/comments/${commentId}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   /************ End Post Routes *************************/
