@@ -56,7 +56,7 @@ const PostForm = ({ save, post, cancel }) => {
           />
         </div>
         <button type="submit" className="btn btn-primary container mt-2">
-          Save
+          Submit
         </button>
         <button onClick={cancel} className="btn btn-secondary container mt-1">
           Cancel

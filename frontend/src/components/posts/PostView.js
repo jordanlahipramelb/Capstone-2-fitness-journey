@@ -20,12 +20,11 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
   } else {
     sameUser = false;
   }
-  console.log(post);
   const userEditBtns = () => {
     return (
       <div className="PostView-editArea">
-        <i className="fas fa-edit text-primary" onClick={toggleEdit} />
-        <i className="fas fa-times text-danger" onClick={deletePost} />
+        <i className="fas fa-edit text-primary icon" onClick={toggleEdit} />
+        <i className="fas fa-times text-danger icon" onClick={deletePost} />
       </div>
     );
   };

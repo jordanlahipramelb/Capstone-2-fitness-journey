@@ -32,7 +32,7 @@ class FitnessJourney {
 
   /*************** Start User/Auth Routes *******************/
 
-  /** Get the current user. */
+  /** Get a user. */
 
   static async getCurrentUser(username) {
     let res = await this.request(`athletes/${username}`);
@@ -62,7 +62,7 @@ class FitnessJourney {
 
   /*************** End User/Auth Routes ***************************/
 
-  /************ Start Post Routes *************************/
+  /************ Start Post/Comment Routes *************************/
 
   /** Get all posts (filtered by date if not undefined) */
 
@@ -83,9 +83,19 @@ class FitnessJourney {
     return res.post;
   }
 
+  static async updatePost(postId, data) {
+    try {
+      let res = await this.request(`forum/${postId}`, data, "put");
+
+      return res.post;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   static async deletePost(postId) {
     try {
-      await axios.delete(`${BASE_URL}/forum/${postId}`, "no");
+      await axios.delete(`${BASE_URL}/forum/${postId}`);
     } catch (err) {
       console.log(err);
     }
@@ -104,7 +114,7 @@ class FitnessJourney {
     }
   }
 
-  /************ End Post Routes *************************/
+  /************ End Post/Comment Routes *************************/
 
   /*********** Start Exercise Routes ************************/
 

@@ -12,3 +12,7 @@
 .PostView-right i {
   margin-left: 1em;
 }
+
+.icon:hover {
+  cursor: pointer;
+}

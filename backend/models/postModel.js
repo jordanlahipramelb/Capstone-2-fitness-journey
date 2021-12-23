@@ -68,7 +68,7 @@ class Post {
       const postRes = await db.query(
         `SELECT id, username, subject, body, date
           FROM posts 
-          ORDER BY date DESC`
+          ORDER BY date`
       );
 
       return postRes.rows;

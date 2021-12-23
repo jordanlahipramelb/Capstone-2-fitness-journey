@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 
 /** Renders Comment Form
@@ -19,9 +18,8 @@ const CommentForm = ({ postId, addComment }) => {
   };
   const [comment, setComment] = useState(initialState);
 
-  console.log(comment);
-
   /** Allows form to be used */
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setComment((formData) => ({

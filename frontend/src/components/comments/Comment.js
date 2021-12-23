@@ -29,7 +29,10 @@ const Comment = ({ id, username, body, date, deleteComment }) => {
       <div className="Comment-editArea">
         {/* <i className="fas fa-edit text-primary" /> */}
         {deleteComment && (
-          <i className="fa fa-times text-danger mr-2" onClick={handleDelete} />
+          <i
+            className="deleteBtn fa fa-times text-danger mr-2"
+            onClick={handleDelete}
+          />
         )}
       </div>
     );

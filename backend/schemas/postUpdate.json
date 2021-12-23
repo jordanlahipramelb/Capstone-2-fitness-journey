@@ -11,7 +11,7 @@
     "subject": {
       "type": "string",
       "minLength": 0,
-      "maxLength": 20
+      "maxLength": 50
     },
     "body": {
       "type": "string",
@@ -20,7 +20,7 @@
     },
     "date": {
       "type": "string",
-      "format": "date"
+      "minLength": 1
     }
   },
   "additionalProperties": false,

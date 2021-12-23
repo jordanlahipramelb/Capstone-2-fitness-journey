@@ -19,8 +19,6 @@ const NewPost = () => {
     date: `${date}`,
   });
 
-  console.log(post);
-
   /** Add Post */
 
   const addPost = async (post) => {

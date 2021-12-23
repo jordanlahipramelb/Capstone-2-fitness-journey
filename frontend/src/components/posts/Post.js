@@ -46,8 +46,6 @@ const Post = () => {
     [postId]
   );
 
-  console.log(postId);
-
   if (!post) return <LoadingPage />;
 
   /** Toggles editing post on/off */
@@ -57,6 +55,14 @@ const Post = () => {
   };
 
   /** Handles editing a post */
+
+  const editPost = async (post) => {
+    await FitnessJourney.updatePost(postId, post);
+
+    window.location.reload(true);
+  };
+
+  /** Handles deleting a post */
 
   const deletePost = async () => {
     await FitnessJourney.deletePost(postId);
@@ -82,7 +88,7 @@ const Post = () => {
     <div className="Post container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple PostView component */}
       {isEditing ? (
-        <PostForm post={post} cancel={toggleEdit} />
+        <PostForm post={post} cancel={toggleEdit} save={editPost} />
       ) : (
         <PostView post={post} deletePost={deletePost} toggleEdit={toggleEdit} />
       )}
