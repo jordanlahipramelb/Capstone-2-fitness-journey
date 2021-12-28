@@ -68,11 +68,11 @@ const LoginForm = ({ login }) => {
                   required
                 />
               </div>
-
-              {formErrors.length ? (
-                <Alert type="danger" messages={formErrors} />
-              ) : null}
-
+              <div className="mt-4">
+                {formErrors.length ? (
+                  <Alert type="danger" messages={formErrors} />
+                ) : null}
+              </div>
               <button className="btn btn-primary mt-3" onSubmit={handleSubmit}>
                 Login
               </button>

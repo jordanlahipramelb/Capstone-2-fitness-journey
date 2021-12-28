@@ -1,6 +1,6 @@
 -- both test users have the password 'password'
 
-INSERT INTO users (username, password, first_name, last_name, email, city, state, fitness_type, bio, is_admin)
+INSERT INTO users (username, password, first_name, last_name, email, city, state, fitness_type, bio, image_url, is_admin)
 VALUES ('testuser',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
         'Test',
@@ -9,7 +9,8 @@ VALUES ('testuser',
         'Test City',
         'Test State',
         'Powerlifter',
-        'I like to lift weights',
+        'I like to lift weights', 
+        'https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg',
         FALSE),
        ('testadmin',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
@@ -20,6 +21,7 @@ VALUES ('testuser',
         'Test State',
         'Bodybuilder',
         'I like to lift weights',
+        'https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg',
         TRUE);
 
 

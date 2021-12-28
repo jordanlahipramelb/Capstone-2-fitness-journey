@@ -56,8 +56,18 @@ class FitnessJourney {
   /** Save user profile page. */
 
   static async saveProfile(username, data) {
-    let res = await this.request(`athlete/${username}`, data, "patch");
+    let res = await this.request(`athletes/${username}`, data, "patch");
     return res.user;
+  }
+
+  /** Delete user profile. */
+
+  static async deleteProfile(username) {
+    try {
+      await axios.delete(`${BASE_URL}/athletes/${username}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   /*************** End User/Auth Routes ***************************/

@@ -65,7 +65,7 @@ router.get("/", ensureLoggedIn, async (req, res, next) => {
 
 /** GET /[username] => { user }
  *
- * Returns { username, firstName, lastName, isAdmin, routines }
+ * Returns { username, firstName, lastName, isAdmin, routines, fitnessType }
  *   where routines is { id, name, username }
  *
  * Authorization required: logged in

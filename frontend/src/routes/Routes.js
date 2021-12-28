@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
 
+import ProtectedRoutes from "./ProtectedRoutes";
 import Homepage from "../components/home/Homepage";
 import PostList from "../components/posts/PostList";
 import Post from "../components/posts/Post";
@@ -53,9 +54,9 @@ const Routes = ({ login, register }) => {
         <Profile />
       </Route>
 
-      <Route exact path="/athlete/edit">
+      <ProtectedRoutes exact path="/athlete/edit">
         <ProfileForm />
-      </Route>
+      </ProtectedRoutes>
 
       <Route exact path="/athlete/:username"></Route>
       <Redirect to="/" />

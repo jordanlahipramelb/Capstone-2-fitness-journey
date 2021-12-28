@@ -14,6 +14,8 @@ const RegisterForm = ({ register }) => {
     state: "",
     bio: "",
     fitnessType: "",
+    imageUrl:
+      "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
   });
   const [formErrors, setFormErrors] = useState([]);
   const states = [
@@ -75,12 +77,8 @@ const RegisterForm = ({ register }) => {
     "WY",
   ];
   const fitnessTypes = ["---", "Bodybuilder", "Powerlifter", "Powerbuilder"];
-  const listStates = states.map((state) => (
-    <option value={state}>{state}</option>
-  ));
-  const listTypes = fitnessTypes.map((type) => (
-    <option value={type}>{type}</option>
-  ));
+  const listStates = map(states);
+  const listTypes = map(fitnessTypes);
 
   /** Handle form submission. */
   const handleSubmit = async (evt) => {
@@ -110,13 +108,14 @@ const RegisterForm = ({ register }) => {
     state,
     bio,
     fitnessType,
+    imageUrl,
   } = formData;
 
   return (
-    <div className="SignupForm">
+    <div className="SignupForm mb-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h2 className="mb-3">Sign Up</h2>
-        <div className="card mb-5">
+        <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="form-group">
@@ -143,6 +142,7 @@ const RegisterForm = ({ register }) => {
                   className="form-control"
                   value={password}
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -156,6 +156,7 @@ const RegisterForm = ({ register }) => {
                   className="form-control"
                   value={firstName}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -171,6 +172,21 @@ const RegisterForm = ({ register }) => {
                 />
               </div>
               <div className="form-group">
+                <label for="imageUrl" className="mt-2">
+                  Profile Photo
+                </label>
+                <input
+                  id="imageUrl"
+                  name="imageUrl"
+                  className="form-control"
+                  value={imageUrl}
+                  onChange={handleChange}
+                />
+                <small id="imageUrlMessage" class="form-text text-muted">
+                  Insert image URL above, or leave as default photo.
+                </small>
+              </div>
+              <div className="form-group">
                 <label for="email" className="mt-2">
                   Email
                 </label>
@@ -181,6 +197,7 @@ const RegisterForm = ({ register }) => {
                   className="form-control"
                   value={email}
                   onChange={handleChange}
+                  required
                 />
                 <small id="emailHelp" class="form-text text-muted">
                   We'll never share your email with anyone else.
@@ -238,14 +255,14 @@ const RegisterForm = ({ register }) => {
                   {listTypes}
                 </select>
               </div>
-
-              {formErrors.length ? (
-                <Alert type="danger" messages={formErrors} />
-              ) : null}
-
+              <div className="mt-4">
+                {formErrors.length ? (
+                  <Alert type="danger" messages={formErrors} />
+                ) : null}
+              </div>
               <button
                 type="submit"
-                className="btn btn-primary mt-3"
+                className="btn btn-primary mt-3 container"
                 onSubmit={handleSubmit}
               >
                 Submit
@@ -256,6 +273,14 @@ const RegisterForm = ({ register }) => {
       </div>
     </div>
   );
+};
+
+const map = (listName) => {
+  return listName.map((type) => (
+    <option key={type} value={type}>
+      {type}
+    </option>
+  ));
 };
 
 export default RegisterForm;
