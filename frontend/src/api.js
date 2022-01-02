@@ -135,7 +135,7 @@ class FitnessJourney {
     return res.exercises;
   }
 
-  /** Get details on a exercise by name. */
+  /** Get details on a exercise by id. */
 
   static async getExercise(id) {
     let res = await this.request(`exercises/${id}`);

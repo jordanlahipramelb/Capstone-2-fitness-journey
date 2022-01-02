@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Profile.css";
 
 import LoadingPage from "../common/LoadingPage";
@@ -12,7 +12,8 @@ import UserContext from "../auth/UserContext";
  *
  */
 
-const UserProfile = () => {
+const CurrentUserProfile = () => {
+  const history = useHistory();
   const { currentUser } = useContext(UserContext);
   const [user, setUser] = useState(null);
 
@@ -32,22 +33,35 @@ const UserProfile = () => {
     [currentUser.username]
   );
 
+  const deleteProfile = async () => {
+    await FitnessJourney.deleteProfile(currentUser.username);
+
+    history.push("/login");
+    window.location.reload(true);
+  };
+
   if (!user) return <LoadingPage />;
 
   return (
     <div className="Profile container">
-      <div className="row full-width">
-        <div id="profile-avatar" className="col-sm-6 col-md-4">
+      <div className="row">
+        <div id="profile-avatar" className="col-sm-4 col-md-4">
           <img src={currentUser.imageUrl} className="img-thumbnail" />
         </div>
         <div className="col-sm-6 col-md-4">
-          <h1>@{currentUser.username}</h1>
-          <p className="user-bio">{currentUser.bio}</p>
-          <p className="user-location">
-            <span className="fa fa-map-marker"></span> {currentUser.city},{" "}
-            {currentUser.state}
-          </p>
-          <p>{currentUser.fitnessType}</p>
+          <div className="card card-details p-2 m-2">
+            <div className="card-title">
+              <h1>@{currentUser.username}</h1>
+            </div>
+            <div className="card-body">
+              <p className="user-bio">{currentUser.bio}</p>
+              <p className="user-location">
+                <span className="fa fa-map-marker"></span> {currentUser.city},{" "}
+                {currentUser.state}
+              </p>
+              <p>{currentUser.fitnessType}</p>
+            </div>
+          </div>
         </div>
 
         <div className="col-sm-6 col-md-4">
@@ -59,7 +73,10 @@ const UserProfile = () => {
             </Link>
           </div>
           <div>
-            <button className="container btn btn-outline-danger m-2">
+            <button
+              className="container btn btn-outline-danger m-2"
+              onClick={deleteProfile}
+            >
               Delete Profile
             </button>
           </div>
@@ -69,4 +86,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default CurrentUserProfile;

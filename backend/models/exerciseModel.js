@@ -89,6 +89,7 @@ class Exercise {
                         instructions, 
                         image_url AS "imageUrl"
                     FROM exercises`;
+
     // WHERE part of sql query
     let whereExpressions = [];
     // values of above queries
@@ -125,16 +126,22 @@ class Exercise {
 
   static async get(id) {
     const exerciseRes = await db.query(
-      `SELECT id, 
-              name, 
-              equipment_id AS "equipmentId", 
-              primary_muscle_id AS "primaryMuscleId", 
-              secondary_muscle_id AS "secondaryMuscleId", 
-              description, 
-              instructions, 
-              image_url AS "imageUrl"
-          FROM exercises
-          WHERE id = $1`,
+      `SELECT exercises.id,
+              exercises.name,
+              equipment.type AS "equipmentType",
+              m1.name AS "primaryMuscle",
+              m2.name AS "secondaryMuscle",
+              exercises.description, 
+              exercises.instructions, 
+              exercises.image_url
+        FROM exercises
+        FULL JOIN equipment
+          ON exercises.equipment_id = equipment.id
+        FULL JOIN muscles m1
+          ON m1.id = exercises.primary_muscle_id
+        FULL JOIN muscles m2
+          ON m2.id = exercises.secondary_muscle_id
+          WHERE exercises.id = $1`,
       [id]
     );
 

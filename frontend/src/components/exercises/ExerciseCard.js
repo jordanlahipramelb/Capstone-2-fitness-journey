@@ -11,7 +11,7 @@ import "./ExerciseCard.css";
 
 const ExerciseCard = ({ id, name, description }) => {
   return (
-    <Link className="ExerciseCard card" to={`/exercise/${id}`} key={id}>
+    <Link className="ExerciseCard card" to={`/exercises/${id}`} key={id}>
       <div className="card-body">
         <h6 className="card-title">{name}</h6>
       </div>

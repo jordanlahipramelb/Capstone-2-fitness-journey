@@ -7,6 +7,7 @@ import PostList from "../components/posts/PostList";
 import Post from "../components/posts/Post";
 import NewPost from "../components/posts/NewPostForm";
 import ExerciseList from "../components/exercises/ExerciseList";
+import ExerciseDetails from "../components/exercises/ExerciseDetails";
 import Profile from "../components/users/Profile";
 
 import LoginForm from "../components/auth/LoginForm";
@@ -32,7 +33,9 @@ const Routes = ({ login, register }) => {
         <ExerciseList />
       </Route>
 
-      <Route exact path="/exercises/:id"></Route>
+      <Route exact path="/exercises/:id">
+        <ExerciseDetails />
+      </Route>
 
       <Route exact path="/routines"></Route>
 
@@ -58,7 +61,7 @@ const Routes = ({ login, register }) => {
         <ProfileForm />
       </ProtectedRoutes>
 
-      <Route exact path="/athlete/:username"></Route>
+      <Route exact path="/athletes/:username"></Route>
       <Redirect to="/" />
     </Switch>
   );
