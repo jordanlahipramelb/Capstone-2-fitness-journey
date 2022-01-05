@@ -143,6 +143,56 @@ class FitnessJourney {
   }
 
   /************ End Exercise Routes******************************/
+
+  /*********** Start Routines Routes ************************/
+
+  static async getRoutines(name) {
+    let res = await this.request("routines", { name });
+    return res.routines;
+  }
+
+  static async getRoutine(routineId) {
+    let res = await this.request(`routines/${routineId}`);
+    return res.routine;
+  }
+
+  static async updateRoutine(routineId, data) {
+    try {
+      let res = await this.request(`routines/${routineId}`, data, "put");
+
+      return res.routine;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async deleteRoutine(routineId) {
+    try {
+      await axios.delete(`${BASE_URL}/routines/${routineId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async addComment(routineId, data) {
+    let res = await this.request(
+      `routines/${routineId}/comments/`,
+      data,
+      "post"
+    );
+    return res.comment;
+  }
+
+  static async removeComment(routineId, commentId) {
+    try {
+      await axios.delete(
+        `${BASE_URL}/routines/${routineId}/comments/${commentId}`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  /*********** End Routines Routes ************************/
 }
 
 export default FitnessJourney;

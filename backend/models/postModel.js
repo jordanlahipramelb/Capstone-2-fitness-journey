@@ -77,7 +77,13 @@ class Post {
 
   /** Given post id, return data about post including its comments.
    *
-   * Returns [{id, username, subject, body}, ...]
+   * Returns:
+   *           { id,
+   *             username,
+   *             subject,
+   *             body,
+   *             comments: [ { id, body } ], ...],
+   *          }
    *
    * Throws NotFoundError if id not found
    */

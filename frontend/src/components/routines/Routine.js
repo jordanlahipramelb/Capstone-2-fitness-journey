@@ -3,6 +3,9 @@ import { useParams, useHistory } from "react-router-dom";
 import "./Routine.css";
 
 import LoadingPage from "../common/LoadingPage";
+import CommentList from "../comments/CommentList";
+import CommentForm from "../comments/CommentForm";
+import RoutineView from "./RoutineView";
 
 import FitnessJourney from "../../api";
 
@@ -28,7 +31,7 @@ const Routine = () => {
   /** Request routine from API via routineId */
 
   useEffect(
-    function getRoutinesOnMount() {
+    function getRoutineOnMount() {
       async function getRoutine() {
         let routine = await FitnessJourney.getRoutine(routineId);
         // set routine state to the handle
@@ -82,15 +85,12 @@ const Routine = () => {
   return (
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
-      {isEditing ? (
-        <RoutineForm routine={routine} cancel={toggleEdit} save={editRoutine} />
-      ) : (
-        <RoutineView
-          routine={routine}
-          deleteRoutine={deleteRoutine}
-          toggleEdit={toggleEdit}
-        />
-      )}
+
+      <RoutineView
+        routine={routine}
+        deleteRoutine={deleteRoutine}
+        toggleEdit={toggleEdit}
+      />
 
       <div className="routine-comments mb-3">
         <h4>Comments</h4>

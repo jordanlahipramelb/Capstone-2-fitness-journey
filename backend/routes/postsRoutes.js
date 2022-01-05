@@ -129,7 +129,7 @@ router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
  * Authorization required: admin
  */
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
   try {
     await Post.remove(req.params.id);
 

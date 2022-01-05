@@ -130,6 +130,17 @@ CREATE TABLE routines (
     is_private  BOOLEAN NOT NULL DEFAULT FALSE
 );
 
+CREATE TABLE routineComments (
+    id          SERIAL PRIMARY KEY,
+    username    TEXT NOT NULL 
+                    REFERENCES users ON DELETE SET NULL,
+    body        TEXT NOT NULL,
+    date        TEXT,
+    -- One to Many Relationship; One post can have many comments
+    routine_id     INTEGER NOT NULL
+                    REFERENCES routines ON DELETE CASCADE
+);
+
 --RoutineExercise :  5 x 5 Deadlifts on Tuesday with Rippetoe's Starting Strength
 -- List of which exercises are a part of which routine
 CREATE TABLE routines_exercises (
@@ -138,8 +149,7 @@ CREATE TABLE routines_exercises (
                     REFERENCES routines ON DELETE CASCADE,
     exercise_id INTEGER
                     REFERENCES exercises ON DELETE CASCADE,
-                    -- number of the day of the week
-    dayOfWeek   INTEGER, --added
+    dayOfWeek   TEXT, --added
     reps        TEXT, --added
     sets        TEXT --added
 );

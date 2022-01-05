@@ -128,14 +128,22 @@ VALUES ('Get big', 'testuser', FALSE),
         ('The best workout', 'testadmin', FALSE);
 
 INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets)
-VALUES (1, 2, 1, '10', '3'),
-        (1, 4, 1, '10', '3'),
-        (1, 6, 1, '10', '3'),
-        (1, 8, 1, '15', '2'),
-        (2, 1, 1, '10', '3'),
-        (2, 3, 1, '5', '10'),
-        (2, 5, 1, '10', '3'),
-        (2, 7, 1, '15', '2');
+VALUES (1, 2, 'Monday', '10', '3'),
+        (1, 3, 'Monday', '10', '3'),
+        (1, 4, 'Tuesday', '10', '3'),
+        (1, 7, 'Tuesday', '10', '3'),
+        (1, 6, 'Wednesday', '10', '3'),
+        (1, 3, 'Wednesday', '10', '3'),
+        (1, 8, 'Thursday', '15', '2'),
+        (1, 9, 'Thursday', '15', '2'),
+        (2, 1, 'Monday', '10', '3'),
+        (2, 3, 'Monday', '10', '3'),
+        (2, 3, 'Tuesday', '5', '10'),
+        (2, 5, 'Tuesday', '5', '10'),
+        (2, 5, 'Wednesday', '10', '3'),
+        (2, 3, 'Wednesday', '10', '3'),
+        (2, 7, 'Thursday', '15', '2'),
+        (2, 6, 'Thursday', '15', '2');
 
 INSERT INTO logs (date, username, routine_exercise_id, set_number, reps, weight)
 VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
@@ -144,3 +152,9 @@ VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
         ('2019-06-04', 'testuser', 4, '1', '10', '100'),
         ('2019-06-04', 'testadmin', 5, '1', '10', '150'),
         ('2019-06-04', 'testadmin', 6, '1', '10', '125');
+
+
+INSERT INTO routineComments (username, body, date, routine_id)
+VALUES  ('testuser', 'Great routine!', '12-27-2018', 1),
+        ('testadmin', 'This is a good one to get those muscles bigger.', 'Tue Dec 9 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2),
+        ('testadmin', 'Could of added more exercises.', 'Tue Dec 11 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2);

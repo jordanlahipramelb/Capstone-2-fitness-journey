@@ -13,6 +13,8 @@ import Profile from "../components/users/Profile";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
 import ProfileForm from "../components/users/ProfileForm";
+import RoutineList from "../components/routines/RoutineList";
+import Routine from "../components/routines/Routine";
 
 const Routes = ({ login, register }) => {
   return (
@@ -37,9 +39,13 @@ const Routes = ({ login, register }) => {
         <ExerciseDetails />
       </Route>
 
-      <Route exact path="/routines"></Route>
+      <Route exact path="/routines">
+        <RoutineList />
+      </Route>
 
-      <Route exact path="/routines/:name"></Route>
+      <Route exact path="/routines/:routineId">
+        <Routine />
+      </Route>
 
       <Route exact path="/forum/new">
         <NewPost />

@@ -31,6 +31,8 @@ const ExerciseDetails = () => {
 
   if (!exercise) return <LoadingPage />;
 
+  console.log(exercise.imageUrl);
+
   console.log(exercise);
   return (
     <div className="ExerciseDetails col-md-8 offset-md-2">
@@ -53,7 +55,7 @@ const ExerciseDetails = () => {
           </ul>
         </div>
         <div>
-          <img src={exercise.imageUrl} />
+          <img src={exercise.imageUrl} alt={`${exercise.name} image`} />
         </div>
         <h5>Instructions</h5>
         <p>{exercise.instructions}</p>
