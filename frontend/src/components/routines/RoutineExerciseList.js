@@ -15,9 +15,8 @@ const RoutineExerciseList = ({ exercises = [] }) => {
       <div className="container">
         {exercises.map((exercise) => (
           <RoutineExercise
-            key={exercise.name}
-            id={exercise.name}
-            name={exercise.name}
+            key={exercise.exerciseName}
+            name={exercise.exerciseName}
             sets={exercise.sets}
             reps={exercise.reps}
           />

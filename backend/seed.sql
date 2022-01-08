@@ -122,28 +122,28 @@ VALUES
 
         ('Triceps Pushdown', 4, 12, NULL, 'The triceps push-down is a popular gym exercise for targeting the triceps. It utilizes an angled bar, which can allow you to move heavier weights more comfortably than a straight bar or rope. It is usually performed for moderate to high reps, such as 8-12 reps or more per set, as part of an upper-body or arm-focused workout.', '1. Attach a straight or angled bar to a high pulley and grab with an overhand grip (palms facing down) at shoulder width. 2. Standing upright with the torso straight and a very small inclination forward, bring the upper arms close to your body and perpendicular to the floor. The forearms should be pointing up towards the pulley as they hold the bar. This is your starting position. 3. Using the triceps, bring the bar down until it touches the front of your thighs and the arms are fully extended perpendicular to the floor. The upper arms should always remain stationary next to your torso and only the forearms should move. Exhale as you perform this movement. 4. After a second hold at the contracted position, bring the bar slowly up to the starting point. Breathe in as you perform this step. 5. Repeat for the recommended amount of repetitions.', '/images/exercises/triceps-pushdown.gif');
 
-INSERT INTO routines (name, username, is_private)
-VALUES ('Get big', 'testuser', FALSE),
-        ('Powerbuiding', 'testadmin', FALSE),
-        ('The best workout', 'testadmin', FALSE);
+INSERT INTO routines (name, username, description, is_private)
+VALUES ('Get big', 'testuser', 'Be sure to have nice and controlled reps.', FALSE),
+        ('Powerbuiding', 'testadmin', 'Be sure to have nice and controlled reps.', FALSE),
+        ('The best workout', 'testadmin', 'Be sure to have nice and controlled reps.', FALSE);
 
 INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets)
-VALUES (1, 2, 'Monday', '10', '3'),
-        (1, 3, 'Monday', '10', '3'),
-        (1, 4, 'Tuesday', '10', '3'),
-        (1, 7, 'Tuesday', '10', '3'),
-        (1, 6, 'Wednesday', '10', '3'),
-        (1, 3, 'Wednesday', '10', '3'),
-        (1, 8, 'Thursday', '15', '2'),
-        (1, 9, 'Thursday', '15', '2'),
-        (2, 1, 'Monday', '10', '3'),
-        (2, 3, 'Monday', '10', '3'),
-        (2, 3, 'Tuesday', '5', '10'),
-        (2, 5, 'Tuesday', '5', '10'),
-        (2, 5, 'Wednesday', '10', '3'),
-        (2, 3, 'Wednesday', '10', '3'),
-        (2, 7, 'Thursday', '15', '2'),
-        (2, 6, 'Thursday', '15', '2');
+VALUES (1, 2, 1, '10', '3'),
+        (1, 3, 1, '10', '3'),
+        (1, 4, 2, '10', '3'),
+        (1, 7, 2, '10', '3'),
+        (1, 6, 3, '10', '3'),
+        (1, 3, 3, '10', '3'),
+        (1, 8, 4, '15', '2'),
+        (1, 9, 4, '15', '2'),
+        (2, 1, 1, '10', '3'),
+        (2, 3, 1, '10', '3'),
+        (2, 3, 2, '5', '10'),
+        (2, 5, 2, '5', '10'),
+        (2, 5, 3, '10', '3'),
+        (2, 3, 3, '10', '3'),
+        (2, 7, 4, '15', '2'),
+        (2, 6, 4, '15', '2');
 
 INSERT INTO logs (date, username, routine_exercise_id, set_number, reps, weight)
 VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
@@ -154,7 +154,3 @@ VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
         ('2019-06-04', 'testadmin', 6, '1', '10', '125');
 
 
-INSERT INTO routineComments (username, body, date, routine_id)
-VALUES  ('testuser', 'Great routine!', '12-27-2018', 1),
-        ('testadmin', 'This is a good one to get those muscles bigger.', 'Tue Dec 9 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2),
-        ('testadmin', 'Could of added more exercises.', 'Tue Dec 11 2021 10:07:42 GMT-0800 (Pacific Standard Time)', 2);

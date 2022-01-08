@@ -55,7 +55,7 @@ const ExerciseDetails = () => {
           </ul>
         </div>
         <div>
-          <img src={exercise.imageUrl} alt={`${exercise.name} image`} />
+          <img src={exercise.imageUrl} alt={`${exercise.name}`} />
         </div>
         <h5>Instructions</h5>
         <p>{exercise.instructions}</p>

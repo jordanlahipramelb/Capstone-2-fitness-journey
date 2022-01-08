@@ -72,6 +72,7 @@ class Routine {
       `SELECT routines.id,
               routines.name,
               routines.username,
+              routines.description,
               routines_exercises.dayOfWeek,
               CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
               JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)

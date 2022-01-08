@@ -68,20 +68,6 @@ const Routine = () => {
     history.push("/routines");
   };
 
-  /** Handles adding a comment */
-
-  const addComment = async (comment) => {
-    await FitnessJourney.addComment(routineId, comment);
-  };
-
-  /** Handles deleting a comment via comment id */
-
-  const deleteComment = async (commentId) => {
-    await FitnessJourney.removeComment(routineId, commentId);
-
-    window.location.reload(true);
-  };
-
   return (
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
@@ -91,15 +77,6 @@ const Routine = () => {
         deleteRoutine={deleteRoutine}
         toggleEdit={toggleEdit}
       />
-
-      <div className="routine-comments mb-3">
-        <h4>Comments</h4>
-        <CommentList
-          deleteComment={deleteComment}
-          comments={routine.comments}
-        />
-        <CommentForm addComment={addComment} routineId={routineId} />
-      </div>
     </div>
   );
 };

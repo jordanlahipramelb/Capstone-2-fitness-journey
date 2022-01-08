@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import UserContext from "../auth/UserContext";
+import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
 
 /** Render a single routine
@@ -8,7 +9,7 @@ import "./RoutineView.css";
  */
 
 const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
-  const { id, name, username, dayOfWeek, exercises } = routine;
+  const { name, username, description } = routine[0];
   const { currentUser } = useContext(UserContext);
   let sameUser;
 
@@ -30,22 +31,21 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 
   return (
     <div className="RoutineView">
-      <div className="container">
-        <h1>{routine[0].name}</h1>
-        <small>Created by {routine[0].username}</small>
-        <div>
-          {routine.map((data) => (
-            <div>
-              <h4>{data.dayofweek}</h4>
-              {data.exercises.map((exercise) => (
-                <p>
-                  {exercise.exerciseName}: {exercise.sets} sets of{" "}
-                  {exercise.reps} reps
-                </p>
-              ))}
-            </div>
-          ))}
+      <div className="container col-md-8 offset-md-2">
+        <div className="text-center mb-4">
+          <h1>{name}</h1>
+          <small>Created by {username}</small>
         </div>
+        <p>{description}</p>
+
+        {routine.map((data) => (
+          <div className="card my-3" key={data.dayofweek}>
+            <div className="card-body">
+              <h4 className="card-title">Day {data.dayofweek}</h4>
+              <RoutineExerciseList exercises={data.exercises} />
+            </div>
+          </div>
+        ))}
 
         <div className="RoutineView-right">
           {sameUser ? userEditBtns() : null}

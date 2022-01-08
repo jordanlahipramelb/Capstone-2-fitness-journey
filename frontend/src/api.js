@@ -174,24 +174,6 @@ class FitnessJourney {
     }
   }
 
-  static async addComment(routineId, data) {
-    let res = await this.request(
-      `routines/${routineId}/comments/`,
-      data,
-      "post"
-    );
-    return res.comment;
-  }
-
-  static async removeComment(routineId, commentId) {
-    try {
-      await axios.delete(
-        `${BASE_URL}/routines/${routineId}/comments/${commentId}`
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }
   /*********** End Routines Routes ************************/
 }
 
