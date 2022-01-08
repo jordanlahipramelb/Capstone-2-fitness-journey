@@ -56,3 +56,74 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 };
 
 export default RoutineView;
+
+/**
+ * 
+   return (
+    <p className="RoutineExercise card-text m-0" key={name}>
+      {name}: {sets} sets of {reps} reps
+    </p>
+  );
+ */
+
+//   {
+//     "username": "testuser",
+//     "name": "Get big",
+//     "description": "Be sure to have nice and controlled reps.",
+//     "dayofweek": [
+//         1,
+//         2,
+//         3,
+//         4
+//     ],
+//     "exercises": [
+//         [
+//             {
+//                 "exerciseName": "Barbell Curl",
+//                 "sets": "3",
+//                 "reps": "10"
+//             },
+//             {
+//                 "exerciseName": "Calf Press",
+//                 "sets": "3",
+//                 "reps": "10"
+//             }
+//         ],
+//         [
+//             {
+//                 "exerciseName": "Lat Pulldown",
+//                 "sets": "3",
+//                 "reps": "10"
+//             },
+//             {
+//                 "exerciseName": "Barbell Bench Press",
+//                 "sets": "3",
+//                 "reps": "10"
+//             }
+//         ],
+//         [
+//             {
+//                 "exerciseName": "Deadlift",
+//                 "sets": "3",
+//                 "reps": "10"
+//             },
+//             {
+//                 "exerciseName": "Calf Press",
+//                 "sets": "3",
+//                 "reps": "10"
+//             }
+//         ],
+//         [
+//             {
+//                 "exerciseName": "Pull-Up",
+//                 "sets": "2",
+//                 "reps": "15"
+//             },
+//             {
+//                 "exerciseName": "Bent-Over Barbell Row",
+//                 "sets": "2",
+//                 "reps": "15"
+//             }
+//         ]
+//     ]
+// }

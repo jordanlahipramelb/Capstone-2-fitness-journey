@@ -3,11 +3,10 @@ import { useParams, useHistory } from "react-router-dom";
 import "./Routine.css";
 
 import LoadingPage from "../common/LoadingPage";
-import CommentList from "../comments/CommentList";
-import CommentForm from "../comments/CommentForm";
 import RoutineView from "./RoutineView";
 
 import FitnessJourney from "../../api";
+import RoutineForm from "./RoutineForm";
 
 /** Main Routine Component
  *
@@ -71,12 +70,15 @@ const Routine = () => {
   return (
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
-
-      <RoutineView
-        routine={routine}
-        deleteRoutine={deleteRoutine}
-        toggleEdit={toggleEdit}
-      />
+      {isEditing ? (
+        <RoutineForm routine={routine} />
+      ) : (
+        <RoutineView
+          routine={routine}
+          deleteRoutine={deleteRoutine}
+          toggleEdit={toggleEdit}
+        />
+      )}
     </div>
   );
 };

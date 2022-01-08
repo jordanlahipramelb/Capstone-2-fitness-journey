@@ -75,6 +75,35 @@ router.get("/:id", async (req, res, next) => {
  * Authorization required: logged in user
  */
 
+/** PUT /[id] { routine } => { routine }
+ *
+ * Updates routine data.
+ *
+ * fields can be: { username, subject, body, date }
+ *
+ * Returns { id, username, subject, body, date }
+ *
+ * Authorization required: same user or admin
+ */
+
+router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
+  try {
+    // const validator = jsonschema.validate(req.body, routineUpdateSchema);
+
+    // if (!validator.valid) {
+    //   const errs = validator.errors.map((er) => er.stack);
+
+    //   throw new BadRequestError(errs);
+    // }
+
+    const post = await Routine.update(req.params.id, req.body);
+
+    return res.json({ post });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 /** DELETE /[id]  =>  { deleted: id }
  *
  * Authorization required: admin

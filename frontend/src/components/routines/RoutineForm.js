@@ -7,8 +7,10 @@ import React, { useState } from "react";
 
 const RoutineForm = ({ save, routine, cancel }) => {
   const [formData, setFormData] = useState({
-    username: routine.username,
-    name: routine.name,
+    name: routine[0].name,
+    description: routine[0].description,
+    dayofweek: routine.map((data) => data.dayofweek),
+    exercises: routine.map((data) => data.exercises),
   });
 
   const handleChange = (evt) => {
@@ -22,36 +24,46 @@ const RoutineForm = ({ save, routine, cancel }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    save(formData);
+    // save(formData);
   };
 
+  console.log(formData);
   return (
-    <div className="PostForm">
+    <div className="RoutineForm">
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="form-group">
-          <label htmlFor="subject">Subject: </label>
+          <label htmlFor="subject">Name: </label>
           <input
             className="form-control"
             type="text"
-            name="subject"
-            id="subject"
-            value={formData.subject}
+            name="name"
+            id="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="body">Body: </label>
+          <label htmlFor="body">Description: </label>
           <textarea
             onChange={handleChange}
-            id="body"
-            name="body"
+            id="description"
+            name="description"
             className="form-control"
-            rows={10}
-            value={formData.body}
+            rows={5}
+            value={formData.description}
             required
           />
         </div>
+
+        {Object.keys(formData.dayofweek).map((key) => (
+          <div className="card my-3">
+            <div className="card-body">
+              <p>{parseInt(key) + 1}</p>
+            </div>
+          </div>
+        ))}
+
         <button type="submit" className="btn btn-primary container mt-2">
           Submit
         </button>
