@@ -28,6 +28,7 @@ const RoutineForm = ({ save, routine, cancel }) => {
   };
 
   console.log(formData);
+  console.log(routine);
   return (
     <div className="RoutineForm">
       <form onSubmit={handleSubmit} className="mb-4">
@@ -56,14 +57,6 @@ const RoutineForm = ({ save, routine, cancel }) => {
           />
         </div>
 
-        {Object.keys(formData.dayofweek).map((key) => (
-          <div className="card my-3">
-            <div className="card-body">
-              <p>{parseInt(key) + 1}</p>
-            </div>
-          </div>
-        ))}
-
         <button type="submit" className="btn btn-primary container mt-2">
           Submit
         </button>
@@ -76,3 +69,23 @@ const RoutineForm = ({ save, routine, cancel }) => {
 };
 
 export default RoutineForm;
+
+/**
+         {formData.map((data) => (
+          <div className="card my-3" key={data.dayofweek}>
+            <div className="card-body">
+              <h4 className="card-title">Day {data.dayofweek}</h4>
+
+              {data.exercises.map((exercise) => (
+                <p
+                  className="RoutineExercise card-text m-0"
+                  key={exercise.exerciseName}
+                >
+                  {exercise.exerciseName}: {exercise.sets} sets of
+                  {exercise.reps} reps
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+ */

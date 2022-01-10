@@ -27,7 +27,6 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
       </div>
     );
   };
-  console.log(routine);
 
   return (
     <div className="RoutineView">
@@ -66,64 +65,83 @@ export default RoutineView;
   );
  */
 
-//   {
-//     "username": "testuser",
-//     "name": "Get big",
-//     "description": "Be sure to have nice and controlled reps.",
-//     "dayofweek": [
-//         1,
-//         2,
-//         3,
-//         4
-//     ],
-//     "exercises": [
-//         [
-//             {
-//                 "exerciseName": "Barbell Curl",
-//                 "sets": "3",
-//                 "reps": "10"
-//             },
-//             {
-//                 "exerciseName": "Calf Press",
-//                 "sets": "3",
-//                 "reps": "10"
-//             }
-//         ],
-//         [
-//             {
-//                 "exerciseName": "Lat Pulldown",
-//                 "sets": "3",
-//                 "reps": "10"
-//             },
-//             {
-//                 "exerciseName": "Barbell Bench Press",
-//                 "sets": "3",
-//                 "reps": "10"
-//             }
-//         ],
-//         [
-//             {
-//                 "exerciseName": "Deadlift",
-//                 "sets": "3",
-//                 "reps": "10"
-//             },
-//             {
-//                 "exerciseName": "Calf Press",
-//                 "sets": "3",
-//                 "reps": "10"
-//             }
-//         ],
-//         [
-//             {
-//                 "exerciseName": "Pull-Up",
-//                 "sets": "2",
-//                 "reps": "15"
-//             },
-//             {
-//                 "exerciseName": "Bent-Over Barbell Row",
-//                 "sets": "2",
-//                 "reps": "15"
-//             }
-//         ]
-//     ]
-// }
+/**
+ [
+    {
+        "id": 1,
+        "name": "Get big",
+        "username": "testuser",
+        "description": "Be sure to have nice and controlled reps.",
+        "dayofweek": 1,
+        "exercises": [
+            {
+                "exerciseName": "Barbell Curl",
+                "sets": "3",
+                "reps": "10"
+            },
+            {
+                "exerciseName": "Calf Press",
+                "sets": "3",
+                "reps": "10"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Get big",
+        "username": "testuser",
+        "description": "Be sure to have nice and controlled reps.",
+        "dayofweek": 2,
+        "exercises": [
+            {
+                "exerciseName": "Lat Pulldown",
+                "sets": "3",
+                "reps": "10"
+            },
+            {
+                "exerciseName": "Barbell Bench Press",
+                "sets": "3",
+                "reps": "10"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Get big",
+        "username": "testuser",
+        "description": "Be sure to have nice and controlled reps.",
+        "dayofweek": 3,
+        "exercises": [
+            {
+                "exerciseName": "Deadlift",
+                "sets": "3",
+                "reps": "10"
+            },
+            {
+                "exerciseName": "Calf Press",
+                "sets": "3",
+                "reps": "10"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Get big",
+        "username": "testuser",
+        "description": "Be sure to have nice and controlled reps.",
+        "dayofweek": 4,
+        "exercises": [
+            {
+                "exerciseName": "Pull-Up",
+                "sets": "2",
+                "reps": "15"
+            },
+            {
+                "exerciseName": "Bent-Over Barbell Row",
+                "sets": "2",
+                "reps": "15"
+            }
+        ]
+    }
+]
+ */
