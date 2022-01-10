@@ -9,8 +9,7 @@ const RoutineForm = ({ save, routine, cancel }) => {
   const [formData, setFormData] = useState({
     name: routine[0].name,
     description: routine[0].description,
-    dayofweek: routine.map((data) => data.dayofweek),
-    exercises: routine.map((data) => data.exercises),
+    dayofweek: routine.map((data) => data.exercises),
   });
 
   const handleChange = (evt) => {
@@ -28,7 +27,7 @@ const RoutineForm = ({ save, routine, cancel }) => {
   };
 
   console.log(formData);
-  console.log(routine);
+
   return (
     <div className="RoutineForm">
       <form onSubmit={handleSubmit} className="mb-4">
