@@ -129,3 +129,19 @@ JOIN exercises
 ON routines_exercises.exercise_id = exercises.id
 WHERE routines.id = $1
 ORDER BY routines.id`;
+
+`SELECT routines.id,
+routines.name,
+routines.username,
+exercises.name AS "exerciseName",
+routines_exercises.dayOfWeek,
+routines_exercises.sets,
+routines_exercises.reps
+FROM routines
+JOIN routines_exercises
+ON routines.id = routines_exercises.routine_id
+JOIN exercises
+ON routines_exercises.exercise_id = exercises.id
+WHERE routines.id = 1
+GROUP BY routines.id, routines_exercises.dayOfWeek, exercises.name 
+ORDER BY routines.id;`;

@@ -15,6 +15,7 @@ import RegisterForm from "../components/auth/RegisterForm";
 import ProfileForm from "../components/users/ProfileForm";
 import RoutineList from "../components/routines/RoutineList";
 import Routine from "../components/routines/Routine";
+import NewRoutineForm from "../components/routines/NewRoutineForm";
 
 const Routes = ({ login, register }) => {
   return (
@@ -37,6 +38,10 @@ const Routes = ({ login, register }) => {
 
       <Route exact path="/exercises/:id">
         <ExerciseDetails />
+      </Route>
+
+      <Route exact path="/routines/new">
+        <NewRoutineForm />
       </Route>
 
       <Route exact path="/routines">
