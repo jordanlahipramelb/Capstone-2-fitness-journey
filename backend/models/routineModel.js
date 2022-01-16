@@ -10,6 +10,26 @@ const { NotFoundError } = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Routine {
+  /** Create a routine (from data), update db, return new routine data.
+   * - data should be {username, name, description}
+   *
+   * Returns { id, name, username, description }
+   */
+
+  static async create({ name, username, description }) {
+    const result = await db.query(
+      `INSERT INTO routines 
+          (name, username, description)
+        VALUES ($1, $2, $3)
+        RETURNING id, name, username, description`,
+      [name, username, description]
+    );
+
+    const routine = result.rows[0];
+
+    return routine;
+  }
+
   /** Find all routines
    *
    * Returns  [{id, name, username }, ...]
@@ -79,9 +99,9 @@ class Routine {
               ) 
               END AS exercises
           FROM routines
-           LEFT JOIN routines_exercises
+           FULL JOIN routines_exercises
              ON routines.id = routines_exercises.routine_id
-           JOIN exercises
+           FULL JOIN exercises
              ON routines_exercises.exercise_id = exercises.id
            WHERE routines.id = $1
            GROUP BY routines.id, 
@@ -127,7 +147,7 @@ JOIN routines_exercises
 ON routines.id = routines_exercises.routine_id
 JOIN exercises
 ON routines_exercises.exercise_id = exercises.id
-WHERE routines.id = $1
+WHERE routines.id = 4
 ORDER BY routines.id`;
 
 `SELECT routines.id,

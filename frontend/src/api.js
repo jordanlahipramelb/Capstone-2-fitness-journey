@@ -156,6 +156,11 @@ class FitnessJourney {
     return res.routine;
   }
 
+  static async addRoutine(data) {
+    let res = await this.request("routines", data, "post");
+    return res.routine;
+  }
+
   static async updateRoutine(routineId, data) {
     try {
       let res = await this.request(`routines/${routineId}`, data, "put");

@@ -66,14 +66,32 @@ router.get("/:id", async (req, res, next) => {
 });
 
 /** POST / { routine } => { routine }
- *  { routines: [ { id, name, username }, ... ] }
+ *  { routines: [ { id, name, username, description }, ... ] }
  *
  * creates a new routine name with username who created it
  *
- * Returns { id, name, username }
+ * Returns { id, name, username, description }
  *
  * Authorization required: logged in user
  */
+
+router.post("/", ensureLoggedIn, async (req, res, next) => {
+  try {
+    const validator = jsonschema.validate(req.body, routineNewSchema);
+
+    // if json is not valid, return errors
+    if (!validator.valid) {
+      const errs = validator.errors.map((er) => er.stack);
+      console.error("Error with creating new routine", errs);
+      throw new BadRequestError(errs);
+    }
+
+    const routine = await Routine.create(req.body);
+    return res.status(201).json({ routine });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 /** PUT /[id] { routine } => { routine }
  *

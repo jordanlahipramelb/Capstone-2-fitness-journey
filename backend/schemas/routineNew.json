@@ -8,6 +8,11 @@
       "minLength": 1,
       "maxLength": 30
     },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
     "username": {
       "type": "string",
       "minLength": 0,
@@ -15,5 +20,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["name", "username"]
+  "required": ["name", "username", "description"]
 }
