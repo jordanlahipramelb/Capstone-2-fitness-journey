@@ -90,23 +90,20 @@ class Routine {
   static async get(id) {
     const routineRes = await db.query(
       `SELECT routines.id,
-              routines.name,
-              routines.username,
-              routines.description,
-              routines_exercises.dayOfWeek,
-              CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
-              JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
-              ) 
-              END AS exercises
-          FROM routines
-           FULL JOIN routines_exercises
-             ON routines.id = routines_exercises.routine_id
-           FULL JOIN exercises
-             ON routines_exercises.exercise_id = exercises.id
-           WHERE routines.id = $1
-           GROUP BY routines.id, 
-                    routines_exercises.dayOfWeek
-           ORDER BY routines.id`,
+      routines.name,
+      routines.username,
+      routines.description,
+      exercises.name AS "exerciseName",
+      routines_exercises.dayOfWeek,
+      routines_exercises.sets,
+      routines_exercises.reps
+      FROM routines
+      JOIN routines_exercises
+      ON routines.id = routines_exercises.routine_id
+      JOIN exercises
+      ON routines_exercises.exercise_id = exercises.id
+      WHERE routines.id = $1
+      ORDER BY routines_exercises.dayOfWeek`,
       [id]
     );
 
@@ -138,30 +135,18 @@ module.exports = Routine;
 `SELECT routines.id,
 routines.name,
 routines.username,
-exercises.name AS "exerciseName",
+routines.description,
 routines_exercises.dayOfWeek,
-routines_exercises.sets,
-routines_exercises.reps
+CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
+JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
+) 
+END AS exercises
 FROM routines
-JOIN routines_exercises
+FULL JOIN routines_exercises
 ON routines.id = routines_exercises.routine_id
-JOIN exercises
+FULL JOIN exercises
 ON routines_exercises.exercise_id = exercises.id
-WHERE routines.id = 4
+WHERE routines.id = $1
+GROUP BY routines.id, 
+      routines_exercises.dayOfWeek
 ORDER BY routines.id`;
-
-`SELECT routines.id,
-routines.name,
-routines.username,
-exercises.name AS "exerciseName",
-routines_exercises.dayOfWeek,
-routines_exercises.sets,
-routines_exercises.reps
-FROM routines
-JOIN routines_exercises
-ON routines.id = routines_exercises.routine_id
-JOIN exercises
-ON routines_exercises.exercise_id = exercises.id
-WHERE routines.id = 1
-GROUP BY routines.id, routines_exercises.dayOfWeek, exercises.name 
-ORDER BY routines.id;`;

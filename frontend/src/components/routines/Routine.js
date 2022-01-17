@@ -6,7 +6,7 @@ import LoadingPage from "../common/LoadingPage";
 import RoutineView from "./RoutineView";
 
 import FitnessJourney from "../../api";
-import RoutineForm from "./RoutineForm";
+import RoutineExerciseForm from "./RoutineExerciseForm";
 
 /** Main Routine Component
  *
@@ -17,7 +17,7 @@ import RoutineForm from "./RoutineForm";
  *
  *
  * Parent for
- * - NewRoutineForm
+ * - RoutineForm
  * - RoutineView
  */
 
@@ -67,11 +67,12 @@ const Routine = () => {
     history.push("/routines");
   };
 
+  console.log(routine);
   return (
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
       {isEditing ? (
-        <RoutineForm routine={routine} />
+        <RoutineExerciseForm routine={routine} />
       ) : (
         <RoutineView
           routine={routine}

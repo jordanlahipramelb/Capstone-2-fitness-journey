@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
@@ -37,21 +38,16 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
         </div>
         <p>{description}</p>
 
-        {routine.map((data) => (
-          <div className="card my-3" key={data.dayofweek}>
-            <div className="card-body">
-              {data.exercises.length === 0 ? (
-                <p className="text-center">No exercises in routine.</p>
-              ) : (
-                <>
-                  <h4 className="card-title">Day {data.dayofweek}</h4>
-                  <RoutineExerciseList exercises={data.exercises} />
-                </>
-              )}
+        <div className="card p-2">
+          {routine.map((data) => (
+            <div className="m-1">
+              <h6 className="m-0">Day {data.dayofweek}</h6>
+              <p className="m-0" key={data.exerciseName}>
+                {data.exerciseName}: {data.sets} sets of {data.reps} reps
+              </p>
             </div>
-          </div>
-        ))}
-
+          ))}
+        </div>
         <div className="RoutineView-right">
           {sameUser ? userEditBtns() : null}
         </div>
@@ -64,90 +60,12 @@ export default RoutineView;
 
 /**
  * 
-   return (
-    <p className="RoutineExercise card-text m-0" key={name}>
-      {name}: {sets} sets of {reps} reps
-    </p>
-  );
- */
-
-/**
- [
-    {
-        "id": 1,
-        "name": "Get big",
-        "username": "testuser",
-        "description": "Be sure to have nice and controlled reps.",
-        "dayofweek": 1,
-        "exercises": [
-            {
-                "exerciseName": "Barbell Curl",
-                "sets": "3",
-                "reps": "10"
-            },
-            {
-                "exerciseName": "Calf Press",
-                "sets": "3",
-                "reps": "10"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "name": "Get big",
-        "username": "testuser",
-        "description": "Be sure to have nice and controlled reps.",
-        "dayofweek": 2,
-        "exercises": [
-            {
-                "exerciseName": "Lat Pulldown",
-                "sets": "3",
-                "reps": "10"
-            },
-            {
-                "exerciseName": "Barbell Bench Press",
-                "sets": "3",
-                "reps": "10"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "name": "Get big",
-        "username": "testuser",
-        "description": "Be sure to have nice and controlled reps.",
-        "dayofweek": 3,
-        "exercises": [
-            {
-                "exerciseName": "Deadlift",
-                "sets": "3",
-                "reps": "10"
-            },
-            {
-                "exerciseName": "Calf Press",
-                "sets": "3",
-                "reps": "10"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "name": "Get big",
-        "username": "testuser",
-        "description": "Be sure to have nice and controlled reps.",
-        "dayofweek": 4,
-        "exercises": [
-            {
-                "exerciseName": "Pull-Up",
-                "sets": "2",
-                "reps": "15"
-            },
-            {
-                "exerciseName": "Bent-Over Barbell Row",
-                "sets": "2",
-                "reps": "15"
-            }
-        ]
-    }
-]
+ *  {routine.map((data) => (
+          <div className="card my-3" key={data.dayofweek}>
+            <div className="card-body">
+              <h4 className="card-title">Day {data.dayofweek}</h4>
+              <RoutineExerciseList exercises={data.exercises} />
+            </div>
+          </div>
+        ))}
  */
