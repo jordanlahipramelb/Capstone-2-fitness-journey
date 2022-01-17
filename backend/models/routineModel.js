@@ -93,17 +93,20 @@ class Routine {
       routines.name,
       routines.username,
       routines.description,
-      exercises.name AS "exerciseName",
       routines_exercises.dayOfWeek,
-      routines_exercises.sets,
-      routines_exercises.reps
+      CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
+      JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
+      ) 
+      END AS exercises
       FROM routines
-      JOIN routines_exercises
+      FULL JOIN routines_exercises
       ON routines.id = routines_exercises.routine_id
-      JOIN exercises
+      FULL JOIN exercises
       ON routines_exercises.exercise_id = exercises.id
       WHERE routines.id = $1
-      ORDER BY routines_exercises.dayOfWeek`,
+      GROUP BY routines.id, 
+            routines_exercises.dayOfWeek
+      ORDER BY routines.id`,
       [id]
     );
 

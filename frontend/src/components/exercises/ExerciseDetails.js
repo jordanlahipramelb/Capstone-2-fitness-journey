@@ -31,9 +31,6 @@ const ExerciseDetails = () => {
 
   if (!exercise) return <LoadingPage />;
 
-  console.log(exercise.imageUrl);
-
-  console.log(exercise);
   return (
     <div className="ExerciseDetails col-md-8 offset-md-2">
       <div className="container">
@@ -44,8 +41,7 @@ const ExerciseDetails = () => {
           <ul>
             <li>{exercise.equipmentType}</li>
           </ul>
-        </div>
-        <div>
+
           <h5>Muscles Worked</h5>
           <ul>
             <li>Primary: {exercise.primaryMuscle}</li>
@@ -54,8 +50,12 @@ const ExerciseDetails = () => {
             )}
           </ul>
         </div>
-        <div>
-          <img src={exercise.imageUrl} alt={`${exercise.name}`} />
+        <div className="text-center m-4">
+          <img
+            src={exercise.image_url}
+            alt={`${exercise.name}`}
+            className="img-fluid rounded"
+          />
         </div>
         <h5>Instructions</h5>
         <p>{exercise.instructions}</p>

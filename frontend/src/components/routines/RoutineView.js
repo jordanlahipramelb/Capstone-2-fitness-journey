@@ -29,6 +29,7 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
     );
   };
 
+  console.log(routine);
   return (
     <div className="RoutineView">
       <div className="container col-md-8 offset-md-2">
@@ -38,16 +39,14 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
         </div>
         <p>{description}</p>
 
-        <div className="card p-2">
-          {routine.map((data) => (
-            <div className="m-1">
-              <h6 className="m-0">Day {data.dayofweek}</h6>
-              <p className="m-0" key={data.exerciseName}>
-                {data.exerciseName}: {data.sets} sets of {data.reps} reps
-              </p>
+        {routine.map((data) => (
+          <div className="card my-3" key={data.dayofweek}>
+            <div className="card-body">
+              <h4 className="card-title">Day {data.dayofweek}</h4>
+              <RoutineExerciseList exercises={data.exercises} />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
         <div className="RoutineView-right">
           {sameUser ? userEditBtns() : null}
         </div>

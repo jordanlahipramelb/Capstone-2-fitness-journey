@@ -12,11 +12,17 @@ const RoutineExerciseForm = ({ routine }) => {
 
   useEffect(function getExercisesOnMount() {
     async function getExercises() {
-      setExercises(await FitnessJourney.findAll());
+      setExercises(await FitnessJourney.getExercises());
     }
 
     getExercises();
   });
+
+  return (
+    <div className="RoutineExerciseForm">
+      <h1>Add Exercises</h1>
+    </div>
+  );
 };
 
 export default RoutineExerciseForm;

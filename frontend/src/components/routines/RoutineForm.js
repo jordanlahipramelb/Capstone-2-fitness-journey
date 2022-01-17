@@ -5,8 +5,8 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
   const history = useHistory();
   const [formData, setFormData] = useState({
     username: routine.username,
-    name: routine[0].name,
-    description: routine[0].description,
+    name: routine.name,
+    description: routine.description,
   });
 
   const handleChange = (evt) => {
