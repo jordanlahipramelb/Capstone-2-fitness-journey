@@ -41,10 +41,16 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 
         {routine.map((data) => (
           <div className="card my-3" key={data.dayofweek}>
-            <div className="card-body">
-              <h4 className="card-title">Day {data.dayofweek}</h4>
-              <RoutineExerciseList exercises={data.exercises} />
-            </div>
+            {data.exercises.length === 0 ? (
+              <div className="card-body">
+                <p className="text-center">No exercises in routine.</p>
+              </div>
+            ) : (
+              <div className="card-body">
+                <h4 className="card-title">Day {data.dayofweek}</h4>
+                <RoutineExerciseList exercises={data.exercises} />
+              </div>
+            )}
           </div>
         ))}
         <div className="RoutineView-right">

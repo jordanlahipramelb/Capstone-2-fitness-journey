@@ -46,7 +46,7 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
                 id="description"
                 name="description"
                 className="form-control"
-                rows={5}
+                rows={3}
                 value={formData.description}
                 onChange={handleChange}
                 required

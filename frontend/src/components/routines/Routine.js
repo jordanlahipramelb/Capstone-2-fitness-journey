@@ -53,11 +53,11 @@ const Routine = () => {
 
   /** Handles editing a routine */
 
-  const editRoutine = async (routine) => {
-    await FitnessJourney.updateRoutine(routineId, routine);
+  // const editRoutine = async (routine) => {
+  //   await FitnessJourney.updateRoutine(routineId, routine);
 
-    window.location.reload(true);
-  };
+  //   window.location.reload(true);
+  // };
 
   /** Handles deleting a routine */
 

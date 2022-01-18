@@ -128,7 +128,7 @@ VALUES ('Get big', 'testuser', 'Be sure to have nice and controlled reps.', FALS
         ('The best workout', 'testadmin', 'Be sure to have nice and controlled reps.', FALSE);
 
 INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets)
-VALUES (1, 2, 1, '10', '3'),
+VALUES  (1, 2, 1, '10', '3'),
         (1, 3, 1, '10', '3'),
         (1, 4, 2, '10', '3'),
         (1, 7, 2, '10', '3'),
