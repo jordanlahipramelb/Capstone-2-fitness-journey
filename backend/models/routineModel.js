@@ -9,6 +9,8 @@ const { NotFoundError } = require("../expressError");
 // Retrieve function that helps with updating sql
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
+const format = require("pg-format");
+
 class Routine {
   /** Create a routine (from data), update db, return new routine data.
    * - data should be {username, name, description}
@@ -28,6 +30,28 @@ class Routine {
     const routine = result.rows[0];
 
     return routine;
+  }
+
+  /** Posts exercises to routine (from data), update db, return new routine exercise data.
+   * - data should be
+   * [ { username, name, description },
+   * { routine_id, exercise_id, dayofweek, sets, reps }, ...  ]
+   *
+   * Returns
+   * [ { username, name, description },
+   * { routine_id, exercise_id, dayofweek, sets, reps }, ...  ]
+   */
+
+  static async addExercisesToRoutine(data) {
+    let query = format(
+      "INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets) VALUES %L",
+      data
+    );
+    console.log("query =>", query);
+
+    const res = await db.query(query);
+
+    return res.rows;
   }
 
   /** Find all routines

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
@@ -29,7 +28,6 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
     );
   };
 
-  console.log(routine);
   return (
     <div className="RoutineView">
       <div className="container col-md-8 offset-md-2">

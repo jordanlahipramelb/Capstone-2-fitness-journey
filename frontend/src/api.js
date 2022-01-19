@@ -171,6 +171,16 @@ class FitnessJourney {
     }
   }
 
+  static async addExercises(routineId, data) {
+    console.log(data);
+    let res = await this.request(
+      `routines/${routineId}/add-exercises`,
+      data,
+      "post"
+    );
+    return res.routine;
+  }
+
   static async deleteRoutine(routineId) {
     try {
       await axios.delete(`${BASE_URL}/routines/${routineId}`);

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
 
 const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
-  const history = useHistory();
   const [formData, setFormData] = useState({
     username: routine.username,
     name: routine.name,

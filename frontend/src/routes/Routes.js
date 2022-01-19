@@ -45,10 +45,6 @@ const Routes = ({ login, register }) => {
         <NewRoutine />
       </Route>
 
-      <Route exact path="/routines/add-exercises">
-        <RoutineExerciseForm />
-      </Route>
-
       <Route exact path="/routines">
         <RoutineList />
       </Route>

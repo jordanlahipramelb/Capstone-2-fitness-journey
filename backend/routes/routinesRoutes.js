@@ -14,6 +14,7 @@ const {
 const Routine = require("../models/routineModel");
 const routineNewSchema = require("../schemas/routineNew.json");
 const routineSearchSchema = require("../schemas/routineSearch.json");
+const routineExerciseSchema = require("../schemas/routineExercise.json");
 const router = new express.Router();
 
 /** GET / =>
@@ -88,6 +89,32 @@ router.post("/", ensureLoggedIn, async (req, res, next) => {
 
     const routine = await Routine.create(req.body);
     return res.status(201).json({ routine });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+/** POST /[id]/add-exercises { routine } => { routine }
+ *
+ *
+ * adds exercises to an existing routine
+ *
+ * Authorization required: logged in user
+ */
+
+router.post("/:id/add-exercises", ensureLoggedIn, async (req, res, next) => {
+  try {
+    // const validator = jsonschema.validate(req.body, routineExerciseSchema);
+
+    // // if json is not valid, return errors
+    // if (!validator.valid) {
+    //   const errs = validator.errors.map((er) => er.stack);
+    //   console.error("Error with adding exercises", errs);
+    //   throw new BadRequestError(errs);
+    // }
+    console.log("body:", req.body);
+    const exercises = await Routine.addExercisesToRoutine(req.body);
+    return res.status(201).json({ exercises });
   } catch (err) {
     return next(err);
   }

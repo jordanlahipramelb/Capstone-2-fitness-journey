@@ -26,6 +26,7 @@ const Routine = () => {
   const { routineId } = useParams();
   const [routine, setRoutine] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingExercises, setIsEditingExercises] = useState(false);
 
   /** Request routine from API via routineId */
 
@@ -51,6 +52,10 @@ const Routine = () => {
     setIsEditing((editing) => !editing);
   };
 
+  const toggleEditingExercises = () => {
+    setIsEditingExercises((editing) => !editing);
+  };
+
   /** Handles editing a routine */
 
   // const editRoutine = async (routine) => {
@@ -67,12 +72,22 @@ const Routine = () => {
     history.push("/routines");
   };
 
-  console.log(routine);
+  /** Adds exercises to routine */
+
+  const addExercisesToRoutine = async (exercises) => {
+    await FitnessJourney.addExercises(routineId, exercises);
+
+    window.location.reload(true);
+  };
+
   return (
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
       {isEditing ? (
-        <RoutineExerciseForm routine={routine} />
+        <RoutineExerciseForm
+          routine={routine}
+          addExercises={addExercisesToRoutine}
+        />
       ) : (
         <RoutineView
           routine={routine}
