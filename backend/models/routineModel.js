@@ -32,28 +32,6 @@ class Routine {
     return routine;
   }
 
-  /** Posts exercises to routine (from data), update db, return new routine exercise data.
-   * - data should be
-   * [ { username, name, description },
-   * { routine_id, exercise_id, dayofweek, sets, reps }, ...  ]
-   *
-   * Returns
-   * [ { username, name, description },
-   * { routine_id, exercise_id, dayofweek, sets, reps }, ...  ]
-   */
-
-  static async addExercisesToRoutine(data) {
-    let query = format(
-      "INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets) VALUES %L",
-      data
-    );
-    console.log("query =>", query);
-
-    const res = await db.query(query);
-
-    return res.rows;
-  }
-
   /** Find all routines
    *
    * Returns  [{id, name, username }, ...]
@@ -155,25 +133,72 @@ class Routine {
 
     if (!routine) throw new NotFoundError(`No routine found: ${id}`);
   }
+
+  /** Posts exercise to routine (from data), update db, return new routine exercise data.
+   * - data should be
+   * { routine_id, exercise_id, dayofweek, sets, reps }
+   *
+   * Returns
+   * { routine_id, exercise_id, dayofweek, sets, reps }
+   */
+
+  static async addExerciseToRoutine({
+    routine_id,
+    exercise_id,
+    dayOfWeek,
+    reps,
+    sets,
+  }) {
+    const result = await db.query(
+      `INSERT INTO routines_exercises 
+            (routine_id, exercise_id, dayOfWeek, reps, sets)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING routine_id, exercise_id, dayOfWeek, reps, sets`,
+      [routine_id, exercise_id, dayOfWeek, reps, sets]
+    );
+
+    const exercise = result.rows[0];
+
+    return exercise;
+  }
+
+  /** Given id, removes exercise from database */
+
+  static async deleteExerciseFromRoutine(id) {
+    const result = await db.query(
+      `DELETE
+           FROM routines_exercises
+           WHERE id = $1
+           RETURNING id`,
+      [id]
+    );
+
+    const entryId = result.rows[0];
+
+    if (!entryId) throw new NotFoundError(`No id found: ${id}`);
+  }
+
+  static async getRoutineExercises(id) {
+    const res = await db.query(
+      `SELECT routines_exercises.id, 
+              routines_exercises.routine_id, 
+              exercises.name, 
+              routines_exercises.dayOfWeek, 
+              routines_exercises.reps,
+              routines_exercises.sets
+        FROM routines_exercises
+        FULL JOIN exercises
+          ON routines_exercises.exercise_id = exercises.id
+        WHERE routine_id = $1`,
+      [id]
+    );
+
+    const routineExercises = res.rows;
+
+    if (!routineExercises) throw new NotFoundError(`Routine not found: ${id}`);
+
+    return routineExercises;
+  }
 }
 
 module.exports = Routine;
-
-`SELECT routines.id,
-routines.name,
-routines.username,
-routines.description,
-routines_exercises.dayOfWeek,
-CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
-JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
-) 
-END AS exercises
-FROM routines
-FULL JOIN routines_exercises
-ON routines.id = routines_exercises.routine_id
-FULL JOIN exercises
-ON routines_exercises.exercise_id = exercises.id
-WHERE routines.id = $1
-GROUP BY routines.id, 
-      routines_exercises.dayOfWeek
-ORDER BY routines.id`;

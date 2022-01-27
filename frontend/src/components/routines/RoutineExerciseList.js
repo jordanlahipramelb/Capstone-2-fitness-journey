@@ -1,5 +1,5 @@
 import React from "react";
-import RoutineExercise from "./RoutineExercise";
+import ExerciseDetails from "./ExerciseDetails";
 
 /** Renders list of exercises in routine
  *
@@ -14,7 +14,7 @@ const RoutineExerciseList = ({ exercises = [] }) => {
     <div className="RoutineExerciseList">
       <div className="container">
         {exercises.map((exercise) => (
-          <RoutineExercise
+          <ExerciseDetails
             key={exercise.exerciseName}
             name={exercise.exerciseName}
             sets={exercise.sets}

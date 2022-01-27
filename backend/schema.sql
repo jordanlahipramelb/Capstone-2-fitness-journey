@@ -142,8 +142,8 @@ CREATE TABLE routines_exercises (
     exercise_id INTEGER
                     REFERENCES exercises ON DELETE CASCADE,
     dayOfWeek   INTEGER, --added
-    reps        TEXT, --added
-    sets        TEXT --added
+    reps        INTEGER, --added
+    sets        INTEGER --added
 );
 
 

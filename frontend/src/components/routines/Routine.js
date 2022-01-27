@@ -6,7 +6,7 @@ import LoadingPage from "../common/LoadingPage";
 import RoutineView from "./RoutineView";
 
 import FitnessJourney from "../../api";
-import RoutineExerciseForm from "./RoutineExerciseForm";
+import RoutineExercise from "./RoutineExercise";
 
 /** Main Routine Component
  *
@@ -25,8 +25,8 @@ const Routine = () => {
   const history = useHistory();
   const { routineId } = useParams();
   const [routine, setRoutine] = useState(null);
+  const [routineExercises, setRoutineExercises] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [isEditingExercises, setIsEditingExercises] = useState(false);
 
   /** Request routine from API via routineId */
 
@@ -44,16 +44,25 @@ const Routine = () => {
     [routineId]
   );
 
-  if (!routine) return <LoadingPage />;
+  useEffect(
+    function getRoutineExercisesOnMount() {
+      async function getRoutineExercises() {
+        setRoutineExercises(
+          await FitnessJourney.getRoutineExercises(routineId)
+        );
+      }
+
+      getRoutineExercises();
+    },
+    [routineId]
+  );
+
+  if (!(routine || routineExercises)) return <LoadingPage />;
 
   /** Toggles editing routine on/off */
 
   const toggleEdit = () => {
     setIsEditing((editing) => !editing);
-  };
-
-  const toggleEditingExercises = () => {
-    setIsEditingExercises((editing) => !editing);
   };
 
   /** Handles editing a routine */
@@ -72,10 +81,18 @@ const Routine = () => {
     history.push("/routines");
   };
 
-  /** Adds exercises to routine */
+  /** Adds exercise to routine */
 
-  const addExercisesToRoutine = async (exercises) => {
-    await FitnessJourney.addExercises(routineId, exercises);
+  const addExerciseToRoutine = async (exercise) => {
+    await FitnessJourney.addExercise(exercise);
+
+    window.location.reload(true);
+  };
+
+  /** Deletes exercise from routine */
+
+  const deleteExerciseFromRoutine = async (id) => {
+    await FitnessJourney.deleteExercise(id);
 
     window.location.reload(true);
   };
@@ -84,9 +101,11 @@ const Routine = () => {
     <div className="Routine container">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
       {isEditing ? (
-        <RoutineExerciseForm
+        <RoutineExercise
           routine={routine}
-          addExercises={addExercisesToRoutine}
+          routineExercises={routineExercises}
+          addExercise={addExerciseToRoutine}
+          deleteExercise={deleteExerciseFromRoutine}
         />
       ) : (
         <RoutineView

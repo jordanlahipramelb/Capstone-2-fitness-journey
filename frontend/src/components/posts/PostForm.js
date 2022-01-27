@@ -29,7 +29,7 @@ const PostForm = ({ save, post, cancel }) => {
 
   return (
     <div className="PostForm">
-      <div className="card  mb-5">
+      <div className="card mb-5">
         <div className="card-body">
           <form onSubmit={handleSubmit} className="mb-4">
             <div className="form-group">

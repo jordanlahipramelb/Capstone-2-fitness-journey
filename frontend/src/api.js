@@ -171,19 +171,27 @@ class FitnessJourney {
     }
   }
 
-  static async addExercises(routineId, data) {
-    console.log(data);
-    let res = await this.request(
-      `routines/${routineId}/add-exercises`,
-      data,
-      "post"
-    );
-    return res.routine;
-  }
-
   static async deleteRoutine(routineId) {
     try {
       await axios.delete(`${BASE_URL}/routines/${routineId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async getRoutineExercises(routineId) {
+    let res = await this.request(`routines/${routineId}/exercises`);
+    return res.routineExercises;
+  }
+
+  static async addExercise(data) {
+    let res = await this.request(`routines/add-exercise`, data, "post");
+    return res.exercise;
+  }
+
+  static async deleteExercise(id) {
+    try {
+      await axios.delete(`${BASE_URL}/routines/${id}`);
     } catch (err) {
       console.log(err);
     }
