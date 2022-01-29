@@ -118,6 +118,34 @@ class Routine {
     return routine;
   }
 
+  /** Update routine details data with `data`.
+   *
+   * This is a "partial update" --- it's fine if data doesn't contain all the
+   * fields; this only changes provided ones.
+   *
+   * Data can include: { username, name, description }
+   *
+   * Returns { username, name, description }
+   *
+   * Throws NotFoundError if not found.
+   */
+
+  static async update(id, data) {
+    const { setCols, values } = sqlForPartialUpdate(data, {});
+    const idVarIdx = "$" + (values.length + 1);
+
+    const querySql = `UPDATE routines 
+                      SET ${setCols} 
+                      WHERE id = ${idVarIdx} 
+                      RETURNING id, username, name, description`;
+    const result = await db.query(querySql, [...values, id]);
+    const routine = result.rows[0];
+
+    if (!routine) throw new NotFoundError(`No routine found: ${id}`);
+
+    return routine;
+  }
+
   /** Given routine id, removes routine from database */
 
   static async remove(id) {
@@ -133,6 +161,8 @@ class Routine {
 
     if (!routine) throw new NotFoundError(`No routine found: ${id}`);
   }
+
+  /** Handles exercises of routine */
 
   /** Posts exercise to routine (from data), update db, return new routine exercise data.
    * - data should be

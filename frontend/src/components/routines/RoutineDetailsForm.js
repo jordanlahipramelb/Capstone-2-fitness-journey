@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
+const RoutineDetailsForm = ({ routine, updateRoutine }) => {
   const [formData, setFormData] = useState({
-    username: routine.username,
-    name: routine.name,
-    description: routine.description,
+    username: routine[0].username,
+    name: routine[0].name,
+    description: routine[0].description,
   });
 
   const handleChange = (evt) => {
@@ -18,16 +18,16 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    addRoutine(formData);
+    updateRoutine(formData);
   };
 
   return (
-    <div className="RoutineForm">
-      <div className="card  mb-5">
+    <div className="RoutineDetailsForm">
+      <div className="card mt-3">
         <div className="card-body">
-          <form onSubmit={handleSubmit} className="mb-4">
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Routine Name: </label>
+              <label htmlFor="name">Name: </label>
               <input
                 className="form-control"
                 id="name"
@@ -53,12 +53,6 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
             <button type="submit" className="btn btn-primary container mt-2">
               Save
             </button>
-            <button
-              onClick={cancelRoutine}
-              className="btn btn-secondary container mt-1"
-            >
-              Cancel
-            </button>
           </form>
         </div>
       </div>
@@ -66,4 +60,4 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
   );
 };
 
-export default RoutineForm;
+export default RoutineDetailsForm;

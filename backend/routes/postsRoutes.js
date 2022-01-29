@@ -126,7 +126,7 @@ router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
 
 /** DELETE /[id]  =>  { deleted: id }
  *
- * Authorization required: admin
+ * Authorization required: admin or correct user
  */
 
 router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {

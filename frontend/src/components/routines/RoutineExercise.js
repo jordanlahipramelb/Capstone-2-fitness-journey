@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import FitnessJourney from "../../api";
-import LoadingPage from "../common/LoadingPage";
 import RoutineExerciseAddDeleteForm from "./RoutineExerciseAddDeleteForm";
+import RoutineDetailsForm from "./RoutineDetailsForm";
 
 const RoutineExercise = ({
   routine,
   routineExercises,
   addExercise,
   deleteExercise,
+  updateRoutine,
 }) => {
   const { routineId } = useParams();
 
@@ -44,18 +44,49 @@ const RoutineExercise = ({
     addExercise(formData);
   };
 
+  const handleDeleteSubmit = (evt) => {
+    evt.preventDefault();
+
+    deleteExercise(formData.routines_exercises_id);
+  };
+
+  const cancelEdit = () => {
+    window.location.reload(true);
+  };
+
   return (
-    <div className="RoutineExerciseForm">
+    <div className="RoutineExercise">
       <div className="container">
         <h1 className="text-center">Editing {routine[0].name}</h1>
+        <div className="text-center">
+          {isEditingDetails ? (
+            <button className="btn btn-primary btn-small" onClick={toggleEdit}>
+              Edit Details?
+            </button>
+          ) : (
+            <button className="btn btn-primary btn-small" onClick={toggleEdit}>
+              Add/Delete exercises?
+            </button>
+          )}
+          <button
+            className="btn btn-secondary btn-small m-1"
+            onClick={cancelEdit}
+          >
+            Go Back
+          </button>
+        </div>
 
-        <RoutineExerciseAddDeleteForm
-          routineExercises={routineExercises}
-          handleAddSubmit={handleAddSubmit}
-          deleteExercise={deleteExercise}
-          formData={formData}
-          handleInputChange={handleInputChange}
-        />
+        {isEditingDetails ? (
+          <RoutineExerciseAddDeleteForm
+            routineExercises={routineExercises}
+            handleAddSubmit={handleAddSubmit}
+            handleDeleteSubmit={handleDeleteSubmit}
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
+        ) : (
+          <RoutineDetailsForm routine={routine} updateRoutine={updateRoutine} />
+        )}
       </div>
     </div>
   );

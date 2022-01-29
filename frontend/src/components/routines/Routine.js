@@ -67,11 +67,11 @@ const Routine = () => {
 
   /** Handles editing a routine */
 
-  // const editRoutine = async (routine) => {
-  //   await FitnessJourney.updateRoutine(routineId, routine);
+  const editRoutineDetails = async (routine) => {
+    await FitnessJourney.updateRoutine(routineId, routine);
 
-  //   window.location.reload(true);
-  // };
+    window.location.reload(true);
+  };
 
   /** Handles deleting a routine */
 
@@ -106,6 +106,7 @@ const Routine = () => {
           routineExercises={routineExercises}
           addExercise={addExerciseToRoutine}
           deleteExercise={deleteExerciseFromRoutine}
+          updateRoutine={editRoutineDetails}
         />
       ) : (
         <RoutineView

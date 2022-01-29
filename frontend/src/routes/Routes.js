@@ -16,7 +16,6 @@ import ProfileForm from "../components/users/ProfileForm";
 import RoutineList from "../components/routines/RoutineList";
 import Routine from "../components/routines/Routine";
 import NewRoutine from "../components/routines/NewRoutine";
-import RoutineExercise from "../components/routines/RoutineExercise";
 
 const Routes = ({ login, register }) => {
   return (

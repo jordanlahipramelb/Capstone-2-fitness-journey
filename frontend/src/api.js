@@ -191,7 +191,7 @@ class FitnessJourney {
 
   static async deleteExercise(id) {
     try {
-      await axios.delete(`${BASE_URL}/routines/${id}`);
+      await axios.delete(`${BASE_URL}/routines/exercises/${id}`);
     } catch (err) {
       console.log(err);
     }

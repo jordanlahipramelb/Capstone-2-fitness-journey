@@ -14,7 +14,7 @@ const {
 const Routine = require("../models/routineModel");
 const routineNewSchema = require("../schemas/routineNew.json");
 const routineSearchSchema = require("../schemas/routineSearch.json");
-const routineExerciseSchema = require("../schemas/routineExercise.json");
+const routineUpdateSchema = require("../schemas/routineUpdate.json");
 const router = new express.Router();
 
 /** GET / =>
@@ -113,6 +113,52 @@ router.post("/", ensureLoggedIn, async (req, res, next) => {
   }
 });
 
+/** PUT /[id] { routine } => { routine }
+ *
+ * Updates routine data.
+ *
+ * fields can be: { username, name, description }
+ *
+ * Returns { id, username, name, description }
+ *
+ * Authorization required: same user or admin
+ */
+
+router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
+  try {
+    const validator = jsonschema.validate(req.body, routineUpdateSchema);
+
+    if (!validator.valid) {
+      const errs = validator.errors.map((er) => er.stack);
+
+      throw new BadRequestError(errs);
+    }
+
+    const routine = await Routine.update(req.params.id, req.body);
+
+    return res.json({ routine });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+/** DELETE /[id]  =>  { deleted: id }
+ *
+ * Deletes routine data
+ *
+ * Authorization required: admin or correct user
+ */
+
+router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
+  try {
+    await Routine.remove(req.params.id);
+
+    return res.json({ success: true, deleted: req.params.id });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 /** POST /[id]/add-exercise { routine } => { routine }
  *
  *
@@ -126,16 +172,8 @@ router.post(
   ensureAdminOrCorrectUser,
   async (req, res, next) => {
     try {
-      // const validator = jsonschema.validate(req.body, routineExerciseSchema);
-
-      // // if json is not valid, return errors
-      // if (!validator.valid) {
-      //   const errs = validator.errors.map((er) => er.stack);
-      //   console.error("Error with adding exercises", errs);
-      //   throw new BadRequestError(errs);
-      // }
-
       const exercise = await Routine.addExerciseToRoutine(req.body);
+
       return res.status(201).json({ exercise });
     } catch (err) {
       return next(err);
@@ -143,48 +181,25 @@ router.post(
   }
 );
 
-/** PUT /[id] { routine } => { routine }
- *
- * Updates routine data.
- *
- * fields can be: { username, subject, body, date }
- *
- * Returns { id, username, subject, body, date }
- *
- * Authorization required: same user or admin
- */
-
-router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
-  try {
-    // const validator = jsonschema.validate(req.body, routineUpdateSchema);
-
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map((er) => er.stack);
-
-    //   throw new BadRequestError(errs);
-    // }
-
-    const post = await Routine.update(req.params.id, req.body);
-
-    return res.json({ post });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 /** DELETE /[id]  =>  { deleted: id }
  *
- * Authorization required: admin
+ * Deletes an exercise from routine
+ *
+ * Authorization required: admin or correct user
  */
 
-router.delete("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
-  try {
-    await Routine.remove(req.params.id);
+router.delete(
+  "/exercises/:id",
+  ensureAdminOrCorrectUser,
+  async (req, res, next) => {
+    try {
+      await Routine.deleteExerciseFromRoutine(req.params.id);
 
-    return res.json({ success: true, deleted: req.params.id });
-  } catch (err) {
-    return next(err);
+      return res.json({ success: true, deleted: req.params.id });
+    } catch (err) {
+      return next(err);
+    }
   }
-});
+);
 
 module.exports = router;
