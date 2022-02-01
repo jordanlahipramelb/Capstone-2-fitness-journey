@@ -32,33 +32,62 @@ const ExerciseDetails = () => {
   if (!exercise) return <LoadingPage />;
 
   return (
-    <div className="ExerciseDetails col-md-8 offset-md-2">
-      <div className="container">
-        <h1>{exercise.name}</h1>
-        <p>{exercise.description}</p>
-        <div>
-          <h5>Equipment Type</h5>
-          <ul>
-            <li>{exercise.equipmentType}</li>
-          </ul>
+    <div className="ExerciseDetails">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <h1 className="text-center">{exercise.name}</h1>
+          <div className="card m-2 p-2">
+            <div className="card-body">
+              <p className="card-text">{exercise.description}</p>
+            </div>
+          </div>
 
-          <h5>Muscles Worked</h5>
-          <ul>
-            <li>Primary: {exercise.primaryMuscle}</li>
-            {exercise.secondaryMuscle === null ? null : (
-              <li>Secondary: {exercise.secondaryMuscle}</li>
-            )}
-          </ul>
+          <div className="row">
+            <div className="col-sm-6 col-md-6">
+              <div className="card m-2">
+                <div className="card-body">
+                  <h5 className="card-title">Equipment Type</h5>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      {exercise.equipmentType}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-6 col-md-6">
+              <div className="card m-2">
+                <div className="card-body">
+                  <h5 className="card-title">Muscles Worked</h5>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      Primary: {exercise.primaryMuscle}
+                    </li>
+                    {exercise.secondaryMuscle === null ? null : (
+                      <li className="list-group-item">
+                        Secondary: {exercise.secondaryMuscle}
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center m-4">
+            <img
+              src={exercise.image_url}
+              alt={`${exercise.name}`}
+              className="img-fluid rounded"
+            />
+          </div>
+          <div className="card m-2 p-2">
+            <div className="card-body">
+              <h5 className="card-title">Instructions</h5>
+              <p className="card-text">{exercise.instructions}</p>
+            </div>
+          </div>
         </div>
-        <div className="text-center m-4">
-          <img
-            src={exercise.image_url}
-            alt={`${exercise.name}`}
-            className="img-fluid rounded"
-          />
-        </div>
-        <h5>Instructions</h5>
-        <p>{exercise.instructions}</p>
       </div>
     </div>
   );

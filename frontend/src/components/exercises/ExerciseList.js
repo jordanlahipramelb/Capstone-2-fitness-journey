@@ -27,22 +27,26 @@ const ExerciseList = () => {
   }
 
   return (
-    <div className="ExerciseList col-md-8 offset-md-2">
-      <SearchForm searchFor={search} />
+    <div className="ExerciseList">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <SearchForm searchFor={search} />
 
-      {exercises.length ? (
-        <div className="ExerciseList-list">
-          {exercises.map((exercise) => (
-            <ExerciseCard
-              key={exercise.id}
-              id={exercise.id}
-              name={exercise.name}
-            />
-          ))}
+          {exercises.length ? (
+            <div className="ExerciseList-list">
+              {exercises.map((exercise) => (
+                <ExerciseCard
+                  key={exercise.id}
+                  id={exercise.id}
+                  name={exercise.name}
+                />
+              ))}
+            </div>
+          ) : (
+            <h3 className="lead">No exercises found.</h3>
+          )}
         </div>
-      ) : (
-        <h3 className="lead">No exercises found.</h3>
-      )}
+      </div>
     </div>
   );
 };

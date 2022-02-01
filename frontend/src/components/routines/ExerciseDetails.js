@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ExerciseDetails.css";
 
 /** Renders single exercise
@@ -6,11 +7,18 @@ import "./ExerciseDetails.css";
 
  */
 
-const RoutineExercise = ({ name, sets, reps }) => {
+const RoutineExercise = ({ id, name, sets, reps }) => {
   return (
-    <p className="RoutineExercise card-text m-0" key={name}>
-      {name}: {sets} sets of {reps} reps
-    </p>
+    <li className="RoutineExercise list-group-item" key={name}>
+      <Link
+        to={`/exercises/${id}`}
+        style={{ color: "inherit", textDecoration: "none" }}
+        className="exercise"
+      >
+        {name}
+      </Link>
+      : {sets} sets of {reps} reps
+    </li>
   );
 };
 

@@ -6,7 +6,6 @@ import LoadingPage from "../common/LoadingPage";
 import PostCard from "./PostCard";
 
 const PostList = () => {
-  console.debug("PostList");
   const [posts, setPosts] = useState(null);
 
   /** Allows use of async search function */
@@ -28,26 +27,32 @@ const PostList = () => {
   }
 
   return (
-    <div className="PostList col-md-8 offset-md-2">
-      <SearchForm searchFor={search} />
-      <Link to="/forum/new">
-        <button className="btn btn-secondary container mb-3">New Post</button>
-      </Link>
-      {posts.length ? (
-        <div className="PostList-list">
-          {posts.map((post) => (
-            <PostCard
-              key={post.id}
-              id={post.id}
-              username={post.username}
-              subject={post.subject}
-              date={post.date}
-            />
-          ))}
+    <div className="PostList">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <SearchForm searchFor={search} />
+          <Link to="/forum/new">
+            <button className="btn btn-secondary container mb-3">
+              New Post
+            </button>
+          </Link>
+          {posts.length ? (
+            <div className="PostList-list">
+              {posts.map((post) => (
+                <PostCard
+                  key={post.id}
+                  id={post.id}
+                  username={post.username}
+                  subject={post.subject}
+                  date={post.date}
+                />
+              ))}
+            </div>
+          ) : (
+            <h3 className="lead">No posts found.</h3>
+          )}
         </div>
-      ) : (
-        <h3 className="lead">No posts found.</h3>
-      )}
+      </div>
     </div>
   );
 };

@@ -12,16 +12,17 @@ import ExerciseDetails from "./ExerciseDetails";
 const RoutineExerciseList = ({ exercises = [] }) => {
   return (
     <div className="RoutineExerciseList">
-      <div className="container">
+      <ul className="list-group list-group-flush">
         {exercises.map((exercise) => (
           <ExerciseDetails
+            id={exercise.exerciseId}
             key={exercise.exerciseName}
             name={exercise.exerciseName}
             sets={exercise.sets}
             reps={exercise.reps}
           />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

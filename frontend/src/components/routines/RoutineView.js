@@ -9,11 +9,10 @@ import "./RoutineView.css";
  */
 
 const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
-  const { name, username, description } = routine[0];
   const { currentUser } = useContext(UserContext);
   let sameUser;
 
-  if (currentUser.username === username) {
+  if (currentUser.username === routine[0].username) {
     sameUser = true;
   } else {
     sameUser = false;
@@ -32,10 +31,10 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
     <div className="RoutineView">
       <div className="container col-md-8 offset-md-2">
         <div className="text-center mb-4">
-          <h1>{name}</h1>
-          <small>Created by {username}</small>
+          <h1>{routine[0].name}</h1>
+          <small>Created by {routine[0].username}</small>
         </div>
-        <p>{description}</p>
+        <p>{routine[0].description}</p>
 
         {routine.map((data) => (
           <div className="card my-3" key={data.dayofweek}>

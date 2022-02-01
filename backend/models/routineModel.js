@@ -97,7 +97,7 @@ class Routine {
       routines.description,
       routines_exercises.dayOfWeek,
       CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
-      JSON_BUILD_OBJECT('exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
+      JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
       ) 
       END AS exercises
       FROM routines

@@ -27,29 +27,30 @@ const RoutineList = () => {
   }
 
   return (
-    <div className="RoutineList col-md-8 offset-md-2">
-      <div className="container">
-        <h1>Routines</h1>
-        <SearchForm searchFor={search} />
-        <Link to="/routines/new">
-          <button className="btn btn-secondary container mb-3">
-            New Routine
-          </button>
-        </Link>
-        {routines.length ? (
-          <div className="RoutineList-list">
-            {routines.map((routine) => (
-              <RoutineCard
-                key={routine.id}
-                id={routine.id}
-                name={routine.name}
-                username={routine.username}
-              />
-            ))}
-          </div>
-        ) : (
-          <h3 className="lead">No routines found.</h3>
-        )}
+    <div className="RoutineList">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <SearchForm searchFor={search} />
+          <Link to="/routines/new">
+            <button className="btn btn-secondary container mb-3">
+              New Routine
+            </button>
+          </Link>
+          {routines.length ? (
+            <div className="RoutineList-list">
+              {routines.map((routine) => (
+                <RoutineCard
+                  key={routine.id}
+                  id={routine.id}
+                  name={routine.name}
+                  username={routine.username}
+                />
+              ))}
+            </div>
+          ) : (
+            <h3 className="lead">No routines found.</h3>
+          )}
+        </div>
       </div>
     </div>
   );
