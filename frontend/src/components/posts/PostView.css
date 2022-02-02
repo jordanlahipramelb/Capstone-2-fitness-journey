@@ -1,9 +1,9 @@
 .PostView {
-  position: relative;
+  padding: 50px 0 20px 0;
 }
 
 .PostView-right {
-  position: absolute;
+  position: relative;
   right: 0;
   top: 1em;
   text-align: right;
@@ -13,6 +13,41 @@
   margin-left: 1em;
 }
 
-.icon:hover {
-  cursor: pointer;
+.post {
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.entry .entry-meta {
+  color: #838383;
+}
+
+.entry .entry-meta ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.entry .entry-meta ul li + li {
+  padding-left: 20px;
+}
+
+.entry .entry-meta i {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+}
+
+.entry .entry-content p {
+  line-height: 24px;
+}
+
+.entry .entry-content h3 {
+  font-size: 22px;
+  margin-top: 30px;
+  font-weight: bold;
 }

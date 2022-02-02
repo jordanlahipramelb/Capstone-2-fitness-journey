@@ -30,27 +30,47 @@ const PostList = () => {
     <div className="PostList">
       <div className="col-md-8 offset-md-2">
         <div className="container">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Forum</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Forum
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+
           <SearchForm searchFor={search} />
           <Link to="/forum/new">
             <button className="btn btn-secondary container mb-3">
               New Post
             </button>
           </Link>
-          {posts.length ? (
-            <div className="PostList-list">
-              {posts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  id={post.id}
-                  username={post.username}
-                  subject={post.subject}
-                  date={post.date}
-                />
-              ))}
-            </div>
-          ) : (
-            <h3 className="lead">No posts found.</h3>
-          )}
+          <section className="forum">
+            {posts.length ? (
+              <div className="PostList-list">
+                {posts.map((post) => (
+                  <PostCard
+                    key={post.id}
+                    id={post.id}
+                    username={post.username}
+                    subject={post.subject}
+                    date={post.date}
+                  />
+                ))}
+              </div>
+            ) : (
+              <h3 className="lead">No posts found.</h3>
+            )}
+          </section>
         </div>
       </div>
     </div>

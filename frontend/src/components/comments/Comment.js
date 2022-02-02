@@ -27,7 +27,6 @@ const Comment = ({ id, username, body, date, deleteComment }) => {
   const userEditBtns = () => {
     return (
       <div className="Comment-editArea">
-        {/* <i className="fas fa-edit text-primary" /> */}
         {deleteComment && (
           <i
             className="deleteBtn fa fa-times text-danger mr-2"
@@ -39,11 +38,15 @@ const Comment = ({ id, username, body, date, deleteComment }) => {
   };
 
   return (
-    <div className="Comment" key={id}>
-      <h6>{username}:</h6>
-      <p>{body}</p>
-      <p>{date}</p>
-      <div className="Comment-right">{sameUser ? userEditBtns() : null}</div>
+    <div className="comment" key={id}>
+      <div class="d-flex">
+        {sameUser ? userEditBtns() : null}
+        <div>
+          <h5>{username}</h5>
+          <time>{date}</time>
+          <p>{body}</p>
+        </div>
+      </div>
     </div>
   );
 };

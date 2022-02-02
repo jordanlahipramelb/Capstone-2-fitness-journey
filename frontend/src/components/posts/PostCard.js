@@ -11,14 +11,30 @@ import "./PostCard.css";
 
 const PostCard = ({ id, username, subject, date }) => {
   return (
-    <Link className="PostCard card" to={`/forum/${id}`} key={id}>
-      <div className="card-body">
-        <h6 className="card-title">{subject}</h6>
-        <p>
-          <small>{username}</small>
-        </p>
-      </div>
-    </Link>
+    <section id="PostCard">
+      <article className="entry">
+        <Link
+          className="PostCard"
+          to={`/forum/${id}`}
+          style={{ textDecoration: "none" }}
+          key={id}
+        >
+          <h2 class="entry-title">{subject}</h2>
+        </Link>
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center">
+              <i class="far fa-user"></i>
+              {username}
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="far fa-clock"></i>
+              {date}
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
   );
 };
 

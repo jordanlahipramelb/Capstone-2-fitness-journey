@@ -93,8 +93,7 @@ const Post = () => {
         <PostView post={post} deletePost={deletePost} toggleEdit={toggleEdit} />
       )}
 
-      <div className="Post-comments mb-3">
-        <h4>Comments</h4>
+      <div className="Post-comments">
         <CommentList deleteComment={deleteComment} comments={post.comments} />
         <CommentForm addComment={addComment} postId={postId} />
       </div>

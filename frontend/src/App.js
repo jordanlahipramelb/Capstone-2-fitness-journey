@@ -9,6 +9,7 @@ import LoadingPage from "./components/common/LoadingPage";
 import UserContext from "./components/auth/UserContext";
 import Navbar from "./components/navbar/Navbar";
 import Routes from "./routes/Routes";
+import Footer from "./components/common/Footer";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "fitnessjourney-token";
@@ -103,6 +104,7 @@ function App() {
         <div>
           <Navbar logout={logout} />
           <Routes login={login} register={register} />
+          <Footer />
         </div>
       </UserContext.Provider>
     </BrowserRouter>

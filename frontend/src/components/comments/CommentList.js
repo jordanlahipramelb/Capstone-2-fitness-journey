@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./Comment";
+import "./CommentList.css";
 
 /** Renders list of comments
  *
@@ -11,17 +12,19 @@ import Comment from "./Comment";
 
 const CommentList = ({ comments = [], deleteComment }) => {
   return (
-    <div className="CommentList container">
-      {comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          id={comment.id}
-          username={comment.username}
-          body={comment.body}
-          date={comment.date}
-          deleteComment={deleteComment}
-        />
-      ))}
+    <div className="CommentList">
+      <div className="container">
+        {comments.map((comment) => (
+          <Comment
+            key={comment.id}
+            id={comment.id}
+            username={comment.username}
+            body={comment.body}
+            date={comment.date}
+            deleteComment={deleteComment}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
+import "./CommentForm.css";
 
 /** Renders Comment Form
  *
