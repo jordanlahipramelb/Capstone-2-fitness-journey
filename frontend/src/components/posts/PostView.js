@@ -23,7 +23,7 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
   }
   const userEditBtns = () => {
     return (
-      <div className="PostView-editArea">
+      <div className="PostView-right">
         <i className="fas fa-edit text-primary icon" onClick={toggleEdit} />
         <i className="fas fa-times text-danger icon" onClick={deletePost} />
       </div>
@@ -36,7 +36,6 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
         <section id="breadcrumb">
           <nav aria-label="breadcrumb">
             <div class="d-flex justify-content-between align-items-center">
-              <h2>{subject}</h2>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                   <Link to="/" style={{ textDecoration: "none" }}>
@@ -57,7 +56,10 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
         </section>
 
         <section className="post">
+          {sameUser ? userEditBtns() : null}
           <div className="entry">
+            <h2 class="entry-title">{subject}</h2>
+
             <div class="entry-meta">
               <ul>
                 <li class="d-flex align-items-center">
@@ -69,9 +71,7 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
                   {date}
                 </li>
               </ul>
-              <div className="PostView-right">
-                {sameUser ? userEditBtns() : null}
-              </div>
+              <div className="PostView-right"></div>
             </div>
             <div class="entry-content">
               <p>{body}</p>

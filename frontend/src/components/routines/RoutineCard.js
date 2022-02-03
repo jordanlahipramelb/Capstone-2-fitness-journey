@@ -11,14 +11,25 @@ import "./RoutineCard.css";
 
 const RoutineCard = ({ id, name, username }) => {
   return (
-    <Link className="RoutineCard card" to={`/routines/${id}`} key={id}>
-      <div className="card-body">
-        <h6 className="card-title">{name}</h6>
-        <p>
-          <small>Created by: {username}</small>
-        </p>
-      </div>
-    </Link>
+    <div className="RoutineCard">
+      <section className="routine">
+        <Link
+          to={`/routines/${id}`}
+          key={id}
+          style={{ textDecoration: "none" }}
+        >
+          <h2 className="routine-name">{name}</h2>
+        </Link>
+        <div class="routine-meta">
+          <ul>
+            <li class="d-flex align-items-center">
+              <i class="far fa-user"></i>
+              {username}
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
   );
 };
 

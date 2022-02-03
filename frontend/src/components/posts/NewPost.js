@@ -4,6 +4,8 @@ import PostForm from "./PostForm";
 import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 
+import "./PostForm.css";
+
 /** A simple component that renders the PostForm */
 
 const NewPost = () => {
@@ -33,9 +35,10 @@ const NewPost = () => {
   const cancel = () => history.push("/forum");
 
   return (
-    <div className="NewPostForm container">
-      <h1>New Post</h1>
-      <PostForm post={post} save={addPost} cancel={cancel} />
+    <div className="NewPostForm">
+      <div className="container">
+        <PostForm post={post} save={addPost} cancel={cancel} />
+      </div>
     </div>
   );
 };

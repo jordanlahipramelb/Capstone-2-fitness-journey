@@ -1,3 +1,6 @@
+#breadcrumb .past {
+  color: #00c3ff;
+}
 .forum {
   padding: 50px 0 20px 0;
 }
@@ -22,6 +25,7 @@
 .forum .entry .entry-title:hover {
   color: #00c3ff;
 }
+
 .forum .entry .entry-meta {
   color: #838383;
 }
@@ -33,9 +37,7 @@
   padding: 0;
   margin: 0;
 }
-.forum .entry .entry-meta ul li + li {
-  padding-left: 20px;
-}
+
 .forum .entry .entry-meta i {
   font-size: 16px;
   margin-right: 8px;

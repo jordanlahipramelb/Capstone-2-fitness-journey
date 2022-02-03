@@ -27,7 +27,7 @@ const PostList = () => {
   }
 
   return (
-    <div className="PostList">
+    <div className="PostList mb-5">
       <div className="col-md-8 offset-md-2">
         <div className="container">
           <section id="breadcrumb">
@@ -35,7 +35,7 @@ const PostList = () => {
               <div class="d-flex justify-content-between align-items-center">
                 <h2>Forum</h2>
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+                  <li class="breadcrumb-item past">
                     <Link to="/" style={{ textDecoration: "none" }}>
                       Home
                     </Link>

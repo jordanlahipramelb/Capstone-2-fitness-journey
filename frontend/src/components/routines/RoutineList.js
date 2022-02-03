@@ -4,6 +4,7 @@ import FitnessJourney from "../../api";
 import SearchForm from "../common/SearchForm";
 import LoadingPage from "../common/LoadingPage";
 import RoutineCard from "./RoutineCard";
+import "./RoutineList.css";
 
 const RoutineList = () => {
   const [routines, setRoutines] = useState(null);
@@ -27,29 +28,50 @@ const RoutineList = () => {
   }
 
   return (
-    <div className="RoutineList">
+    <div className="RoutineList mb-5">
       <div className="col-md-8 offset-md-2">
         <div className="container">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Routines</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item past">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Routines
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+
           <SearchForm searchFor={search} />
           <Link to="/routines/new">
             <button className="btn btn-secondary container mb-3">
               New Routine
             </button>
           </Link>
-          {routines.length ? (
-            <div className="RoutineList-list">
-              {routines.map((routine) => (
-                <RoutineCard
-                  key={routine.id}
-                  id={routine.id}
-                  name={routine.name}
-                  username={routine.username}
-                />
-              ))}
-            </div>
-          ) : (
-            <h3 className="lead">No routines found.</h3>
-          )}
+
+          <section className="routines">
+            {routines.length ? (
+              <div className="RoutineList-list">
+                {routines.map((routine) => (
+                  <RoutineCard
+                    key={routine.id}
+                    id={routine.id}
+                    name={routine.name}
+                    username={routine.username}
+                  />
+                ))}
+              </div>
+            ) : (
+              <h3 className="lead">No routines found.</h3>
+            )}
+          </section>
         </div>
       </div>
     </div>

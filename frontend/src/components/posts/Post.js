@@ -93,7 +93,7 @@ const Post = () => {
         <PostView post={post} deletePost={deletePost} toggleEdit={toggleEdit} />
       )}
 
-      <div className="Post-comments">
+      <div className="Post-comments mb-5">
         <CommentList deleteComment={deleteComment} comments={post.comments} />
         <CommentForm addComment={addComment} postId={postId} />
       </div>

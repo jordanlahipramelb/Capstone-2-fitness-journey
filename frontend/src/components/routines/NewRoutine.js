@@ -30,7 +30,6 @@ const NewRoutine = () => {
   return (
     <div className="NewRoutineForm">
       <div className="container">
-        <h1>New Routine</h1>
         <RoutineForm
           routine={routine}
           addRoutine={addRoutine}

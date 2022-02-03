@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import "./Routine.css";
 
 import LoadingPage from "../common/LoadingPage";
 import RoutineView from "./RoutineView";

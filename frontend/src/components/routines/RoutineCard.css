@@ -1,14 +1,36 @@
-.RoutineCard {
-  max-height: 250px;
-  margin-bottom: 1rem;
-  color: inherit;
-  border-radius: 0;
-  border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.routine {
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.RoutineCard:hover {
-  /* <Card /> that is also <Link /> */
-  text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+.routine-name {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 0 20px 0;
+  color: #556270;
+  transition: 0.3s;
+}
+
+.routine-name:hover {
+  color: #00c3ff;
+}
+
+.routine-meta {
+  color: #838383;
+}
+.routine-meta ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.routine-meta i {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
 }

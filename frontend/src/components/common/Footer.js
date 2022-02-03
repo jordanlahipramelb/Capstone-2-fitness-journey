@@ -19,7 +19,7 @@ const Footer = () => {
                 <p>
                   <strong>Email:</strong> jlahipramelb@gmail.com
                 </p>
-                <div className="social-links mt-3">
+                <div className="social-links mt-3 mb-4">
                   <a href="#" className="github">
                     <i className="fab fa-github"></i>
                   </a>
@@ -46,15 +46,16 @@ const Footer = () => {
                   <i class="fas fa-chevron-right"></i> <a href="#">About Us</a>
                 </li>
                 <li>
-                  <i class="fas fa-chevron-right"></i> <a href="#">Services</a>
+                  <i class="fas fa-chevron-right"></i>
+                  <Link to="/routines">Routines</Link>
                 </li>
                 <li>
                   <i class="fas fa-chevron-right"></i>
-                  <a href="#">Terms Of Service</a>
+                  <Link to="/exercises">Exercises</Link>
                 </li>
                 <li>
                   <i class="fas fa-chevron-right"></i>
-                  <a href="#">Privacy Policy</a>
+                  <Link to="/forum">Forum</Link>
                 </li>
               </ul>
             </div>

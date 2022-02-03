@@ -104,8 +104,8 @@ function App() {
         <div>
           <Navbar logout={logout} />
           <Routes login={login} register={register} />
-          <Footer />
         </div>
+        <Footer />
       </UserContext.Provider>
     </BrowserRouter>
   );
