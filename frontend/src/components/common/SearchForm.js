@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SearchForm.css";
 
 const SearchForm = ({ searchFor }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,20 +18,18 @@ const SearchForm = ({ searchFor }) => {
   };
 
   return (
-    <div className="SearchForm">
+    <div className="SearchForm mb-4">
       <form onSubmit={handleSubmit}>
-        <div className="input-group mb-4">
+        <div className="input-group">
           <input
             className="form-control"
             name="searchTerm"
             placeholder="Enter search term"
-            aria-label="Enter search term"
-            aria-describedby="basic-addon2"
             value={searchTerm}
             onChange={handleChange}
           />
           <div className="input-group-append">
-            <button type="submit" className="btn btn-outline-secondary">
+            <button type="submit" className="btn btn-primary">
               <i className="fas fa-search"></i>
             </button>
           </div>

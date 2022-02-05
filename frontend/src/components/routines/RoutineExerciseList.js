@@ -27,12 +27,4 @@ const RoutineExerciseList = ({ exercises = [] }) => {
   );
 };
 
-/**
-   return (
-    <p className="RoutineExercise card-text m-0" key={name}>
-      {name}: {sets} sets of {reps} reps
-    </p>
-  );
- */
-
 export default RoutineExerciseList;

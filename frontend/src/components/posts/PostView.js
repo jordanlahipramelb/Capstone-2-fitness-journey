@@ -35,19 +35,19 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
       <div className="container">
         <section id="breadcrumb">
           <nav aria-label="breadcrumb">
-            <div class="d-flex justify-content-between align-items-center">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+            <div className="d-flex justify-content-between align-items-center">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
                   <Link to="/" style={{ textDecoration: "none" }}>
                     Home
                   </Link>
                 </li>
-                <li class="breadcrumb-item">
+                <li className="breadcrumb-item">
                   <Link to="/forum" style={{ textDecoration: "none" }}>
                     Forum
                   </Link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   Post
                 </li>
               </ol>
@@ -58,22 +58,22 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
         <section className="post">
           {sameUser ? userEditBtns() : null}
           <div className="entry">
-            <h2 class="entry-title">{subject}</h2>
+            <h2 className="entry-title">{subject}</h2>
 
-            <div class="entry-meta">
+            <div className="entry-meta">
               <ul>
-                <li class="d-flex align-items-center">
-                  <i class="far fa-user"></i>
+                <li className="d-flex align-items-center">
+                  <i className="far fa-user"></i>
                   {username}
                 </li>
-                <li class="d-flex align-items-center">
-                  <i class="far fa-clock"></i>
+
+                <li className="d-flex align-items-center">
+                  <i className="far fa-clock"></i>
                   {date}
                 </li>
               </ul>
-              <div className="PostView-right"></div>
             </div>
-            <div class="entry-content">
+            <div className="entry-content mt-4">
               <p>{body}</p>
             </div>
           </div>

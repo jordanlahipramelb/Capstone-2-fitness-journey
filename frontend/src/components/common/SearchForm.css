@@ -1,0 +1,27 @@
+.SearchForm {
+  margin-top: 1em;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.SearchForm input {
+  border-radius: 4px;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.SearchForm input:focus {
+  box-shadow: none;
+  border-color: #00c3ff;
+}
+
+.SearchForm .btn-primary {
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: 0;
+  background-color: #556270;
+}
+
+.SearchForm .btn-primary:hover {
+  background-color: #00c3ff;
+}

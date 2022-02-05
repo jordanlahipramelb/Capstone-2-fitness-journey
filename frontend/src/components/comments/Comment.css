@@ -11,6 +11,10 @@
   margin-bottom: 2px;
 }
 
+.comment i:first-child {
+  padding-right: 10px;
+}
+
 .comment time {
   display: block;
   font-size: 14px;

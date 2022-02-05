@@ -50,11 +50,9 @@ const PostList = () => {
 
           <SearchForm searchFor={search} />
           <Link to="/forum/new">
-            <button className="btn btn-secondary container mb-3">
-              New Post
-            </button>
+            <button className="btn btn-secondary container">New Post</button>
           </Link>
-          <section className="forum">
+          <section className="forum mt-3">
             {posts.length ? (
               <div className="PostList-list">
                 {posts.map((post) => (

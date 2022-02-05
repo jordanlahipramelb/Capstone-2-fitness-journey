@@ -4,7 +4,6 @@ import FitnessJourney from "../../api";
 import SearchForm from "../common/SearchForm";
 import LoadingPage from "../common/LoadingPage";
 import RoutineCard from "./RoutineCard";
-import "./RoutineList.css";
 
 const RoutineList = () => {
   const [routines, setRoutines] = useState(null);
@@ -56,7 +55,7 @@ const RoutineList = () => {
             </button>
           </Link>
 
-          <section className="routines">
+          <section className="routines mt-3">
             {routines.length ? (
               <div className="RoutineList-list">
                 {routines.map((routine) => (

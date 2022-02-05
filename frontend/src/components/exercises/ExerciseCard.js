@@ -11,11 +11,13 @@ import "./ExerciseCard.css";
 
 const ExerciseCard = ({ id, name, description }) => {
   return (
-    <Link className="ExerciseCard card" to={`/exercises/${id}`} key={id}>
-      <div className="card-body">
-        <h6 className="card-title">{name}</h6>
-      </div>
-    </Link>
+    <div className="ExerciseCard">
+      <Link to={`/exercises/${id}`} style={{ textDecoration: "none" }} key={id}>
+        <section className="exercise">
+          <h2 className="exercise-name">{name}</h2>
+        </section>
+      </Link>
+    </div>
   );
 };
 

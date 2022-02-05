@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
+import "./RoutineExerciseAddDeleteForm.css";
 
 const RoutineExerciseAddDeleteForm = ({
   handleAddSubmit,
@@ -23,10 +25,10 @@ const RoutineExerciseAddDeleteForm = ({
 
   console.log(formData);
   return (
-    <div className="RoutineExerciseAddDeleteForm">
+    <div className="RoutineExerciseAddDeleteForm mb-5">
       <div className="row">
         <div className="col-sm-6 col-md-6">
-          <div className="card mt-3">
+          <div className="add-delete-form">
             <form onSubmit={handleAddSubmit}>
               <div className="card-body p-2">
                 <h4 className="card-title text-center">Add Exercise</h4>
@@ -119,7 +121,7 @@ const RoutineExerciseAddDeleteForm = ({
           </div>
         </div>
         <div className="col-sm-6 col-md-6">
-          <div className="card mt-3">
+          <div className="add-delete-form">
             <form onSubmit={handleDeleteSubmit}>
               <div className="card-body p-2">
                 <h4 className="card-title text-center">Delete Exercise</h4>
