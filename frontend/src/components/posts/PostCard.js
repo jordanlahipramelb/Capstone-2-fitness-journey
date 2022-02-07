@@ -25,7 +25,13 @@ const PostCard = ({ id, username, subject, date }) => {
           <ul>
             <li class="d-flex align-items-center">
               <i class="far fa-user"></i>
-              {username}
+              <Link
+                to={`/athletes/${username}`}
+                style={{ color: "inherit", textDecoration: "none" }}
+                key={id}
+              >
+                {username}
+              </Link>
             </li>
             <li class="d-flex align-items-center">
               <i class="far fa-clock"></i>

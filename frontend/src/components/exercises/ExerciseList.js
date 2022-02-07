@@ -29,7 +29,7 @@ const ExerciseList = () => {
 
   console.log(exercises);
   return (
-    <div className="ExerciseList">
+    <div className="ExerciseList py-4">
       <div className="col-md-8 offset-md-2">
         <div className="container">
           <section id="breadcrumb">

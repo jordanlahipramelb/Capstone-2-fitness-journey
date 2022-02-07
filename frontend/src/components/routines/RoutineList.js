@@ -27,7 +27,7 @@ const RoutineList = () => {
   }
 
   return (
-    <div className="RoutineList mb-5">
+    <div className="RoutineList py-4">
       <div className="col-md-8 offset-md-2">
         <div className="container">
           <section id="breadcrumb">

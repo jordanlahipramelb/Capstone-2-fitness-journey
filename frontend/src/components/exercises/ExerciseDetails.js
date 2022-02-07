@@ -32,7 +32,7 @@ const ExerciseDetails = () => {
   if (!exercise) return <LoadingPage />;
 
   return (
-    <div className="ExerciseDetails">
+    <div className="ExerciseDetails py-4">
       <div className="col-md-8 offset-md-2">
         <div className="container">
           <h1 className="text-center">{exercise.name}</h1>

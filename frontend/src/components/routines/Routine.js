@@ -96,24 +96,27 @@ const Routine = () => {
     window.location.reload(true);
   };
 
+  console.log(routine);
   return (
-    <div className="Routine container">
-      {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
-      {isEditing ? (
-        <RoutineExercise
-          routine={routine}
-          routineExercises={routineExercises}
-          addExercise={addExerciseToRoutine}
-          deleteExercise={deleteExerciseFromRoutine}
-          updateRoutine={editRoutineDetails}
-        />
-      ) : (
-        <RoutineView
-          routine={routine}
-          deleteRoutine={deleteRoutine}
-          toggleEdit={toggleEdit}
-        />
-      )}
+    <div className="Routine py-5">
+      <div className="container">
+        {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
+        {isEditing ? (
+          <RoutineExercise
+            routine={routine}
+            routineExercises={routineExercises}
+            addExercise={addExerciseToRoutine}
+            deleteExercise={deleteExerciseFromRoutine}
+            updateRoutine={editRoutineDetails}
+          />
+        ) : (
+          <RoutineView
+            routine={routine}
+            deleteRoutine={deleteRoutine}
+            toggleEdit={toggleEdit}
+          />
+        )}
+      </div>
     </div>
   );
 };

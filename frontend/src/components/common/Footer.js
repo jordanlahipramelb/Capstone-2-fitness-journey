@@ -4,7 +4,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="mt-4">
+    <footer id="footer">
       <div className="footer-top">
         <div className="container">
           <div className="row">
@@ -20,17 +20,22 @@ const Footer = () => {
                   <strong>Email:</strong> jlahipramelb@gmail.com
                 </p>
                 <div className="social-links mt-3 mb-4">
-                  <a href="#" className="github">
+                  <a
+                    href="https://github.com/jordanlahipramelb"
+                    className="github"
+                  >
                     <i className="fab fa-github"></i>
                   </a>
-                  <a href="#" className="facebook">
+                  {/* <a href="#" className="facebook">
                     <i className="fab fa-facebook-f"></i>
                   </a>
                   <a href="#" className="instagram">
                     <i className="fab fa-instagram"></i>
-                  </a>
-
-                  <a href="#" className="linkedin">
+                  </a> */}
+                  <a
+                    href="https://www.linkedin.com/in/jordan-lahip-ramelb/"
+                    className="linkedin"
+                  >
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                 </div>

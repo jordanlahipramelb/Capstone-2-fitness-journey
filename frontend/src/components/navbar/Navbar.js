@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import UserContext from "../auth/UserContext";
 // import "./Navbar.css";
@@ -36,12 +36,13 @@ const Navigation = ({ logout }) => {
         </li>
         <li className="nav-item">
           <Link to="/athlete" className="nav-link">
-            {currentUser.first_name || currentUser.username}
+            {/* {currentUser.first_name || currentUser.username} */}
+            Dashboard
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/" className="nav-link" onClick={logout}>
-            Log out
+            Log Out
           </Link>
         </li>
       </>
@@ -67,7 +68,7 @@ const Navigation = ({ logout }) => {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark" className="mb-4">
+    <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 

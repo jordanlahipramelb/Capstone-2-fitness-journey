@@ -85,7 +85,7 @@ const Post = () => {
   };
 
   return (
-    <div className="Post container">
+    <div className="Post container py-4">
       {/* Decide whether to show the edit form if toggleEdit is true, or the simple PostView component */}
       {isEditing ? (
         <PostForm post={post} cancel={toggleEdit} save={editPost} />

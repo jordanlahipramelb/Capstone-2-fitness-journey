@@ -25,7 +25,7 @@ const RoutineExerciseAddDeleteForm = ({
 
   console.log(formData);
   return (
-    <div className="RoutineExerciseAddDeleteForm mb-5">
+    <div className="RoutineExerciseAddDeleteForm py-5">
       <div className="row">
         <div className="col-sm-6 col-md-6">
           <div className="add-delete-form">

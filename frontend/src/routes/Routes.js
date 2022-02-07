@@ -8,7 +8,7 @@ import Post from "../components/posts/Post";
 import NewPost from "../components/posts/NewPost";
 import ExerciseList from "../components/exercises/ExerciseList";
 import ExerciseDetails from "../components/exercises/ExerciseDetails";
-import Profile from "../components/users/Profile";
+import UserDashboard from "../components/users/UserDashboard";
 
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
@@ -16,6 +16,7 @@ import ProfileForm from "../components/users/ProfileForm";
 import RoutineList from "../components/routines/RoutineList";
 import Routine from "../components/routines/Routine";
 import NewRoutine from "../components/routines/NewRoutine";
+import UserProfile from "../components/users/UserProfile";
 
 const Routes = ({ login, register }) => {
   return (
@@ -65,14 +66,17 @@ const Routes = ({ login, register }) => {
       </Route>
 
       <Route exact path="/athlete">
-        <Profile />
+        <UserDashboard />
+      </Route>
+
+      <Route exact path="/athletes/:username">
+        <UserProfile />
       </Route>
 
       <ProtectedRoutes exact path="/athlete/edit">
         <ProfileForm />
       </ProtectedRoutes>
 
-      <Route exact path="/athletes/:username"></Route>
       <Redirect to="/" />
     </Switch>
   );

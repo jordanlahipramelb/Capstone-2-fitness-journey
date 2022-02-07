@@ -64,7 +64,12 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
               <ul>
                 <li className="d-flex align-items-center">
                   <i className="far fa-user"></i>
-                  {username}
+                  <a
+                    href={`/athletes/${username}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    {username}
+                  </a>
                 </li>
 
                 <li className="d-flex align-items-center">

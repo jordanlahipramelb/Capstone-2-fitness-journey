@@ -166,36 +166,30 @@ class User {
 
   static async get(username) {
     const userRes = await db.query(
-      `SELECT username, 
-                first_name AS "firstName", 
-                last_name AS "lastName", 
-                email, 
-                city, 
-                state,
-                fitness_type AS "fitnessType",
-                bio,
-                image_url AS "imageUrl",
-                is_admin AS "isAdmin"
+      `SELECT  users.username, 
+              users.first_name AS "firstName", 
+              users.last_name AS "lastName", 
+              users.email, 
+              users.city, 
+              users.state,
+              users.fitness_type AS "fitnessType",
+              users.bio,
+              users.image_url AS "imageUrl",
+              users.is_admin AS "isAdmin",
+              CASE WHEN COUNT(routines.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
+                JSON_BUILD_OBJECT('id', routines.id, 'name', routines.name)
+            ) END AS routines
             FROM users
-            WHERE username = $1`,
+              LEFT JOIN routines ON routines.username = users.username 
+            WHERE users.username = $1
+            GROUP BY users.username
+            ORDER BY users.username`,
       [username]
     );
 
     const user = userRes.rows[0];
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
-
-    // Query routines that user has
-    const userRoutinesRes = await db.query(
-      `SELECT name
-          FROM routines
-          WHERE username = $1`,
-      [username]
-    );
-
-    // create a routines object in user of routine names
-    // EX: { ..., routines: [ name, name, ... ] }
-    user.routines = userRoutinesRes.rows.map((routine) => routine.name);
 
     return user;
   }

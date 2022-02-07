@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
@@ -28,11 +29,19 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
   };
 
   return (
-    <div className="RoutineView">
+    <div className="RoutineView mb-5">
       <div className="container col-md-8 offset-md-2">
         <div className="text-center mb-4">
           <h1>{routine[0].name}</h1>
-          <small>Created by {routine[0].username}</small>
+          <small>
+            Created by{" "}
+            <Link
+              to={`/athletes/${routine[0].username}`}
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {routine[0].username}
+            </Link>
+          </small>
         </div>
         <p>{routine[0].description}</p>
 
@@ -59,15 +68,3 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 };
 
 export default RoutineView;
-
-/**
- * 
- *  {routine.map((data) => (
-          <div className="card my-3" key={data.dayofweek}>
-            <div className="card-body">
-              <h4 className="card-title">Day {data.dayofweek}</h4>
-              <RoutineExerciseList exercises={data.exercises} />
-            </div>
-          </div>
-        ))}
- */

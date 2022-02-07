@@ -35,7 +35,7 @@ const NewPost = () => {
   const cancel = () => history.push("/forum");
 
   return (
-    <div className="NewPostForm">
+    <div className="NewPostForm py-4">
       <div className="container">
         <PostForm post={post} save={addPost} cancel={cancel} />
       </div>
