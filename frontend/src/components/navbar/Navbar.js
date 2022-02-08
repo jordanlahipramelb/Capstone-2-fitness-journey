@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import UserContext from "../auth/UserContext";
-// import "./Navbar.css";
+import "./Navbar.css";
 
 /** Site-wide navigation bar
  *
@@ -74,7 +74,9 @@ const Navigation = ({ logout }) => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
-            <Navbar.Brand href="/">Fitness Journey</Navbar.Brand>
+            <Navbar.Brand className="title" href="/">
+              FITNESS JOURNEY
+            </Navbar.Brand>
             {currentUser ? loggedInUser() : loggedOutUser()}
           </Nav>
         </Navbar.Collapse>
