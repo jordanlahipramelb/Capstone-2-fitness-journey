@@ -1,17 +1,11 @@
-.Navbar {
-  background-color: #dcdcdd;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+.title,
+#breadcrumb h2 {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
 }
 
-nav a {
-  margin-right: 1em;
-  color: #5c9ead;
-}
-
-nav a:hover {
-  color: #d64045;
-}
-
-nav a.active {
-  font-weight: bold;
+.nav-item,
+#breadcrumb li {
+  font-family: "Karla", sans-serif;
+  text-transform: uppercase;
 }

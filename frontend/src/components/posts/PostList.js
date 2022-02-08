@@ -28,7 +28,7 @@ const PostList = () => {
 
   return (
     <div className="PostList py-4">
-      <div className="col-md-8 offset-md-2">
+      <div className="col-md-6 offset-md-3">
         <div className="container">
           <section id="breadcrumb">
             <nav aria-label="breadcrumb">

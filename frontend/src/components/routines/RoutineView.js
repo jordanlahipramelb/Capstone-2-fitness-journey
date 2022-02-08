@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
+import LoadingPage from "../common/LoadingPage";
 
 /** Render a single routine
  *
@@ -28,9 +29,11 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
     );
   };
 
+  if (!routine[0]) return <LoadingPage />;
+
   return (
-    <div className="RoutineView mb-5">
-      <div className="container col-md-8 offset-md-2">
+    <div className="RoutineView container mb-5">
+      <div className="col-md-8 offset-md-2">
         <div className="text-center mb-4">
           <h1>{routine[0].name}</h1>
           <small>
@@ -45,20 +48,27 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
         </div>
         <p>{routine[0].description}</p>
 
-        {routine.map((data) => (
-          <div className="card my-3" key={data.dayofweek}>
-            {data.exercises.length === 0 ? (
-              <div className="card-body">
-                <p className="text-center">No exercises in routine.</p>
+        <div className="row">
+          {" "}
+          {routine.map((data) => (
+            <div className="col-lg-6">
+              <div className="card my-3 p-2" key={data.dayofweek}>
+                {data.exercises.length === 0 ? (
+                  <div className="card-body">
+                    <p className="text-center">
+                      Athlete has not added exercises yet.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="card-body">
+                    <h4 className="card-title">Day {data.dayofweek}</h4>
+                    <RoutineExerciseList exercises={data.exercises} />
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className="card-body">
-                <h4 className="card-title">Day {data.dayofweek}</h4>
-                <RoutineExerciseList exercises={data.exercises} />
-              </div>
-            )}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
         <div className="RoutineView-right">
           {sameUser ? userEditBtns() : null}
         </div>

@@ -45,67 +45,87 @@ const CurrentUserProfile = () => {
   console.log(currentUser.routines);
 
   return (
-    <div className="UserDashboard">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <img
-              src={currentUser.imageUrl}
-              className="img-thumbnail rounded mx-auto d-block"
-            />
-            <div className="d-flex justify-content-center">
-              <Link to="/athlete/edit">
-                <button className="btn btn-outline-secondary m-2">
-                  Edit Profile
-                </button>
-              </Link>
-
-              <button className="btn btn-danger m-2" onClick={deleteProfile}>
-                Delete Profile
-              </button>
-            </div>
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-title">
-                <h1>@{currentUser.username}</h1>
-              </div>
-              <div className="card-body">
-                <p>{currentUser.bio}</p>
-                <p>
-                  <span className="fa fa-map-marker"></span> {currentUser.city},
-                  {currentUser.state}
-                </p>
-                <p>{currentUser.fitnessType}</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-body">
-                <h1 className="card-title">Routines</h1>
-                <ul className="list-group list-group-flush">
-                  {currentUser.routines.map((routine) => (
-                    <Link
-                      to={`/routines/${routine.id}`}
-                      style={{ color: "inherit", textDecoration: "none" }}
-                    >
-                      <li className="list-group-item list-group-item-action">
-                        {routine.name}
-                      </li>
+    <div className="UserDashboard py-4">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <section id="breadcrumb" className="pb-3">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Dashboard</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item past">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
                     </Link>
-                  ))}
-                </ul>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    {currentUser.username}
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+
+          <div className="row">
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <img
+                src={currentUser.imageUrl}
+                className="img-thumbnail rounded mx-auto d-block"
+              />
+              <div className="d-flex justify-content-center">
+                <Link to="/athlete/edit">
+                  <button className="btn btn-outline-secondary m-2">
+                    Edit Profile
+                  </button>
+                </Link>
+
+                <button className="btn btn-danger m-2" onClick={deleteProfile}>
+                  Delete Profile
+                </button>
               </div>
             </div>
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-body">
-                <h1 className="card-title">Workouts Logged</h1>
-                <ul className="list-group list-group-flush">
-                  <p>Placeholder</p>
-                </ul>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-title">
+                  <h4>@{currentUser.username}</h4>
+                </div>
+                <div className="card-body">
+                  <p>{currentUser.bio}</p>
+                  <p>
+                    <span className="fa fa-map-marker"></span>{" "}
+                    {currentUser.city},{currentUser.state}
+                  </p>
+                  <p>{currentUser.fitnessType}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-body">
+                  <h4 className="card-title">Routines</h4>
+                  <ul className="list-group list-group-flush">
+                    {currentUser.routines.map((routine) => (
+                      <Link
+                        to={`/routines/${routine.id}`}
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        <li className="list-group-item list-group-item-action">
+                          {routine.name}
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-body">
+                  <h4 className="card-title">Workouts Logged</h4>
+                  <ul className="list-group list-group-flush">
+                    <p>Placeholder</p>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

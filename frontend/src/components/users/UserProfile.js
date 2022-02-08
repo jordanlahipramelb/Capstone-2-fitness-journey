@@ -34,56 +34,79 @@ const UserProfile = () => {
   if (!user) return <LoadingPage />;
 
   return (
-    <div className="UserProfile py-5">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <img
-              src={user.imageUrl}
-              className="img-thumbnail rounded mx-auto d-block"
-            />
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-title">
-                <h1>@{user.username}</h1>
-              </div>
-              <div className="card-body">
-                <p>{user.bio}</p>
-                <p>
-                  <span className="fa fa-map-marker"></span> {user.city},
-                  {user.state}
-                </p>
-                <p>{user.fitnessType}</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-body">
-                <h1 className="card-title">Routines</h1>
-                <ul className="list-group list-group-flush">
-                  {user.routines.map((routine) => (
-                    <Link
-                      to={`/routines/${routine.id}`}
-                      style={{ color: "inherit", textDecoration: "none" }}
-                    >
-                      <li className="list-group-item list-group-item-action">
-                        {routine.name}
-                      </li>
+    <div className="UserProfile py-4">
+      <div className="col-md-8 offset-md-2">
+        <div className="container">
+          <section id="breadcrumb" className="pb-3">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Athlete</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item past">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
                     </Link>
-                  ))}
-                </ul>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    {user.username}
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+
+          <div className="row">
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <img
+                src={user.imageUrl}
+                className="img-thumbnail rounded mx-auto d-block"
+              />
+            </div>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-title">
+                  <h4>@{user.username}</h4>
+                </div>
+                <div className="card-body">
+                  <p>{user.bio}</p>
+                  <p>
+                    <span className="fa fa-map-marker"></span> {user.city},
+                    {user.state}
+                  </p>
+                  <p>{user.fitnessType}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-            <div className="card p-2 m-2">
-              <div className="card-body">
-                <h1 className="card-title">Workouts Logged</h1>
-                <ul className="list-group list-group-flush">
-                  <p>Placeholder</p>
-                </ul>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-body">
+                  <h4 className="card-title">Routines</h4>
+                  <ul className="list-group list-group-flush">
+                    {user.routines.map((routine) => (
+                      <Link
+                        to={`/routines/${routine.id}`}
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        <li
+                          className="list-group-item list-group-item-action"
+                          key={routine.id}
+                        >
+                          {routine.name}
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
+              <div className="card p-2 m-2">
+                <div className="card-body">
+                  <h4 className="card-title">Workouts Logged</h4>
+                  <ul className="list-group list-group-flush">
+                    <p>Placeholder</p>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
