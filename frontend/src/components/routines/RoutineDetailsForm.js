@@ -24,37 +24,39 @@ const RoutineDetailsForm = ({ routine, updateRoutine }) => {
   };
 
   return (
-    <div className="RoutineDetailsForm">
-      <div className="routine-form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name: </label>
-            <input
-              className="form-control"
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="body">Description: </label>
-            <textarea
-              id="description"
-              name="description"
-              className="form-control"
-              rows={3}
-              value={formData.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary container mt-2">
-            Save
-          </button>
-        </form>
+    <div className="RoutineDetailsForm mb-4">
+      <div className="col-md-8 offset-md-2">
+        <div className="routine-form">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name: </label>
+              <input
+                className="form-control"
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="body">Description: </label>
+              <textarea
+                id="description"
+                name="description"
+                className="form-control"
+                rows={3}
+                value={formData.description}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary container mt-2">
+              Save
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -18,6 +18,10 @@ import Routine from "../components/routines/Routine";
 import NewRoutine from "../components/routines/NewRoutine";
 import UserProfile from "../components/users/UserProfile";
 
+import NewLog from "../components/logs/NewLog";
+import Log from "../components/logs/Log";
+import LogList from "../components/logs/LogList";
+
 const Routes = ({ login, register }) => {
   return (
     <Switch>
@@ -76,6 +80,18 @@ const Routes = ({ login, register }) => {
       <ProtectedRoutes exact path="/athlete/edit">
         <ProfileForm />
       </ProtectedRoutes>
+
+      <Route exact path="/logs/new">
+        <NewLog />
+      </Route>
+
+      <Route exact path="/logs">
+        <LogList />
+      </Route>
+
+      <Route exact path="/logs/:logId">
+        <Log />
+      </Route>
 
       <Redirect to="/" />
     </Switch>

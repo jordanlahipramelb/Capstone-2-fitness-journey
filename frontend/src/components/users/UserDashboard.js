@@ -46,9 +46,9 @@ const CurrentUserProfile = () => {
 
   return (
     <div className="UserDashboard py-4">
-      <div className="col-md-8 offset-md-2">
-        <div className="container">
-          <section id="breadcrumb" className="pb-3">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb" className="pb-2">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
                 <h2>Dashboard</h2>
@@ -65,7 +65,9 @@ const CurrentUserProfile = () => {
               </div>
             </nav>
           </section>
+        </div>
 
+        <div className="col-md-8 offset-md-2">
           <div className="row">
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <img
@@ -85,11 +87,11 @@ const CurrentUserProfile = () => {
               </div>
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-              <div className="card p-2 m-2">
-                <div className="card-title">
-                  <h4>@{currentUser.username}</h4>
+              <div className="panel">
+                <div className="entry">
+                  <h4 className="entry-title">@{currentUser.username}</h4>
                 </div>
-                <div className="card-body">
+                <div className="entry-content">
                   <p>{currentUser.bio}</p>
                   <p>
                     <span className="fa fa-map-marker"></span>{" "}
@@ -100,31 +102,35 @@ const CurrentUserProfile = () => {
               </div>
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-              <div className="card p-2 m-2">
-                <div className="card-body">
-                  <h4 className="card-title">Routines</h4>
-                  <ul className="list-group list-group-flush">
-                    {currentUser.routines.map((routine) => (
-                      <Link
-                        to={`/routines/${routine.id}`}
-                        style={{ color: "inherit", textDecoration: "none" }}
-                      >
-                        <li className="list-group-item list-group-item-action">
-                          {routine.name}
-                        </li>
-                      </Link>
-                    ))}
-                  </ul>
+              <div className="panel">
+                <div className="entry">
+                  <h4 className="entry-title">Routines</h4>
+                  <div className="entry-content">
+                    <ul className="list-group list-group-flush">
+                      {currentUser.routines.map((routine) => (
+                        <Link
+                          to={`/routines/${routine.id}`}
+                          style={{ color: "inherit", textDecoration: "none" }}
+                        >
+                          <li className="list-group-item list-group-item-action">
+                            {routine.name}
+                          </li>
+                        </Link>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
-              <div className="card p-2 m-2">
-                <div className="card-body">
-                  <h4 className="card-title">Workouts Logged</h4>
-                  <ul className="list-group list-group-flush">
-                    <p>Placeholder</p>
-                  </ul>
+              <div className="panel">
+                <div className="entry">
+                  <h4 className="entry-title">Workouts Logged</h4>
+                  <div className="entry-content">
+                    <ul className="list-group list-group-flush">
+                      <p>Placeholder</p>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

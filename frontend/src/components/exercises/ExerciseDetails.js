@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
 
@@ -33,9 +33,33 @@ const ExerciseDetails = () => {
 
   return (
     <div className="ExerciseDetails py-4">
-      <div className="col-md-8 offset-md-2">
-        <div className="container">
-          <h1 className="text-center">{exercise.name}</h1>
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb" className="pb-3">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>{exercise.name}</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <Link to="/exercises" style={{ textDecoration: "none" }}>
+                      Exercises
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Exercise
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+        </div>
+
+        <div className="col-md-8 offset-md-2">
           <div className="card m-2 p-2">
             <div className="card-body">
               <p className="card-text">{exercise.description}</p>

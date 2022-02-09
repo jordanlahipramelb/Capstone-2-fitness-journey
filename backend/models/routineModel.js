@@ -9,8 +9,6 @@ const { NotFoundError } = require("../expressError");
 // Retrieve function that helps with updating sql
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
-const format = require("pg-format");
-
 class Routine {
   /** Create a routine (from data), update db, return new routine data.
    * - data should be {username, name, description}
@@ -92,23 +90,23 @@ class Routine {
   static async get(id) {
     const routineRes = await db.query(
       `SELECT routines.id,
-      routines.name,
-      routines.username,
-      routines.description,
-      routines_exercises.dayOfWeek,
-      CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
-      JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
-      ) 
-      END AS exercises
-      FROM routines
-      FULL JOIN routines_exercises
-      ON routines.id = routines_exercises.routine_id
-      FULL JOIN exercises
-      ON routines_exercises.exercise_id = exercises.id
-      WHERE routines.id = $1
-      GROUP BY routines.id, 
-            routines_exercises.dayOfWeek
-      ORDER BY routines.id`,
+              routines.name,
+              routines.username,
+              routines.description,
+              routines_exercises.dayOfWeek,
+              CASE WHEN COUNT(routines_exercises.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
+              JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'sets', routines_exercises.sets, 'reps', routines_exercises.reps)
+              ) 
+              END AS exercises
+            FROM routines
+              FULL JOIN routines_exercises
+                ON routines.id = routines_exercises.routine_id
+              FULL JOIN exercises
+                ON routines_exercises.exercise_id = exercises.id
+            WHERE routines.id = $1
+            GROUP BY routines.id, 
+                  routines_exercises.dayOfWeek
+            ORDER BY routines.id`,
       [id]
     );
 

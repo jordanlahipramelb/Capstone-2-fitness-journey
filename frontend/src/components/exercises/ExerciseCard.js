@@ -9,7 +9,7 @@ import "./ExerciseCard.css";
  * ExerciseList -> ExerciseCard
  */
 
-const ExerciseCard = ({ id, name, description }) => {
+const ExerciseCard = ({ id, name }) => {
   return (
     <div className="ExerciseCard">
       <Link to={`/exercises/${id}`} style={{ textDecoration: "none" }} key={id}>

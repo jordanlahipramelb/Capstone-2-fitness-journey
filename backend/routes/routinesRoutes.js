@@ -25,7 +25,7 @@ const router = new express.Router();
  * Authorization required: logged in user
  */
 
-router.get("/", async (req, res, next) => {
+router.get("/", ensureLoggedIn, async (req, res, next) => {
   const searchTerm = req.query;
 
   try {

@@ -15,13 +15,6 @@
   border-color: #00c3ff;
 }
 
-.btn-primary {
-  border-radius: 4px;
-  padding: 10px 20px;
-  border: 0;
-  background-color: #556270;
-}
-
 .btn-primary:hover {
   background-color: #00c3ff;
 }

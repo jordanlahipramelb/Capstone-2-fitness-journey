@@ -198,6 +198,61 @@ class FitnessJourney {
   }
 
   /*********** End Routines Routes ************************/
+
+  /*********** Start Logs Routes ************************/
+
+  static async getLogs(date) {
+    let res = await this.request("logs", { date });
+    return res.logs;
+  }
+
+  static async getLog(logId) {
+    let res = await this.request(`logs/${logId}`);
+    return res.log;
+  }
+
+  static async addLog(data) {
+    let res = await this.request("logs", data, "post");
+    return res.log;
+  }
+
+  static async updateLog(logId, data) {
+    try {
+      let res = await this.request(`logs/${logId}`, data, "put");
+
+      return res.log;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async deleteLog(logId) {
+    try {
+      await axios.delete(`${BASE_URL}/logs/${logId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async getLogEntries(logId) {
+    let res = await this.request(`logs/${logId}/entries`);
+    return res.logEntries;
+  }
+
+  static async addLogEntry(data) {
+    let res = await this.request(`logs/add-entry`, data, "post");
+    return res.entry;
+  }
+
+  static async deleteLogEntry(id) {
+    try {
+      await axios.delete(`${BASE_URL}/logs/entries/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  /*********** End Logs Routes ************************/
 }
 
 export default FitnessJourney;

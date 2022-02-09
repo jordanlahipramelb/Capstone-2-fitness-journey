@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import "./Post.css";
 
 import LoadingPage from "../common/LoadingPage";
 import PostView from "./PostView";
@@ -85,17 +84,23 @@ const Post = () => {
   };
 
   return (
-    <div className="Post container py-4">
-      {/* Decide whether to show the edit form if toggleEdit is true, or the simple PostView component */}
-      {isEditing ? (
-        <PostForm post={post} cancel={toggleEdit} save={editPost} />
-      ) : (
-        <PostView post={post} deletePost={deletePost} toggleEdit={toggleEdit} />
-      )}
+    <div className="Routine pt-4 mb-5">
+      <div className="container">
+        {/* Decide whether to show the edit form if toggleEdit is true, or the simple PostView component */}
+        {isEditing ? (
+          <PostForm post={post} cancel={toggleEdit} save={editPost} />
+        ) : (
+          <PostView
+            post={post}
+            deletePost={deletePost}
+            toggleEdit={toggleEdit}
+          />
+        )}
 
-      <div className="Post-comments mb-5">
-        <CommentList deleteComment={deleteComment} comments={post.comments} />
-        <CommentForm addComment={addComment} postId={postId} />
+        <div className="Post-comments">
+          <CommentList deleteComment={deleteComment} comments={post.comments} />
+          <CommentForm addComment={addComment} postId={postId} />
+        </div>
       </div>
     </div>
   );

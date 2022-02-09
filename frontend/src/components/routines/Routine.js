@@ -33,7 +33,7 @@ const Routine = () => {
     function getRoutineOnMount() {
       async function getRoutine() {
         let routine = await FitnessJourney.getRoutine(routineId);
-        // set routine state to the handle
+
         setRoutine(routine);
       }
 
@@ -98,7 +98,7 @@ const Routine = () => {
 
   console.log(routine);
   return (
-    <div className="Routine py-5">
+    <div className="Routine py-4">
       <div className="container">
         {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
         {isEditing ? (

@@ -33,27 +33,30 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
   return (
     <div className="PostView">
       <div className="container">
-        <section id="breadcrumb">
-          <nav aria-label="breadcrumb">
-            <div className="d-flex justify-content-between align-items-center">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link to="/" style={{ textDecoration: "none" }}>
-                    Home
-                  </Link>
-                </li>
-                <li className="breadcrumb-item">
-                  <Link to="/forum" style={{ textDecoration: "none" }}>
-                    Forum
-                  </Link>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                  Post
-                </li>
-              </ol>
-            </div>
-          </nav>
-        </section>
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb" className="pb-2">
+            <nav aria-label="breadcrumb">
+              <div className="d-flex justify-content-between align-items-center">
+                <h2></h2>
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item">
+                    <Link to="/forum" style={{ textDecoration: "none" }}>
+                      Forum
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    Post
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+        </div>
 
         <section className="post">
           {sameUser ? userEditBtns() : null}

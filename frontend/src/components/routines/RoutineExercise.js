@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import RoutineExerciseAddDeleteForm from "./RoutineExerciseAddDeleteForm";
 import RoutineDetailsForm from "./RoutineDetailsForm";
 
@@ -57,22 +57,52 @@ const RoutineExercise = ({
   return (
     <div className="RoutineExercise">
       <div className="container">
-        <h1 className="text-center">Editing {routine[0].name}</h1>
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>{routine[0].name}</h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <Link to="/forum" style={{ textDecoration: "none" }}>
+                      Routines
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Editing
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+        </div>
+
         <div className="text-center">
           {isEditingDetails ? (
-            <button className="btn btn-primary btn-small" onClick={toggleEdit}>
+            <button
+              className="btn btn-secondary btn-small"
+              onClick={toggleEdit}
+            >
               Edit Details?
             </button>
           ) : (
-            <button className="btn btn-primary btn-small" onClick={toggleEdit}>
+            <button
+              className="btn btn-secondary btn-small"
+              onClick={toggleEdit}
+            >
               Add/Delete exercises?
             </button>
           )}
           <button
-            className="btn btn-secondary btn-small m-1"
+            className="btn btn-danger btn-small mx-1"
             onClick={cancelEdit}
           >
-            Go Back
+            Cancel
           </button>
         </div>
 

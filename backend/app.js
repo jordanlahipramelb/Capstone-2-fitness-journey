@@ -16,6 +16,7 @@ const exercisesRoutes = require("./routes/exercisesRoutes");
 const postsRoutes = require("./routes/postsRoutes");
 const postsCommentsRoutes = require("./routes/postsCommentsRoutes");
 const routineRoutes = require("./routes/routinesRoutes");
+const logRoutes = require("./routes/logsRoutes");
 /*******/
 
 app.use(cors());
@@ -30,6 +31,7 @@ app.use("/forum", postsRoutes);
 // mergeParams route for comments to access post_id
 app.use("/forum/:post_id/comments", postsCommentsRoutes);
 app.use("/routines", routineRoutes);
+app.use("/logs", logRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => {

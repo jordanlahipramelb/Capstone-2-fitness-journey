@@ -49,7 +49,6 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
         <p>{routine[0].description}</p>
 
         <div className="row">
-          {" "}
           {routine.map((data) => (
             <div className="col-lg-6">
               <div className="card my-3 p-2" key={data.dayofweek}>

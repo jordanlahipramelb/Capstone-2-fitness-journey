@@ -35,6 +35,11 @@ const Navigation = ({ logout }) => {
           </Link>
         </li>
         <li className="nav-item">
+          <Link to="/logs" className="nav-link">
+            Logs
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/athlete" className="nav-link">
             {/* {currentUser.first_name || currentUser.username} */}
             Dashboard

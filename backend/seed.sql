@@ -128,29 +128,16 @@ VALUES ('Get big', 'testuser', 'Be sure to have nice and controlled reps.', FALS
         ('The best workout', 'testadmin', 'Be sure to have nice and controlled reps.', FALSE);
 
 INSERT INTO routines_exercises (routine_id, exercise_id, dayOfWeek, reps, sets)
-VALUES  (1, 2, 1, '10', '3'),
-        (1, 3, 1, '10', '3'),
-        (1, 4, 2, '10', '3'),
-        (1, 7, 2, '10', '3'),
-        (1, 6, 3, '10', '3'),
-        (1, 3, 3, '10', '3'),
-        (1, 8, 4, '15', '2'),
-        (1, 9, 4, '15', '2'),
-        (2, 1, 1, '10', '3'),
-        (2, 3, 1, '10', '3'),
-        (2, 3, 2, '5', '10'),
-        (2, 5, 2, '5', '10'),
-        (2, 5, 3, '10', '3'),
-        (2, 3, 3, '10', '3'),
-        (2, 7, 4, '15', '2'),
-        (2, 6, 4, '15', '2');
+VALUES (1, 2, 1, 3, 10),
+        (1, 2, 1, 3, 10);
 
-INSERT INTO logs (date, username, routine_exercise_id, set_number, reps, weight)
-VALUES ('2019-06-04', 'testuser', 1, '1', '10', '100'),
-        ('2019-06-04', 'testuser', 2, '1', '10', '100'),
-        ('2019-06-04', 'testuser', 3, '1', '15', '100'),
-        ('2019-06-04', 'testuser', 4, '1', '10', '100'),
-        ('2019-06-04', 'testadmin', 5, '1', '10', '150'),
-        ('2019-06-04', 'testadmin', 6, '1', '10', '125');
+INSERT INTO logs (date, username)
+VALUES  ('2019-06-04', 'testuser');
+
+
+
+INSERT INTO logs_entries (log_id, routine_exercise_id, set_number, reps, weight)
+VALUES  (1, 1, 1, 10, 300),
+        (1, 2, 2, 10, 200);
 
 

@@ -5,6 +5,7 @@ import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 
 import "./PostForm.css";
+import { Link } from "react-router-dom";
 
 /** A simple component that renders the PostForm */
 
@@ -37,6 +38,31 @@ const NewPost = () => {
   return (
     <div className="NewPostForm py-4">
       <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2></h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <Link to="/forum" style={{ textDecoration: "none" }}>
+                      Forum
+                    </Link>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    New Post
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </section>
+        </div>
+
         <PostForm post={post} save={addPost} cancel={cancel} />
       </div>
     </div>

@@ -28,9 +28,9 @@ const PostList = () => {
 
   return (
     <div className="PostList py-4">
-      <div className="col-md-6 offset-md-3">
-        <div className="container">
-          <section id="breadcrumb">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb" className="pb-2">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
                 <h2>Forum</h2>
@@ -47,8 +47,11 @@ const PostList = () => {
               </div>
             </nav>
           </section>
+        </div>
 
+        <div className="col-md-8 offset-md-2">
           <SearchForm searchFor={search} />
+
           <Link to="/forum/new">
             <button className="btn btn-secondary container">New Post</button>
           </Link>

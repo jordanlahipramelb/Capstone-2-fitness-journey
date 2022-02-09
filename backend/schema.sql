@@ -149,17 +149,25 @@ CREATE TABLE routines_exercises (
 
 
 --RoutineExerciseResult: On 11/16/2021 User ID 5 did 4 of 5 deadlifts at 400 lbs + RoutineExercise ID
+
 -- List of log entries for each routine and exercise
-CREATE TABLE Logs (
+CREATE TABLE logs (
     id                  SERIAL PRIMARY KEY,
-    date                TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    date                TEXT NOT NULL,
     username            TEXT NOT NULL
-                            REFERENCES users ON DELETE CASCADE,
+                            REFERENCES users ON DELETE CASCADE
+);
+
+-- List of log entries for each routine and exercise
+CREATE TABLE logs_entries (
+    id                  SERIAL PRIMARY KEY,
+    log_id              INTEGER
+                            REFERENCES logs ON DELETE CASCADE,
     routine_exercise_id INTEGER
                             REFERENCES routines_exercises ON DELETE CASCADE,
-    set_number          TEXT,
-    reps                TEXT,
-    weight              TEXT
+    set_number          INTEGER,
+    reps                INTEGER,
+    weight              INTEGER
 );
 
 --Example of storing multiples

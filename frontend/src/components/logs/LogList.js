@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FitnessJourney from "../../api";
-import SearchForm from "../common/SearchForm";
 import LoadingPage from "../common/LoadingPage";
-import RoutineCard from "./RoutineCard";
+import SearchForm from "../common/SearchForm";
+import LogCard from "./LogCard";
 
-const RoutineList = () => {
-  const [routines, setRoutines] = useState(null);
+const LogList = () => {
+  const [logs, setLogs] = useState(null);
 
   /** Allows use of async search function */
-  useEffect(function getRoutinesOnMount() {
+  useEffect(function getLogsOnMount() {
     search();
   }, []);
 
-  const search = async (name) => {
-    let routines = await FitnessJourney.getRoutines(name);
+  const search = async (date) => {
+    let logs = await FitnessJourney.getLogs(date);
 
-    setRoutines(routines);
+    setLogs(logs);
   };
 
-  /** If no routines, return Loading component */
-  if (!routines) return <LoadingPage />;
-  /** If no routines and there are 0 routines in state */
-  if (!routines && routines.length === 0) {
-    return <h3 className="text-center">No routines present.</h3>;
+  /** If no logs, return Loading component */
+  if (!logs) return <LoadingPage />;
+  /** If no logs and there are 0 logs in state */
+  if (!logs && logs.length === 0) {
+    return <h3 className="text-center">No logs present.</h3>;
   }
 
   return (
-    <div className="RoutineList py-4">
+    <div className="LogList py-4">
       <div className="container">
         <div className="col-md-10 offset-md-1">
           <section id="breadcrumb" className="pb-2">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
-                <h2>Routines</h2>
+                <h2>Logs</h2>
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item past">
                     <Link to="/" style={{ textDecoration: "none" }}>
@@ -41,7 +41,7 @@ const RoutineList = () => {
                     </Link>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Routines
+                    Logs
                   </li>
                 </ol>
               </div>
@@ -51,26 +51,26 @@ const RoutineList = () => {
 
         <div className="col-md-8 offset-md-2">
           <SearchForm searchFor={search} />
-          <Link to="/routines/new">
+          <Link to="/logs/new">
             <button className="btn btn-secondary container mb-3">
-              New Routine
+              New Log
             </button>
           </Link>
 
-          <section className="routines mt-3">
-            {routines.length ? (
-              <div className="RoutineList-list">
-                {routines.map((routine) => (
-                  <RoutineCard
-                    key={routine.id}
-                    id={routine.id}
-                    name={routine.name}
-                    username={routine.username}
+          <section className="logs mt-3">
+            {logs.length ? (
+              <div className="LogsList-list">
+                {logs.map((log) => (
+                  <LogCard
+                    key={log.id}
+                    id={log.id}
+                    date={log.date}
+                    username={log.username}
                   />
                 ))}
               </div>
             ) : (
-              <h3 className="lead">No routines found.</h3>
+              <h3 className="lead">No logs found.</h3>
             )}
           </section>
         </div>
@@ -79,4 +79,4 @@ const RoutineList = () => {
   );
 };
 
-export default RoutineList;
+export default LogList;

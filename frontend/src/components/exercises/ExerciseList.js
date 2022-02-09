@@ -30,9 +30,9 @@ const ExerciseList = () => {
   console.log(exercises);
   return (
     <div className="ExerciseList py-4">
-      <div className="col-md-6 offset-md-3">
-        <div className="container">
-          <section id="breadcrumb">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb" className="pb-2">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
                 <h2>Exercises</h2>
@@ -49,7 +49,9 @@ const ExerciseList = () => {
               </div>
             </nav>
           </section>
+        </div>
 
+        <div className="col-md-8 offset-md-2">
           <SearchForm searchFor={search} />
 
           {exercises.length ? (

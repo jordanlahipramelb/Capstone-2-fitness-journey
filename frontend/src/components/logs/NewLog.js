@@ -3,33 +3,33 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
-import RoutineForm from "./RoutineForm";
 
-const NewRoutine = () => {
+const NewLog = () => {
   const history = useHistory();
   const { currentUser } = useContext(UserContext);
   const username = currentUser.username;
-  const [routine, setRoutine] = useState({
+  let date = new Date();
+
+  const [log, setLog] = useState({
+    date: `${date}`,
     username: username,
-    name: "",
-    description: "",
   });
 
-  /** Add Routine */
+  /** Add Log */
 
-  const addRoutine = async (routine) => {
-    let res = await FitnessJourney.addRoutine(routine);
+  const addLog = async (log) => {
+    let res = await FitnessJourney.addLog(log);
+    setLog(res);
 
-    setRoutine(res);
-    history.push(`/routines`);
+    history.push(`/logs/${username}`);
   };
 
   /** Cancel routine creation and redirect to routines */
 
-  const cancel = () => history.push("/routines");
+  const cancel = () => history.push(`/logs/${username}`);
 
   return (
-    <div className="NewRoutineForm  py-4">
+    <div className="NewLogForm py-4">
       <div className="container">
         <div className="col-md-10 offset-md-1">
           <section id="breadcrumb">
@@ -43,8 +43,11 @@ const NewRoutine = () => {
                     </Link>
                   </li>
                   <li class="breadcrumb-item">
-                    <Link to="/routines" style={{ textDecoration: "none" }}>
-                      Routines
+                    <Link
+                      to={`/logs/${currentUser.username}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Logs
                     </Link>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
@@ -55,15 +58,9 @@ const NewRoutine = () => {
             </nav>
           </section>
         </div>
-
-        <RoutineForm
-          routine={routine}
-          addRoutine={addRoutine}
-          cancelRoutine={cancel}
-        />
       </div>
     </div>
   );
 };
 
-export default NewRoutine;
+export default NewLog;

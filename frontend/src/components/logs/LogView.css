@@ -1,0 +1,18 @@
+.LogView {
+  position: relative;
+}
+
+.LogView-right {
+  position: absolute;
+  right: 0;
+  top: 1em;
+  text-align: right;
+}
+
+.LogView-right i {
+  margin-left: 1em;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
