@@ -20,11 +20,11 @@ import LogView from "./LogView";
 
 const Log = () => {
   const history = useHistory();
-  const { currentUser } = useContext(UserContext);
-  const username = currentUser.username;
+
   const { logId } = useParams();
   const [log, setLog] = useState(null);
   const [logEntries, setLogEntries] = useState(null);
+  const [routinesWithExercises, setRoutinesWithExercises] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   /** Request log from API via logId */
@@ -54,7 +54,20 @@ const Log = () => {
     [logId]
   );
 
-  if (!(log || logEntries)) return <LoadingPage />;
+  useEffect(
+    function getRoutinesWithExercisesOnMount() {
+      async function getRoutinesWithExercises() {
+        setRoutinesWithExercises(
+          await FitnessJourney.getRoutinesWithExercises(logId)
+        );
+      }
+
+      getRoutinesWithExercises();
+    },
+    [logId]
+  );
+
+  if (!(log || logEntries || routinesWithExercises)) return <LoadingPage />;
 
   /** Toggles editing routine on/off */
 
@@ -85,13 +98,22 @@ const Log = () => {
 
     window.location.reload(true);
   };
-  console.log(log[0]);
+
+  console.log(routinesWithExercises);
 
   return (
     <div className="Log py-4">
       <div className="container">
         {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
-        <LogView log={log[0]} deleteLog={deleteLog} toggleEdit={toggleEdit} />
+        <LogView
+          log={log[0]}
+          deleteLog={deleteLog}
+          toggleEdit={toggleEdit}
+          logEntries={logEntries}
+          addEntry={addLogEntryToLog}
+          deleteEntry={deleteLogEntryFromLog}
+          routinesWithExercises={routinesWithExercises}
+        />
       </div>
     </div>
   );

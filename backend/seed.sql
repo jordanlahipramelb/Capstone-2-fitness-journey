@@ -137,7 +137,11 @@ VALUES  ('2019-06-04', 'testuser');
 
 
 INSERT INTO logs_entries (log_id, routine_exercise_id, set_number, reps, weight)
-VALUES  (1, 1, 1, 10, 300),
-        (1, 2, 2, 10, 200);
+VALUES  (1, 1, 1, 10, 10),
+        (1, 1, 2, 10, 10),
+        (1, 1, 3, 10, 10),
+        (1, 2, 1, 10, 100),
+        (1, 2, 2, 10, 100),
+        (1, 2, 3, 10, 100);
 
 

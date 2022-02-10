@@ -230,44 +230,69 @@ class Log {
 
     if (!logEntry) throw new NotFoundError(`No id found: ${id}`);
   }
+
+  static async getRoutinesWithExercises() {
+    const res = await db.query(
+      `SELECT routines_exercises.id AS "routineExerciseId", 
+              routines_exercises.routine_id AS "routineId",
+              routines.name AS "routineName", 
+              exercises.name AS "exerciseName", 
+              routines_exercises.dayOfWeek, 
+              routines_exercises.reps,
+              routines_exercises.sets
+            FROM routines_exercises
+            LEFT JOIN exercises
+              ON routines_exercises.exercise_id = exercises.id
+            LEFT JOIN routines
+              ON routines_exercises.routine_id = routines.id`,
+      []
+    );
+
+    const routinesWithExercises = res.rows;
+
+    if (!routinesWithExercises)
+      throw new NotFoundError(`Routines/Exercises not found`);
+
+    return routinesWithExercises;
+  }
 }
 
 module.exports = Log;
 
-`SELECT logs.id,
-              logs.date,
-              logs.username,
-              CASE WHEN COUNT(logs_entries.id) = 0 
-                THEN JSON '[]' ELSE JSON_AGG(
-                JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'setNumber', logs_entries.set_number, 'reps', logs_entries.reps, 'weight', logs_entries.weight)
-              ) 
-              END AS entries
-            FROM logs
-                FULL JOIN logs_entries
-                    ON logs.id = logs_entries.log_id
-                FULL JOIN routines_exercises
-                    ON logs_entries.routine_exercise_id = routines_exercises.exercise_id
-                FULL JOIN exercises
-                    ON routines_exercises.exercise_id = exercises.id
-            WHERE logs.id = $1
-            GROUP BY logs.id
-            ORDER BY logs.id`;
+// `SELECT logs.id,
+//               logs.date,
+//               logs.username,
+//               CASE WHEN COUNT(logs_entries.id) = 0
+//                 THEN JSON '[]' ELSE JSON_AGG(
+//                 JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'setNumber', logs_entries.set_number, 'reps', logs_entries.reps, 'weight', logs_entries.weight)
+//               )
+//               END AS entries
+//             FROM logs
+//                 FULL JOIN logs_entries
+//                     ON logs.id = logs_entries.log_id
+//                 FULL JOIN routines_exercises
+//                     ON logs_entries.routine_exercise_id = routines_exercises.exercise_id
+//                 FULL JOIN exercises
+//                     ON routines_exercises.exercise_id = exercises.id
+//             WHERE logs.id = $1
+//             GROUP BY logs.id
+//             ORDER BY logs.id`;
 
-`SELECT logs.id,
-              logs.date,
-              logs.username,
-              exercises.id AS "exerciseId",
-              exercises.name AS "exerciseName",
-              logs_entries.set_number,
-              logs_entries.reps,
-              logs_entries.weight
-            FROM logs
-                FULL JOIN logs_entries
-                    ON logs.id = logs_entries.log_id
-                LEFT JOIN routines_exercises
-                    ON logs_entries.routine_exercise_id = routines_exercises.exercise_id
-                LEFT JOIN exercises
-                    ON routines_exercises.exercise_id = exercises.id
-            WHERE logs.id = 1
+// `SELECT logs.id,
+//               logs.date,
+//               logs.username,
+//               exercises.id AS "exerciseId",
+//               exercises.name AS "exerciseName",
+//               logs_entries.set_number,
+//               logs_entries.reps,
+//               logs_entries.weight
+//             FROM logs
+//                 FULL JOIN logs_entries
+//                     ON logs.id = logs_entries.log_id
+//                 LEFT JOIN routines_exercises
+//                     ON logs_entries.routine_exercise_id = routines_exercises.exercise_id
+//                 LEFT JOIN exercises
+//                     ON routines_exercises.exercise_id = exercises.id
+//             WHERE logs.id = 1
 
-            ORDER BY logs.id`;
+//             ORDER BY logs.id`;

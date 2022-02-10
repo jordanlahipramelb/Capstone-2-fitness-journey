@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./ExerciseDetails.css";
 
@@ -10,12 +11,12 @@ import "./ExerciseDetails.css";
 const RoutineExercise = ({ id, name, sets, reps }) => {
   return (
     <li className="RoutineExercise list-group-item" key={name}>
-      <a
+      <Link
         href={`/exercises/${id}`}
         style={{ color: "inherit", textDecoration: "none" }}
       >
         {name}
-      </a>
+      </Link>
       : {sets} sets of {reps} reps
     </li>
   );

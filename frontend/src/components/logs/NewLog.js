@@ -8,10 +8,15 @@ const NewLog = () => {
   const history = useHistory();
   const { currentUser } = useContext(UserContext);
   const username = currentUser.username;
-  let date = new Date();
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
 
   const [log, setLog] = useState({
-    date: `${date}`,
+    date: `${today}`,
     username: username,
   });
 

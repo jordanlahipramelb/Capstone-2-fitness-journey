@@ -252,6 +252,11 @@ class FitnessJourney {
     }
   }
 
+  static async getRoutinesWithExercises(logId) {
+    let res = await this.request(`logs/${logId}/routines-exercises`);
+    return res.routinesWithExercises;
+  }
+
   /*********** End Logs Routes ************************/
 }
 

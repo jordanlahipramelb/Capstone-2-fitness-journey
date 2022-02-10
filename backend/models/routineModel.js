@@ -209,7 +209,8 @@ class Routine {
   static async getRoutineExercises(id) {
     const res = await db.query(
       `SELECT routines_exercises.id, 
-              routines_exercises.routine_id, 
+              routines_exercises.routine_id,
+              routines.name, 
               exercises.name, 
               routines_exercises.dayOfWeek, 
               routines_exercises.reps,
@@ -217,6 +218,8 @@ class Routine {
         FROM routines_exercises
         FULL JOIN exercises
           ON routines_exercises.exercise_id = exercises.id
+        FULL JOIN routines
+          ON routines_exercises.routine_id = routines.id
         WHERE routine_id = $1`,
       [id]
     );

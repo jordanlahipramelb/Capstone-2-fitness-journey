@@ -83,6 +83,29 @@ router.get("/:id/entries", async (req, res, next) => {
   }
 });
 
+/** GET /routines-exercises => { routinesWithExercises }
+ *
+ * Get routines and its exercises
+ *
+ * Returns { id, routineId, routineName, exerciseName, dayOfWeek, reps, sets }
+ *
+ * Authorization required: logged in user
+ */
+
+router.get(
+  "/:id/routines-exercises",
+  ensureLoggedIn,
+  async (req, res, next) => {
+    try {
+      const routinesWithExercises = await Log.getRoutinesWithExercises();
+
+      return res.json({ routinesWithExercises });
+    } catch (err) {
+      return next(err);
+    }
+  }
+);
+
 /** POST / { log } => { log }
  *
  * creates a new log name with username who created it
@@ -114,9 +137,9 @@ router.post("/", ensureLoggedIn, async (req, res, next) => {
  *
  * Updates log data.
  *
- * fields can be: { username, name, description }
+ * fields can be: { date, username }
  *
- * Returns { id, username, name, description }
+ * Returns { id, date, username }
  *
  * Authorization required: same user or admin
  */
