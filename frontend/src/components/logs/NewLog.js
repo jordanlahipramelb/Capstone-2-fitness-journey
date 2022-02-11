@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
+import LogForm from "./LogForm";
 
 const NewLog = () => {
   const history = useHistory();
@@ -12,7 +13,6 @@ const NewLog = () => {
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   let yyyy = today.getFullYear();
-
   today = mm + "/" + dd + "/" + yyyy;
 
   const [log, setLog] = useState({
@@ -26,12 +26,12 @@ const NewLog = () => {
     let res = await FitnessJourney.addLog(log);
     setLog(res);
 
-    history.push(`/logs/${username}`);
+    history.push(`/athlete`);
   };
 
   /** Cancel routine creation and redirect to routines */
 
-  const cancel = () => history.push(`/logs/${username}`);
+  const cancel = () => history.push(`/logs`);
 
   return (
     <div className="NewLogForm py-4">
@@ -56,12 +56,14 @@ const NewLog = () => {
                     </Link>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Routine
+                    New
                   </li>
                 </ol>
               </div>
             </nav>
           </section>
+
+          <LogForm log={log} cancel={cancel} addLog={addLog} />
         </div>
       </div>
     </div>

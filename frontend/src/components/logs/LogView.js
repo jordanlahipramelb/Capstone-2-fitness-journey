@@ -73,6 +73,11 @@ const LogView = ({
                     Home
                   </Link>
                 </li>
+                <li class="breadcrumb-item">
+                  <Link to="/logs" style={{ textDecoration: "none" }}>
+                    Logs
+                  </Link>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Log
                 </li>
