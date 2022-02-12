@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Box, TextField } from "@mui/material";
 import "./RoutineForm.css";
 
 const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
@@ -27,41 +27,45 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
     <div className="RoutineForm mb-4">
       <div className="col-md-8 offset-md-2">
         <div className="routine-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Routine Name: </label>
-              <input
-                className="form-control"
-                id="name"
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <div>
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                label="Name"
+                className="form-control mb-2"
                 name="name"
-                type="text"
                 value={formData.name}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="body">Description: </label>
-              <textarea
+            <div>
+              <TextField
                 id="description"
                 name="description"
+                label="Description"
+                placeholder="Placeholder"
                 className="form-control"
-                rows={3}
                 value={formData.description}
                 onChange={handleChange}
+                multiline
+                rows={4}
                 required
               />
             </div>
+
             <button type="submit" className="btn btn-primary container mt-2">
-              Save
+              Create
             </button>
-            <button
-              onClick={cancelRoutine}
-              className="btn btn-secondary container mt-1"
-            >
-              Cancel
-            </button>
-          </form>
+          </Box>
         </div>
       </div>
     </div>

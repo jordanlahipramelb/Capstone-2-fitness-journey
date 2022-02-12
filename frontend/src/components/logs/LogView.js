@@ -111,14 +111,18 @@ const LogView = ({
             </tr>
           </thead>
           <tbody>
-            {log.entries.map((entry) => (
-              <tr>
-                <th scope="row">{entry.exerciseName}</th>
-                <td>{entry.setNumber}</td>
-                <td>{entry.reps}</td>
-                <td>{entry.weight}</td>
-              </tr>
-            ))}
+            {log.entries.length ? (
+              log.entries.map((entry) => (
+                <tr>
+                  <th scope="row">{entry.exerciseName}</th>
+                  <td>{entry.setNumber}</td>
+                  <td>{entry.reps}</td>
+                  <td>{entry.weight}</td>
+                </tr>
+              ))
+            ) : (
+              <p>Athlete has not added any entries.</p>
+            )}
           </tbody>
         </table>
       </div>

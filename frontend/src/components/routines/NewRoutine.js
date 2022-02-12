@@ -61,6 +61,14 @@ const NewRoutine = () => {
           addRoutine={addRoutine}
           cancelRoutine={cancel}
         />
+        <small>
+          <p className="text-muted mb-0 mt-2 px-2">
+            Create your routine above.
+          </p>
+          <p className="text-muted mb-3 px-2">
+            Once created, open your created routine and add your exercises.
+          </p>
+        </small>
       </div>
     </div>
   );

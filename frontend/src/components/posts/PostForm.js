@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box, TextField } from "@mui/material";
 import "./PostForm.css";
 
 /** Reusable Post Edit Form Component
@@ -32,31 +33,40 @@ const PostForm = ({ save, post, cancel }) => {
     <div className="PostForm mb-4">
       <div className="col-md-8 offset-md-2">
         <div className="post-form">
-          <form onSubmit={handleSubmit} className="mb-4">
-            <div className="form-group">
-              <label htmlFor="subject">Subject: </label>
-              <input
-                className="form-control"
-                type="text"
-                name="subject"
-                id="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="body">Body: </label>
-              <textarea
-                onChange={handleChange}
-                id="body"
-                name="body"
-                className="form-control"
-                rows={10}
-                value={formData.body}
-                required
-              />
-            </div>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              required
+              id="outlined-basic"
+              variant="outlined"
+              className="form-control"
+              name="subject"
+              label="Subject"
+              id="subject"
+              placeholder="What is the subject of your post?"
+              value={formData.subject}
+              onChange={handleChange}
+            />
+
+            <TextField
+              id="body"
+              name="body"
+              label="Body"
+              placeholder="What do you want to talk about?"
+              className="form-control"
+              value={formData.body}
+              onChange={handleChange}
+              multiline
+              rows={4}
+              required
+            />
+
             <button type="submit" className="btn btn-primary container mt-2">
               Submit
             </button>
@@ -66,7 +76,7 @@ const PostForm = ({ save, post, cancel }) => {
             >
               Cancel
             </button>
-          </form>
+          </Box>
         </div>
       </div>
     </div>

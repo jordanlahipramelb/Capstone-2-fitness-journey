@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
+import {
+  Box,
+  TextField,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
+import "./RegisterForm.css";
 
 const RegisterForm = ({ register }) => {
   const history = useHistory();
@@ -112,149 +121,158 @@ const RegisterForm = ({ register }) => {
   } = formData;
 
   return (
-    <div className="SignupForm mb-5">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h2 className="mb-3">Sign Up</h2>
-        <div className="card">
-          <div className="card-body">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label for="username" className="mt-2">
-                  Username
-                </label>
-                <input
-                  id="username"
-                  name="username"
-                  className="form-control"
-                  value={username}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label for="password" className="mt-2">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  value={password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+    <div className="SignupForm py-4 mb-4">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2></h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
 
-              <div className="form-group">
-                <label for="firstName" className="mt-2">
-                  First name
-                </label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  className="form-control"
-                  value={firstName}
-                  onChange={handleChange}
-                  required
-                />
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Register
+                  </li>
+                </ol>
               </div>
-              <div className="form-group">
-                <label for="lastName" className="mt-2">
-                  Last name
-                </label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  className="form-control"
-                  value={lastName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label for="imageUrl" className="mt-2">
-                  Profile Photo
-                </label>
-                <input
-                  id="imageUrl"
-                  name="imageUrl"
-                  className="form-control"
-                  value={imageUrl}
-                  onChange={handleChange}
-                />
-                <small id="imageUrlMessage" class="form-text text-muted">
-                  Insert image URL above, or leave as default photo.
-                </small>
-              </div>
-              <div className="form-group">
-                <label for="email" className="mt-2">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  value={email}
-                  onChange={handleChange}
-                  required
-                />
-                <small id="emailHelp" class="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small>
-              </div>
-              <div className="form-group">
-                <label for="city" className="mt-2">
-                  City
-                </label>
-                <input
-                  id="city"
-                  name="city"
-                  className="form-control"
-                  value={city}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label for="state" className="mt-2">
-                  State
-                </label>
-                <select
+            </nav>
+          </section>
+        </div>
+        <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <div className="register-form">
+            <h2 className="mb-3">Sign Up</h2>
+
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1 },
+              }}
+              autoComplete="off"
+              onSubmit={handleSubmit}
+            >
+              <TextField
+                required
+                id="outlined-basic"
+                variant="outlined"
+                className="form-control mb-2"
+                name="username"
+                label="Username"
+                value={username}
+                onChange={handleChange}
+                autoComplete="username"
+              />
+
+              <TextField
+                id="filled-password-input"
+                label="Password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                autoComplete="current-password"
+                className="form-control"
+                required
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="First Name"
+                variant="outlined"
+                name="firstName"
+                className="form-control"
+                value={firstName}
+                onChange={handleChange}
+                required
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Last Name"
+                variant="outlined"
+                name="lastName"
+                className="form-control"
+                value={lastName}
+                onChange={handleChange}
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Image URL"
+                variant="outlined"
+                name="imageUrl"
+                className="form-control"
+                value={imageUrl}
+                onChange={handleChange}
+                helperText="Insert image URL above, or leave as default photo."
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                type="email"
+                name="email"
+                className="form-control"
+                value={email}
+                onChange={handleChange}
+                helperText="We'll never share your email with anyone else."
+                required
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="City"
+                variant="outlined"
+                name="city"
+                className="form-control"
+                value={city}
+                onChange={handleChange}
+              />
+              <FormControl fullWidth>
+                <InputLabel id="state">State</InputLabel>
+
+                <Select
                   id="state"
                   name="state"
+                  labelId="state"
+                  label="State"
                   className="form-control"
                   value={state}
                   onChange={handleChange}
                 >
                   {listStates}
-                </select>
-              </div>
-              <div className="form-group">
-                <label for="bio" className="mt-2">
-                  Bio
-                </label>
-                <textarea
-                  id="bio"
-                  name="bio"
-                  className="form-control"
-                  value={bio}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label for="fitnessType" className="mt-2">
-                  Fitness Type
-                </label>
-                <select
+                </Select>
+              </FormControl>
+
+              <TextField
+                id="bio"
+                name="bio"
+                label="Bio"
+                className="form-control"
+                value={bio}
+                onChange={handleChange}
+                multiline
+                rows={3}
+              />
+              <FormControl fullWidth>
+                <InputLabel id="fitnessType">Fitness Type</InputLabel>
+                <Select
                   id="fitnessType"
+                  labelId="fitnessType"
                   name="fitnessType"
+                  label="Fitness Type"
                   className="form-control"
                   value={fitnessType}
                   onChange={handleChange}
                 >
                   {listTypes}
-                </select>
-              </div>
+                </Select>
+              </FormControl>
               <div className="mt-4">
                 {formErrors.length ? (
                   <Alert type="danger" messages={formErrors} />
@@ -262,12 +280,12 @@ const RegisterForm = ({ register }) => {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary mt-3 container"
+                className="btn btn-primary container"
                 onSubmit={handleSubmit}
               >
                 Submit
               </button>
-            </form>
+            </Box>
           </div>
         </div>
       </div>
@@ -277,9 +295,9 @@ const RegisterForm = ({ register }) => {
 
 const map = (listName) => {
   return listName.map((type) => (
-    <option key={type} value={type}>
+    <MenuItem key={type} value={type}>
       {type}
-    </option>
+    </MenuItem>
   ));
 };
 

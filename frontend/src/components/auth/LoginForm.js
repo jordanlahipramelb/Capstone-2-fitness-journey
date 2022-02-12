@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
+import { Box, TextField } from "@mui/material";
+import "./LoginForm.css";
 
 const LoginForm = ({ login }) => {
   const [formData, setFormData] = useState({
@@ -38,45 +40,76 @@ const LoginForm = ({ login }) => {
   const { username, password } = formData;
 
   return (
-    <div className="LoginForm">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3">Log In</h3>
+    <div className="LoginForm py-4">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2></h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
 
-        <div className="card  mb-5">
-          <div className="card-body">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Username</label>
-                <input
-                  name="username"
-                  className="form-control"
-                  value={username}
-                  onChange={handleChange}
-                  autoComplete="username"
-                  required
-                />
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Login
+                  </li>
+                </ol>
               </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  value={password}
-                  onChange={handleChange}
-                  autoComplete="current-password"
-                  required
-                />
-              </div>
+            </nav>
+          </section>
+        </div>
+        <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <div className="login-form">
+            <h3 className="mb-3">Login</h3>
+
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1 },
+              }}
+              autoComplete="off"
+              onSubmit={handleSubmit}
+            >
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                className="form-control mb-2"
+                name="username"
+                value={username}
+                onChange={handleChange}
+                autoComplete="username"
+                required
+              />
+
+              <TextField
+                id="filled-password-input"
+                label="Password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                autoComplete="current-password"
+                className="form-control"
+                required
+              />
+
               <div className="mt-4">
                 {formErrors.length ? (
                   <Alert type="danger" messages={formErrors} />
                 ) : null}
               </div>
-              <button className="btn btn-primary mt-3" onSubmit={handleSubmit}>
+              <button
+                className="btn btn-primary container"
+                onSubmit={handleSubmit}
+              >
                 Login
               </button>
-            </form>
+            </Box>
           </div>
         </div>
       </div>

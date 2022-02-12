@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
 import "./RoutineExerciseAddDeleteForm.css";
@@ -34,80 +36,91 @@ const RoutineExerciseAddDeleteForm = ({
                 <h4 className="card-title text-center">Add Exercise</h4>
                 <div className="row">
                   <div className="col">
-                    <select
-                      className="form-control form-control-sm"
-                      name="dayOfWeek"
-                      value={formData.dayOfWeek}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="" disabled hidden>
-                        Select Day
-                      </option>
-                      <option value="1">Day 1</option>
-                      <option value="2">Day 2</option>
-                      <option value="3">Day 3</option>
-                      <option value="4">Day 4</option>
-                      <option value="5">Day 5</option>
-                      <option value="6">Day 6</option>
-                      <option value="7">Day 7</option>
-                    </select>
+                    <FormControl fullWidth>
+                      <InputLabel id="dayOfWeek">Day</InputLabel>
+                      <Select
+                        className=""
+                        label="Day"
+                        name="dayOfWeek"
+                        labelId="dayOfWeek"
+                        value={formData.dayOfWeek}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        <MenuItem value="" disabled hidden>
+                          Select Day
+                        </MenuItem>
+                        <MenuItem value="1">Day 1</MenuItem>
+                        <MenuItem value="2">Day 2</MenuItem>
+                        <MenuItem value="3">Day 3</MenuItem>
+                        <MenuItem value="4">Day 4</MenuItem>
+                        <MenuItem value="5">Day 5</MenuItem>
+                        <MenuItem value="6">Day 6</MenuItem>
+                        <MenuItem value="7">Day 7</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                   <div className="col">
-                    <select
-                      className="form-control form-control-sm"
-                      name="sets"
-                      value={formData.sets}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="" disabled hidden>
-                        Select Number of Sets
-                      </option>
-                      {[...Array(51)].map((evt, i) => (
-                        <option value={i} key={i}>
-                          {i}
-                        </option>
-                      ))}
-                    </select>
+                    <FormControl fullWidth>
+                      <InputLabel id="sets">Sets</InputLabel>
+                      <Select
+                        className=""
+                        label="Sets"
+                        name="sets"
+                        labelId="sets"
+                        value={formData.sets}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        {[...Array(21)].map((evt, i) => (
+                          <MenuItem value={i} key={i}>
+                            {i}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
                   <div className="col">
-                    <select
-                      className="form-control form-control-sm"
-                      name="reps"
-                      value={formData.reps}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="" disabled hidden>
-                        Select Number of Reps
-                      </option>
-                      {[...Array(51)].map((evt, i) => (
-                        <option value={i} key={i}>
-                          {i}
-                        </option>
-                      ))}
-                    </select>
+                    <FormControl fullWidth>
+                      <InputLabel id="reps">Reps</InputLabel>
+                      <Select
+                        className=""
+                        label="Reps"
+                        labelId="reps"
+                        name="reps"
+                        value={formData.reps}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        {[...Array(51)].map((evt, i) => (
+                          <MenuItem value={i} key={i}>
+                            {i}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
                 <div className="row">
                   <div className="my-2">
-                    <select
-                      className="form-control form-control-sm"
-                      name="exercise_id"
-                      value={formData.exercise_id}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="" disabled hidden>
-                        Select Exercise
-                      </option>
-                      {allExercises.map((exercise) => (
-                        <option value={exercise.id} key={exercise.id}>
-                          {exercise.name}
-                        </option>
-                      ))}
-                    </select>
+                    <FormControl fullWidth>
+                      <InputLabel id="exercise">Exercise</InputLabel>
+                      <Select
+                        className=""
+                        label="Exercise"
+                        labelId="exercise"
+                        name="exercise_id"
+                        value={formData.exercise_id}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        {allExercises.map((exercise) => (
+                          <MenuItem value={exercise.id} key={exercise.id}>
+                            {exercise.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
                 <button
@@ -126,23 +139,29 @@ const RoutineExerciseAddDeleteForm = ({
               <div className="card-body p-2">
                 <h4 className="card-title text-center">Delete Exercise</h4>
                 <div className="my-2">
-                  <select
-                    className="form-control form-control-sm"
-                    name="routines_exercises_id"
-                    value={formData.routines_exercises_id}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="" disabled hidden>
-                      Which exercise do you want to remove?
-                    </option>
-                    {routineExercises.map((e) => (
-                      <option value={e.id} key={e.id}>
-                        Day {e.dayofweek}: {e.name} {e.sets} sets of {e.reps}{" "}
-                        reps
-                      </option>
-                    ))}
-                  </select>
+                  <FormControl fullWidth>
+                    <InputLabel id="routines_exercises_id">Exercise</InputLabel>
+                    <Select
+                      className=""
+                      labelId="routines_exercises_id"
+                      label="routines_exercises_id"
+                      name="routines_exercises_id"
+                      value={formData.routines_exercises_id}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      {routineExercises.length ? (
+                        routineExercises.map((e) => (
+                          <MenuItem value={e.id} key={e.id}>
+                            Day {e.dayofweek}: {e.name} {e.sets} sets of{" "}
+                            {e.reps} reps
+                          </MenuItem>
+                        ))
+                      ) : (
+                        <MenuItem>No exercises found in routine</MenuItem>
+                      )}
+                    </Select>
+                  </FormControl>
                 </div>
                 <button type="submit" className="btn btn-danger container mt-2">
                   Delete

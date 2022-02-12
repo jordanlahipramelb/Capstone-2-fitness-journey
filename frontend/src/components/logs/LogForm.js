@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Box, TextField } from "@mui/material";
 import "./LogForm.css";
 
 const LogForm = ({ log, addLog, cancel }) => {
@@ -32,17 +33,24 @@ const LogForm = ({ log, addLog, cancel }) => {
               <input
                 className="form-control"
                 id="date"
-                date="date"
-                type="text"
+                type="date"
                 value={formData.date}
                 onChange={handleChange}
-                placeholder="mm/dd/yyyy"
+                name="date"
                 required
               />
+              <small>
+                <p className="text-muted mb-0 mt-2 px-2">
+                  Select a date above.
+                </p>
+                <p className="text-muted mb-3 px-2">
+                  Once created, open your created log and add your entries.
+                </p>
+              </small>
             </div>
 
             <button type="submit" className="btn btn-primary container mt-2">
-              Submit
+              Create
             </button>
             <button
               onClick={cancel}

@@ -70,7 +70,7 @@ const LogList = () => {
                 ))}
               </div>
             ) : (
-              <h3 className="lead">No logs found.</h3>
+              <h3 className="lead text-center">No logs found.</h3>
             )}
           </section>
         </div>

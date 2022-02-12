@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Box, TextField } from "@mui/material";
 import "./RoutineDetailsForm.css";
 
 const RoutineDetailsForm = ({ routine, updateRoutine }) => {
@@ -27,35 +27,46 @@ const RoutineDetailsForm = ({ routine, updateRoutine }) => {
     <div className="RoutineDetailsForm mb-4">
       <div className="col-md-8 offset-md-2">
         <div className="routine-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Name: </label>
-              <input
-                className="form-control"
-                id="name"
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <div>
+              <TextField
+                required
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
                 name="name"
-                type="text"
+                className="form-control mb-2"
+                placeholder="What is the name of your routine?"
                 value={formData.name}
                 onChange={handleChange}
-                required
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="body">Description: </label>
-              <textarea
+            <div>
+              <TextField
                 id="description"
                 name="description"
+                label="Description"
+                placeholder="What is the decription of your routine?"
                 className="form-control"
-                rows={3}
                 value={formData.description}
                 onChange={handleChange}
+                multiline
+                rows={4}
                 required
               />
             </div>
+
             <button type="submit" className="btn btn-primary container mt-2">
               Save
             </button>
-          </form>
+          </Box>
         </div>
       </div>
     </div>
