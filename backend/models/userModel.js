@@ -178,9 +178,13 @@ class User {
               users.is_admin AS "isAdmin",
               CASE WHEN COUNT(routines.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
                 JSON_BUILD_OBJECT('id', routines.id, 'name', routines.name)
-            ) END AS routines
+            ) END AS routines,
+              CASE WHEN COUNT(logs.id) = 0 THEN JSON '[]' ELSE JSON_AGG(
+                JSON_BUILD_OBJECT('id', logs.id, 'date', logs.date)
+            ) END AS logs
             FROM users
               LEFT JOIN routines ON routines.username = users.username 
+              LEFT JOIN logs ON users.username = logs.username 
             WHERE users.username = $1
             GROUP BY users.username
             ORDER BY users.username`,

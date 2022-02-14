@@ -2,17 +2,19 @@
   position: relative;
 }
 
-/* .LogView-right {
-  position: absolute;
-  right: 2em;
-  top: 4em;
-  text-align: right;
+.log-date {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 1em 0 0 0;
+  margin: 0 0 0 0;
 }
 
-.LogView-right i {
-  margin-left: 1em;
-} */
+.no-entries {
+  padding: 1em;
+  margin: 2em 0 2em 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
 
-.icon:hover {
-  cursor: pointer;
+.edit-area i {
+  margin: 0 0 0 1em;
 }

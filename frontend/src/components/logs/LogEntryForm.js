@@ -36,19 +36,13 @@ const LogEntryForm = ({
     addEntry(formData);
   };
 
-  const handleDeleteSubmit = (evt) => {
-    evt.preventDefault();
-
-    deleteEntry(formData.logs_entries_id);
-  };
-
   if (!logEntries || !routinesWithExercises) return <LoadingPage />;
 
   console.log(formData);
   return (
     <div className="LogEntryForm pb-5">
       <div className="row">
-        <div className="col-sm-6 col-md-6">
+        <div className="col-sm-12 col-md-12">
           <div className="add-delete-form">
             <form onSubmit={handleAddSubmit}>
               <div className="card-body p-2">
@@ -130,7 +124,7 @@ const LogEntryForm = ({
                         className=""
                         label="weight"
                         labelId="weight"
-                        name="Weight"
+                        name="weight"
                         value={formData.weight}
                         onChange={handleInputChange}
                         required
@@ -155,7 +149,7 @@ const LogEntryForm = ({
             </form>
           </div>
         </div>
-        <div className="col-sm-6 col-md-6">
+        {/* <div className="col-sm-6 col-md-6">
           <div className="add-delete-form">
             <form onSubmit={handleDeleteSubmit}>
               <div className="card-body p-2">
@@ -190,7 +184,7 @@ const LogEntryForm = ({
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

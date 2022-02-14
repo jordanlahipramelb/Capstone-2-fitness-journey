@@ -88,7 +88,7 @@ class Log {
         logs.username,
         CASE WHEN COUNT(logs_entries.id) = 0 
           THEN JSON '[]' ELSE JSON_AGG(
-          JSON_BUILD_OBJECT('exerciseId', exercises.id, 'exerciseName', exercises.name, 'setNumber', logs_entries.set_number, 'reps', logs_entries.reps, 'weight', logs_entries.weight)
+          JSON_BUILD_OBJECT('entryId', logs_entries.id, 'exerciseId', exercises.id, 'exerciseName', exercises.name, 'setNumber', logs_entries.set_number, 'reps', logs_entries.reps, 'weight', logs_entries.weight)
         ) 
         END AS entries
       FROM logs
@@ -130,7 +130,8 @@ class Log {
           ON logs_entries.routine_exercise_id = routines_exercises.id
         FULL JOIN exercises
           ON logs_entries.routine_exercise_id = exercises.id
-        WHERE log_id = $1`,
+        WHERE log_id = $1
+        ORDER BY exercises.name`,
       [id]
     );
 
@@ -141,33 +142,33 @@ class Log {
     return logEntries;
   }
 
-  //   /** Update log details data with `data`.
-  //    *
-  //    * This is a "partial update" --- it's fine if data doesn't contain all the
-  //    * fields; this only changes provided ones.
-  //    *
-  //    * Data can include: { date, name, description }
-  //    *
-  //    * Returns { username, name, description }
-  //    *
-  //    * Throws NotFoundError if not found.
-  //    */
+  /** Update log details data with `data`.
+   *
+   * This is a "partial update" --- it's fine if data doesn't contain all the
+   * fields; this only changes provided ones.
+   *
+   * Data can include: { date }
+   *
+   * Returns { id, username, date }
+   *
+   * Throws NotFoundError if not found.
+   */
 
-  //   static async update(id, data) {
-  //     const { setCols, values } = sqlForPartialUpdate(data, {});
-  //     const idVarIdx = "$" + (values.length + 1);
+  static async updateDate(id, data) {
+    const { setCols, values } = sqlForPartialUpdate(data, {});
+    const idVarIdx = "$" + (values.length + 1);
 
-  //     const querySql = `UPDATE logs
-  //                       SET ${setCols}
-  //                       WHERE id = ${idVarIdx}
-  //                       RETURNING id, date, username`;
-  //     const result = await db.query(querySql, [...values, id]);
-  //     const log = result.rows[0];
+    const querySql = `UPDATE logs
+                        SET ${setCols}
+                        WHERE id = ${idVarIdx}
+                        RETURNING id, date, username`;
+    const result = await db.query(querySql, [...values, id]);
+    const log = result.rows[0];
 
-  //     if (!log) throw new NotFoundError(`No log found: ${id}`);
+    if (!log) throw new NotFoundError(`No log found: ${id}`);
 
-  //     return log;
-  //   }
+    return log;
+  }
 
   /** Given log id, removes log from database */
 

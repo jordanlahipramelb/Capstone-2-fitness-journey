@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  InputLabel,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import "./SearchForm.css";
 
 const SearchForm = ({ searchFor }) => {
@@ -19,22 +26,27 @@ const SearchForm = ({ searchFor }) => {
 
   return (
     <div className="SearchForm mb-4">
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <input
-            className="form-control"
-            name="searchTerm"
-            placeholder="Enter search term"
-            value={searchTerm}
-            onChange={handleChange}
-          />
-          <div className="input-group-append">
-            <button type="submit" className="btn btn-primary">
-              <i className="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
+      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <TextField
+          placeholder="Enter search term"
+          id="outlined-basic"
+          label="Search Term"
+          variant="outlined"
+          name="searchTerm"
+          className="form-control"
+          value={searchTerm}
+          onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton type="submit" edge="end" color="primary">
+                  <i className="fas fa-search"></i>
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
     </div>
   );
 };

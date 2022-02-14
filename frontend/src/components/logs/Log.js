@@ -4,6 +4,7 @@ import UserContext from "../auth/UserContext";
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
 import LogView from "./LogView";
+import LogEditForm from "./LogEditForm";
 
 /** Main Log Component
  *
@@ -75,6 +76,14 @@ const Log = () => {
     setIsEditing((editing) => !editing);
   };
 
+  /** Handles editing a log */
+
+  const editLogDate = async (routine) => {
+    await FitnessJourney.updateLog(logId, log);
+
+    window.location.reload(true);
+  };
+
   /** Handles deleting a log */
 
   const deleteLog = async () => {
@@ -99,21 +108,25 @@ const Log = () => {
     window.location.reload(true);
   };
 
-  console.log(routinesWithExercises);
+  const cancel = () => history.push(`/logs/${logId}`);
 
   return (
     <div className="Log py-4">
       <div className="container">
         {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
-        <LogView
-          log={log[0]}
-          deleteLog={deleteLog}
-          toggleEdit={toggleEdit}
-          logEntries={logEntries}
-          addEntry={addLogEntryToLog}
-          deleteEntry={deleteLogEntryFromLog}
-          routinesWithExercises={routinesWithExercises}
-        />
+        {isEditing ? (
+          <LogEditForm log={log} updateLog={editLogDate} cancel={cancel} />
+        ) : (
+          <LogView
+            log={log[0]}
+            deleteLog={deleteLog}
+            toggleEdit={toggleEdit}
+            logEntries={logEntries}
+            addEntry={addLogEntryToLog}
+            deleteEntry={deleteLogEntryFromLog}
+            routinesWithExercises={routinesWithExercises}
+          />
+        )}
       </div>
     </div>
   );

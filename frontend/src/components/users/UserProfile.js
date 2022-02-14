@@ -107,7 +107,23 @@ const UserProfile = () => {
                   <h4 className="entry-title">Workouts Logged</h4>
                   <div className="entry-content">
                     <ul className="list-group list-group-flush">
-                      <p>Placeholder</p>
+                      {user.logs.length ? (
+                        user.logs.map((log) => (
+                          <Link
+                            to={`/logs/${log.id}`}
+                            style={{ color: "inherit", textDecoration: "none" }}
+                          >
+                            <li
+                              className="list-group-item list-group-item-action"
+                              key={log.id}
+                            >
+                              {log.date}
+                            </li>
+                          </Link>
+                        ))
+                      ) : (
+                        <p>No logs found</p>
+                      )}
                     </ul>
                   </div>
                 </div>

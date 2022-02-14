@@ -1,7 +1,17 @@
 import React, { useState, useContext } from "react";
 import Alert from "../common/Alert";
+import {
+  Box,
+  TextField,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
 import FitnessJourneyApi from "../../api";
 import UserContext from "../auth/UserContext";
+import { Link } from "react-router-dom";
+import "./ProfileForm.css";
 
 const ProfileForm = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -15,6 +25,7 @@ const ProfileForm = () => {
     state: currentUser.state,
     bio: currentUser.bio,
     fitnessType: currentUser.fitnessType,
+    imageUrl: currentUser.imageUrl,
   });
   const [formErrors, setFormErrors] = useState([]);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
@@ -99,12 +110,12 @@ const ProfileForm = () => {
       state: formData.state,
       bio: formData.bio,
       fitnessType: formData.fitnessType,
+      imageUrl: formData.imageUrl,
     };
 
     let username = formData.username;
     let updatedUser;
 
-    console.log(profileData);
     try {
       // calls API when form is submitted
       updatedUser = await FitnessJourneyApi.saveProfile(username, profileData);
@@ -132,116 +143,153 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="ProfileForm mb-5">
-      <div className="container col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-        <h3>Profile</h3>
-        <div className="card">
-          <div className="card-body">
-            <form>
-              <div className="form-group">
-                <label>Username</label>
-                <p className="form-control-plaintext">{formData.username}</p>
-              </div>
-              <div className="form-group">
-                <label htmlFor="firstName" className="mt-2">
-                  First Name
-                </label>
-                <input
-                  name="firstName"
-                  className="form-control"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName" className="mt-2">
-                  Last Name
-                </label>
-                <input
-                  name="lastName"
-                  className="form-control"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email" className="mt-2">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  className="form-control"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-                <small id="emailHelp" className="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="city" className="mt-2">
-                  City
-                </label>
+    <div className="ProfileForm py-4 mb-4">
+      <div className="container">
+        <div className="col-md-10 offset-md-1">
+          <section id="breadcrumb">
+            <nav aria-label="breadcrumb">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2></h2>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
+                  </li>
 
-                <input
-                  name="city"
-                  className="form-control"
-                  value={formData.city}
-                  onChange={handleChange}
-                />
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Edit Profile
+                  </li>
+                </ol>
               </div>
-              <div className="form-group">
-                <label htmlFor="state" className="mt-2">
-                  State
-                </label>
-                <select
+            </nav>
+          </section>
+        </div>
+
+        <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <div className="profile-form">
+            <h3 className="mb-3">{formData.username}</h3>
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1 },
+              }}
+              autoComplete="off"
+              onSubmit={handleSubmit}
+            >
+              <TextField
+                id="outlined-basic"
+                label="First Name"
+                variant="outlined"
+                name="firstName"
+                className="form-control"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Last Name"
+                variant="outlined"
+                name="lastName"
+                className="form-control"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Image URL"
+                variant="outlined"
+                name="imageUrl"
+                className="form-control"
+                value={formData.imageUrl}
+                onChange={handleChange}
+                helperText="Insert image URL above, or leave as default photo."
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                type="email"
+                name="email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+                helperText="We'll never share your email with anyone else."
+                required
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="City"
+                variant="outlined"
+                name="city"
+                className="form-control"
+                value={formData.city}
+                onChange={handleChange}
+              />
+              <FormControl fullWidth>
+                <InputLabel id="state">State</InputLabel>
+
+                <Select
                   id="state"
                   name="state"
+                  labelId="state"
+                  label="State"
                   className="form-control"
                   value={formData.state}
                   onChange={handleChange}
                 >
                   {listStates}
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="bio" className="mt-2">
-                  Bio
-                </label>
-                <textarea
-                  id="bio"
-                  name="bio"
-                  className="form-control"
-                  value={formData.bio}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="fitnessType" className="mt-2">
-                  Fitness Type
-                </label>
-                <select
+                </Select>
+              </FormControl>
+
+              <TextField
+                id="bio"
+                name="bio"
+                label="Bio"
+                className="form-control"
+                value={formData.bio}
+                onChange={handleChange}
+                multiline
+                rows={3}
+              />
+              <FormControl fullWidth>
+                <InputLabel id="fitnessType">Fitness Type</InputLabel>
+                <Select
                   id="fitnessType"
+                  labelId="fitnessType"
                   name="fitnessType"
+                  label="Fitness Type"
                   className="form-control"
                   value={formData.fitnessType}
                   onChange={handleChange}
                 >
                   {listTypes}
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="password" className="mt-4">
-                  Confirm password to make changes:
-                </label>
-                <input
+                </Select>
+              </FormControl>
+
+              <InputLabel id="password">
+                Confirm password to make changes:
+              </InputLabel>
+              <FormControl fullWidth>
+                <TextField
+                  id="filled-password-input"
+                  label="Password"
+                  labelId="password"
                   type="password"
                   name="password"
-                  className="form-control"
                   value={formData.password}
                   onChange={handleChange}
+                  autoComplete="current-password"
+                  className="form-control"
+                  required
                 />
-              </div>
+              </FormControl>
+
               <div className="mt-4">
                 {formErrors.length ? (
                   <Alert type="danger" messages={formErrors} />
@@ -257,7 +305,7 @@ const ProfileForm = () => {
               >
                 Save Changes
               </button>
-            </form>
+            </Box>
           </div>
         </div>
       </div>

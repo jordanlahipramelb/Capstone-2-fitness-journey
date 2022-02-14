@@ -154,7 +154,7 @@ router.put("/:id", ensureAdminOrCorrectUser, async (req, res, next) => {
       throw new BadRequestError(errs);
     }
 
-    const log = await Log.update(req.params.id, req.body);
+    const log = await Log.updateDate(req.params.id, req.body);
 
     return res.json({ log });
   } catch (err) {

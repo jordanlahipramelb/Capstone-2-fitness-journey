@@ -32,21 +32,23 @@ const LogView = ({
   const userEditBtns = () => {
     return (
       <>
-        <div>
-          <button
-            className="btn btn-secondary btn-lg mx-1"
-            onClick={toggleEdit}
-          >
-            Edit
-          </button>
-          <button
-            className="btn btn-danger btn-lg"
-            title="Delete Log"
-            onClick={deleteLog}
-          >
-            X
-          </button>
-        </div>
+        <i
+          className="fas fa-edit text-primary icon"
+          title="Update Date"
+          onClick={toggleEdit}
+        />
+        <i
+          className="fas fa-times text-danger icon"
+          title="Delete Log"
+          onClick={deleteLog}
+        />
+      </>
+    );
+  };
+
+  const userForm = () => {
+    return (
+      <>
         <LogEntryForm
           logEntries={logEntries}
           routinesWithExercises={routinesWithExercises}
@@ -59,26 +61,25 @@ const LogView = ({
 
   if (!log) return <LoadingPage />;
 
-  console.log(logEntries);
   return (
     <div className="LogView container mb-5">
       <div className="col-md-10 offset-md-1">
         <section id="breadcrumb" className="pb-2">
           <nav aria-label="breadcrumb">
-            <div class="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center">
               <h2>Workout</h2>
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item past">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item past">
                   <Link to="/" style={{ textDecoration: "none" }}>
                     Home
                   </Link>
                 </li>
-                <li class="breadcrumb-item">
+                <li className="breadcrumb-item">
                   <Link to="/logs" style={{ textDecoration: "none" }}>
                     Logs
                   </Link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   Log
                 </li>
               </ol>
@@ -89,7 +90,10 @@ const LogView = ({
 
       <div className="col-md-8 offset-md-2">
         <div className="text-center mb-4">
-          <h1>{log.date}</h1>
+          <div className="edit-area">
+            <span className="log-date">{log.date}</span>
+            {sameUser ? userEditBtns() : null}
+          </div>
           <small>
             Logged by{" "}
             <Link
@@ -101,33 +105,48 @@ const LogView = ({
           </small>
         </div>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Exercise</th>
-              <th scope="col">Set Number</th>
-              <th scope="col">Reps</th>
-              <th scope="col">Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            {log.entries.length ? (
-              log.entries.map((entry) => (
+        {log.entries.length ? (
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Set Number</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Weight</th>
+                {sameUser ? <th scope="col">Delete?</th> : null}
+              </tr>
+            </thead>
+            <tbody>
+              {log.entries.map((entry) => (
                 <tr>
                   <th scope="row">{entry.exerciseName}</th>
                   <td>{entry.setNumber}</td>
                   <td>{entry.reps}</td>
                   <td>{entry.weight}</td>
+
+                  {sameUser ? (
+                    <td>
+                      <i
+                        className="fas fa-times text-danger icon"
+                        title="Delete Entry?"
+                        onClick={() => deleteEntry(entry.entryId)}
+                      />
+                    </td>
+                  ) : null}
                 </tr>
-              ))
-            ) : (
-              <p>Athlete has not added any entries.</p>
-            )}
-          </tbody>
-        </table>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="col-md-6 offset-md-3">
+            <div className="no-entries">
+              <p className="text-center">Athlete has not added any entries.</p>
+            </div>
+          </div>
+        )}
       </div>
 
-      <div className="text-center">{sameUser ? userEditBtns() : null}</div>
+      <div className="text-center">{sameUser ? userForm() : null}</div>
     </div>
   );
 };
