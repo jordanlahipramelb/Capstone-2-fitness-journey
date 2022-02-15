@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
+import "./ExerciseDetails.css";
 
 /** Component that renders details of a single exercise.
  * /exercises/:id

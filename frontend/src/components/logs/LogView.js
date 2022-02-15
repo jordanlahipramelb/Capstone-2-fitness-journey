@@ -118,7 +118,7 @@ const LogView = ({
             </thead>
             <tbody>
               {log.entries.map((entry) => (
-                <tr>
+                <tr key={entry.entryId}>
                   <th scope="row">{entry.exerciseName}</th>
                   <td>{entry.setNumber}</td>
                   <td>{entry.reps}</td>

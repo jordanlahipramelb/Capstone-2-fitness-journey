@@ -68,7 +68,7 @@ const Log = () => {
     [logId]
   );
 
-  if (!(log || logEntries || routinesWithExercises)) return <LoadingPage />;
+  if (!log || !logEntries || !routinesWithExercises) return <LoadingPage />;
 
   /** Toggles editing routine on/off */
 
@@ -78,7 +78,7 @@ const Log = () => {
 
   /** Handles editing a log */
 
-  const editLogDate = async (routine) => {
+  const editLogDate = async (logId) => {
     await FitnessJourney.updateLog(logId, log);
 
     window.location.reload(true);
@@ -114,6 +114,7 @@ const Log = () => {
     <div className="Log py-4">
       <div className="container">
         {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
+
         {isEditing ? (
           <LogEditForm log={log} updateLog={editLogDate} cancel={cancel} />
         ) : (

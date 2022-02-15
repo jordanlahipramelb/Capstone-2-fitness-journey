@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  InputLabel,
-  IconButton,
-  InputAdornment,
-} from "@mui/material";
+import { Box, TextField, Icon, InputAdornment } from "@mui/material";
 import "./SearchForm.css";
 
 const SearchForm = ({ searchFor }) => {
@@ -39,9 +33,13 @@ const SearchForm = ({ searchFor }) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton type="submit" edge="end" color="primary">
-                  <i className="fas fa-search"></i>
-                </IconButton>
+                <Icon
+                  baseClassName="fas"
+                  className="fa-search"
+                  type="submit"
+                  edge="end"
+                  color="primary"
+                />
               </InputAdornment>
             ),
           }}

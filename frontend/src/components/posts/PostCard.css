@@ -7,14 +7,13 @@
 .forum .entry .entry-title {
   font-size: 28px;
   font-weight: bold;
+  font-family: "Montserrat", sans-serif;
   padding: 0;
   margin: 0 0 20px 0;
-}
-.forum .entry .entry-title {
   color: #556270;
-
   transition: 0.3s;
 }
+
 .forum .entry .entry-title:hover {
   color: #00c3ff;
 }

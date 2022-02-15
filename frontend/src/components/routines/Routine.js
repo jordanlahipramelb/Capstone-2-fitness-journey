@@ -56,7 +56,7 @@ const Routine = () => {
     [routineId]
   );
 
-  if (!(routine || routineExercises)) return <LoadingPage />;
+  if (!routine || !routine[0] || !routineExercises) return <LoadingPage />;
 
   /** Toggles editing routine on/off */
 
@@ -96,7 +96,6 @@ const Routine = () => {
     window.location.reload(true);
   };
 
-  console.log(routine);
   return (
     <div className="Routine py-4">
       <div className="container">

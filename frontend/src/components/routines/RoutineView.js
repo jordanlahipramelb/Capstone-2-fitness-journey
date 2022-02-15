@@ -22,10 +22,18 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 
   const userEditBtns = () => {
     return (
-      <div className="RoutineView-editArea">
-        <i className="fas fa-edit text-primary icon" onClick={toggleEdit} />
-        <i className="fas fa-times text-danger icon" onClick={deleteRoutine} />
-      </div>
+      <>
+        <i
+          className="fas fa-edit text-primary icon"
+          title="Edit Routine"
+          onClick={toggleEdit}
+        />
+        <i
+          className="fas fa-times text-danger icon"
+          title="Delete Routine"
+          onClick={deleteRoutine}
+        />
+      </>
     );
   };
 
@@ -33,18 +41,45 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
 
   return (
     <div className="RoutineView container mb-5">
-      <div className="col-md-8 offset-md-2">
+      <div className="col-md-10 offset-md-1">
+        <section id="breadcrumb" className="pb-2">
+          <nav aria-label="breadcrumb">
+            <div className="d-flex justify-content-between align-items-center">
+              <h2>{routine[0].name}</h2>
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item past">
+                  <Link to="/" style={{ textDecoration: "none" }}>
+                    Home
+                  </Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/routines" style={{ textDecoration: "none" }}>
+                    Routines
+                  </Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  Routine
+                </li>
+              </ol>
+            </div>
+          </nav>
+        </section>
+      </div>
+
+      <div className="col-md-8 offset-md-2 mt-4">
         <div className="text-center mb-4">
-          <h1>{routine[0].name}</h1>
-          <small>
-            Created by{" "}
-            <Link
-              to={`/athletes/${routine[0].username}`}
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              {routine[0].username}
-            </Link>
-          </small>
+          <div className="edit-area">
+            <span>
+              Created by{" "}
+              <Link
+                to={`/athletes/${routine[0].username}`}
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                {routine[0].username}
+              </Link>
+            </span>
+            {sameUser ? userEditBtns() : null}
+          </div>
         </div>
         <p>{routine[0].description}</p>
 
@@ -67,9 +102,6 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="RoutineView-right">
-          {sameUser ? userEditBtns() : null}
         </div>
       </div>
     </div>

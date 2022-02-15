@@ -48,7 +48,7 @@ const CurrentUserProfile = () => {
     <div className="UserDashboard py-4">
       <div className="container">
         <div className="col-md-10 offset-md-1">
-          <section id="breadcrumb" className="pb-2">
+          <section id="breadcrumb" className="pb-2 mb-4">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
                 <h2>Dashboard</h2>

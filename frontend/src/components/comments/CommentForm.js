@@ -1,5 +1,13 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
+import {
+  Box,
+  TextField,
+  IconButton,
+  Icon,
+  InputAdornment,
+} from "@mui/material";
+
 import "./CommentForm.css";
 
 /** Renders Comment Form
@@ -37,22 +45,32 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="CommentForm">
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <input
-            type="text"
-            name="body"
-            size="40"
-            placeholder="New Comment"
-            className="form-control"
-            value={comment.body}
-            onChange={handleChange}
-          />
-          <div className="input-group-append">
-            <button className="btn btn-primary">Add</button>
-          </div>
-        </div>
-      </form>
+      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <TextField
+          placeholder="Enter comment"
+          id="outlined-basic"
+          label="New Comment"
+          variant="outlined"
+          name="body"
+          className="form-control"
+          value={comment.body}
+          onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Icon
+                  baseClassName="fas"
+                  className="fa-plus-circle"
+                  type="submit"
+                  edge="end"
+                  color="primary"
+                  title="Add Comment"
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
     </div>
   );
 };
