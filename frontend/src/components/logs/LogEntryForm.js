@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import LoadingPage from "../common/LoadingPage";
 
-const LogEntryForm = ({
-  logEntries,
-  routinesWithExercises,
-  addEntry,
-  deleteEntry,
-}) => {
+const LogEntryForm = ({ logEntries, routinesWithExercises, addEntry }) => {
   const { logId } = useParams();
   const [formData, setFormData] = useState({
     log_id: logId,
@@ -149,42 +144,6 @@ const LogEntryForm = ({
             </form>
           </div>
         </div>
-        {/* <div className="col-sm-6 col-md-6">
-          <div className="add-delete-form">
-            <form onSubmit={handleDeleteSubmit}>
-              <div className="card-body p-2">
-                <h4 className="card-title text-center">Delete Entry</h4>
-                <div className="my-2">
-                  <FormControl fullWidth>
-                    <InputLabel id="entry">Existing Entry</InputLabel>
-                    <Select
-                      className=""
-                      label="Entry"
-                      labelId="entry"
-                      name="entry"
-                      value={formData.exercise_id}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      {logEntries.length ? (
-                        logEntries.map((e) => (
-                          <MenuItem value={e.id} key={e.id}>
-                            {e.name} Set {e.set_number}
-                          </MenuItem>
-                        ))
-                      ) : (
-                        <MenuItem>No entries found in log</MenuItem>
-                      )}
-                    </Select>
-                  </FormControl>
-                </div>
-                <button type="submit" className="btn btn-danger container mt-2">
-                  Delete
-                </button>
-              </div>
-            </form>
-          </div>
-        </div> */}
       </div>
     </div>
   );

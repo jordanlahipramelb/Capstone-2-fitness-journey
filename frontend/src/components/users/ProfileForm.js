@@ -88,8 +88,8 @@ const ProfileForm = () => {
     "WY",
   ];
   const fitnessTypes = ["---", "Bodybuilder", "Powerlifter", "Powerbuilder"];
-  const listStates = map(states);
-  const listTypes = map(fitnessTypes);
+  const listStates = loop(states);
+  const listTypes = loop(fitnessTypes);
 
   /** Handle form submission:
    * - attempt save to backend & report any errors
@@ -149,7 +149,7 @@ const ProfileForm = () => {
           <section id="breadcrumb">
             <nav aria-label="breadcrumb">
               <div class="d-flex justify-content-between align-items-center">
-                <h2></h2>
+                <h2>{formData.username}</h2>
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
                     <Link to="/" style={{ textDecoration: "none" }}>
@@ -168,7 +168,6 @@ const ProfileForm = () => {
 
         <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
           <div className="profile-form">
-            <h3 className="mb-3">{formData.username}</h3>
             <Box
               component="form"
               sx={{
@@ -313,11 +312,11 @@ const ProfileForm = () => {
   );
 };
 
-const map = (listName) => {
-  return listName.map((type) => (
-    <option key={type} value={type}>
-      {type}
-    </option>
+const loop = (listName) => {
+  return listName.map((item) => (
+    <MenuItem key={item} value={item}>
+      {item}
+    </MenuItem>
   ));
 };
 export default ProfileForm;

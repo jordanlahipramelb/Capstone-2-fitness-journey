@@ -13,6 +13,7 @@ const Footer = () => {
                 <h3>Fitness Journey</h3>
                 <p>1245 Lorem Ipsum</p>
                 <p>HI 48575, USA</p>
+
                 <p>
                   <strong>Phone:</strong> +1 808 845 8787
                 </p>
@@ -26,12 +27,7 @@ const Footer = () => {
                   >
                     <i className="fab fa-github"></i>
                   </a>
-                  {/* <a href="#" className="facebook">
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" className="instagram">
-                    <i className="fab fa-instagram"></i>
-                  </a> */}
+
                   <a
                     href="https://www.linkedin.com/in/jordan-lahip-ramelb/"
                     className="linkedin"
@@ -48,7 +44,8 @@ const Footer = () => {
                   <i class="fas fa-chevron-right"></i> <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <i class="fas fa-chevron-right"></i> <a href="#">About Us</a>
+                  <i class="fas fa-chevron-right"></i>
+                  <Link to="/logs">Logs</Link>
                 </li>
                 <li>
                   <i class="fas fa-chevron-right"></i>
@@ -68,7 +65,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="container">
-        <div className="copyright">&copy; Copyright . All Rights Reserved</div>
+        <div className="copyright">
+          &copy; Copyright <b>Jordan Lahip-Ramelb</b>. All Rights Reserved
+        </div>
       </div>
     </footer>
   );

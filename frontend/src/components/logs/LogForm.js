@@ -27,17 +27,18 @@ const LogForm = ({ log, addLog, cancel }) => {
     <div className="LogForm mb-4">
       <div className="col-md-8 offset-md-2">
         <div className="log-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="date">Date of log: </label>
-              <input
+          <Box component="form" onSubmit={handleSubmit}>
+            <div>
+              <TextField
+                required
+                variant="outlined"
                 className="form-control"
                 id="date"
                 type="date"
+                name="date"
+                label="Date of Log"
                 value={formData.date}
                 onChange={handleChange}
-                name="date"
-                required
               />
               <small>
                 <p className="text-muted mb-0 mt-2 px-2">
@@ -58,7 +59,7 @@ const LogForm = ({ log, addLog, cancel }) => {
             >
               Cancel
             </button>
-          </form>
+          </Box>
         </div>
       </div>
     </div>

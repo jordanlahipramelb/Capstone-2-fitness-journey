@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { useParams } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 import FitnessJourney from "../../api";
@@ -7,12 +7,21 @@ import LoadingPage from "../common/LoadingPage";
 import "./RoutineExerciseAddDeleteForm.css";
 
 const RoutineExerciseAddDeleteForm = ({
-  handleAddSubmit,
-  handleDeleteSubmit,
-  formData,
-  handleInputChange,
+  addExercise,
+  deleteExercise,
   routineExercises,
 }) => {
+  const { routineId } = useParams();
+
+  const [formData, setFormData] = useState({
+    routine_id: routineId,
+    exercise_id: "",
+    dayOfWeek: "",
+    sets: "",
+    reps: "",
+    routines_exercises_id: "",
+  });
+
   const [allExercises, setAllExercises] = useState(null);
 
   useEffect(function getAllExercisesOnMount() {
@@ -24,6 +33,32 @@ const RoutineExerciseAddDeleteForm = ({
   }, []);
 
   if (!allExercises) return <LoadingPage />;
+
+  /** Handles input change */
+
+  const handleInputChange = (evt) => {
+    const { name, value } = evt.target;
+    setFormData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
+  const handleAddSubmit = (evt) => {
+    evt.preventDefault();
+
+    addExercise(formData);
+  };
+
+  const handleDeleteSubmit = (evt) => {
+    evt.preventDefault();
+
+    deleteExercise(formData.routines_exercises_id);
+  };
+
+  const cancelEdit = () => {
+    window.location.reload(true);
+  };
 
   console.log(formData);
   return (

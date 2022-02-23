@@ -42,7 +42,7 @@ const Comment = ({ id, username, body, date, deleteComment }) => {
       <div class="d-flex">
         {sameUser ? userEditBtns() : null}
         <div>
-          <h5>{username}</h5>
+          <p>{username}</p>
           <div className="d-flex align-items-center icon">
             <i className="far fa-clock"></i>
             <time>{date}</time>

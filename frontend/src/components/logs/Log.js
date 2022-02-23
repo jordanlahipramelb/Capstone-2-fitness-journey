@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import UserContext from "../auth/UserContext";
+
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
 import LogView from "./LogView";

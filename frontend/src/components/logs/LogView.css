@@ -18,3 +18,7 @@
 .edit-area i {
   margin: 0 0 0 1em;
 }
+
+hr {
+  border-top: 5px solid #bbb;
+}

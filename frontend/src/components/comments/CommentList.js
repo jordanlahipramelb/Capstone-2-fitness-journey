@@ -14,14 +14,17 @@ const CommentList = ({ comments = [], deleteComment }) => {
     <div className="CommentList px-4">
       <div className="container">
         {comments.map((comment) => (
-          <Comment
-            key={comment.id}
-            id={comment.id}
-            username={comment.username}
-            body={comment.body}
-            date={comment.date}
-            deleteComment={deleteComment}
-          />
+          <>
+            <Comment
+              key={comment.id}
+              id={comment.id}
+              username={comment.username}
+              body={comment.body}
+              date={comment.date}
+              deleteComment={deleteComment}
+            />
+            <hr />
+          </>
         ))}
       </div>
     </div>

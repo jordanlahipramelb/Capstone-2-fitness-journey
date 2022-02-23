@@ -1,11 +1,11 @@
 #footer {
-  background: #4a5562;
+  background: #515d6a;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
 }
 #footer .footer-top {
-  background: #515d6a;
+  background: #6d7785;
   padding: 40px 0 10px 0;
 }
 
@@ -86,4 +86,5 @@
 #footer .copyright {
   text-align: center;
   padding-top: 30px;
+  font-family: "Raleway", sans-serif;
 }

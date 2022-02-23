@@ -1,12 +1,6 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
-import {
-  Box,
-  TextField,
-  IconButton,
-  Icon,
-  InputAdornment,
-} from "@mui/material";
+import { Box, TextField, Icon, InputAdornment } from "@mui/material";
 
 import "./CommentForm.css";
 

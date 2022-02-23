@@ -53,7 +53,6 @@ const LogView = ({
           logEntries={logEntries}
           routinesWithExercises={routinesWithExercises}
           addEntry={addEntry}
-          deleteEntry={deleteEntry}
         />
       </>
     );
@@ -146,7 +145,10 @@ const LogView = ({
         )}
       </div>
 
-      <div className="text-center">{sameUser ? userForm() : null}</div>
+      <div className="text-center pt-5">
+        <hr />
+        {sameUser ? userForm() : null}
+      </div>
     </div>
   );
 };

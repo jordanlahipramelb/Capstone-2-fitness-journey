@@ -4,13 +4,21 @@ import UserContext from "../auth/UserContext";
 import RoutineExerciseList from "./RoutineExerciseList";
 import "./RoutineView.css";
 import LoadingPage from "../common/LoadingPage";
+import RoutineExerciseAddDeleteForm from "./RoutineExerciseAddDeleteForm";
 
 /** Render a single routine
  *
  * - show edit/delete buttons (& call parent on action)
  */
 
-const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
+const RoutineView = ({
+  toggleEdit,
+  routine,
+  routineExercises,
+  addExercise,
+  deleteExercise,
+  deleteRoutine,
+}) => {
   const { currentUser } = useContext(UserContext);
   let sameUser;
 
@@ -32,6 +40,18 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
           className="fas fa-times text-danger icon"
           title="Delete Routine"
           onClick={deleteRoutine}
+        />
+      </>
+    );
+  };
+
+  const userForm = () => {
+    return (
+      <>
+        <RoutineExerciseAddDeleteForm
+          routineExercises={routineExercises}
+          addExercise={addExercise}
+          deleteExercise={deleteExercise}
         />
       </>
     );
@@ -104,6 +124,12 @@ const RoutineView = ({ routine, toggleEdit, deleteRoutine }) => {
           ))}
         </div>
       </div>
+      {sameUser ? (
+        <div className="text-center pt-5">
+          <hr class />
+          {userForm()}
+        </div>
+      ) : null}
     </div>
   );
 };

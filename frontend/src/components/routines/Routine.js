@@ -5,7 +5,8 @@ import LoadingPage from "../common/LoadingPage";
 import RoutineView from "./RoutineView";
 
 import FitnessJourney from "../../api";
-import RoutineExercise from "./RoutineExercise";
+
+import RoutineDetailsForm from "./RoutineDetailsForm";
 
 /** Main Routine Component
  *
@@ -101,18 +102,19 @@ const Routine = () => {
       <div className="container">
         {/* Decide whether to show the edit form if toggleEdit is true, or the simple RoutineView component */}
         {isEditing ? (
-          <RoutineExercise
+          <RoutineDetailsForm
             routine={routine}
-            routineExercises={routineExercises}
-            addExercise={addExerciseToRoutine}
-            deleteExercise={deleteExerciseFromRoutine}
             updateRoutine={editRoutineDetails}
+            toggleEdit={toggleEdit}
           />
         ) : (
           <RoutineView
             routine={routine}
+            routineExercises={routineExercises}
             deleteRoutine={deleteRoutine}
             toggleEdit={toggleEdit}
+            addExercise={addExerciseToRoutine}
+            deleteExercise={deleteExerciseFromRoutine}
           />
         )}
       </div>
