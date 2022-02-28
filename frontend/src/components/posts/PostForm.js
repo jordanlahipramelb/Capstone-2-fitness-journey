@@ -48,7 +48,6 @@ const PostForm = ({ save, post, cancel }) => {
               className="form-control"
               name="subject"
               label="Subject"
-              id="subject"
               placeholder="What is the subject of your post?"
               value={formData.subject}
               onChange={handleChange}

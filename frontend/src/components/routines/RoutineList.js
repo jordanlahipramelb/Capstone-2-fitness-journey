@@ -52,7 +52,7 @@ const RoutineList = () => {
         <div className="col-md-8 offset-md-2">
           <SearchForm searchFor={search} />
           <Link to="/routines/new">
-            <button className="btn btn-secondary container mb-3">
+            <button className="btn btn-primary container mb-3">
               New Routine
             </button>
           </Link>

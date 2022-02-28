@@ -52,9 +52,7 @@ const LogList = () => {
         <div className="col-md-8 offset-md-2">
           <SearchForm searchFor={search} />
           <Link to="/logs/new">
-            <button className="btn btn-secondary container mb-3">
-              New Log
-            </button>
+            <button className="btn btn-primary container mb-3">New Log</button>
           </Link>
 
           <section className="logs mt-3">

@@ -42,6 +42,7 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
                 label="Name"
                 className="form-control mb-2"
                 name="name"
+                placeholder="What would you like to name your routine?"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -52,7 +53,7 @@ const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
                 id="description"
                 name="description"
                 label="Description"
-                placeholder="Placeholder"
+                placeholder="What is your routine about? (Ex. Type of routine, body part split, etc.)"
                 className="form-control"
                 value={formData.description}
                 onChange={handleChange}

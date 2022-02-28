@@ -21,11 +21,11 @@ const LogCard = ({ id, date, username }) => {
                 <i class="far fa-user"></i>
                 <Link
                   to={`/athletes/${username}`}
-                  style={{ textDecoration: "none" }}
+                  style={{ color: "inherit", textDecoration: "none" }}
                   key={id}
                 >
                   {" "}
-                  {username}
+                  Logged by {username}
                 </Link>
               </li>
             </ul>

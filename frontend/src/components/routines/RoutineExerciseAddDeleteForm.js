@@ -56,10 +56,6 @@ const RoutineExerciseAddDeleteForm = ({
     deleteExercise(formData.routines_exercises_id);
   };
 
-  const cancelEdit = () => {
-    window.location.reload(true);
-  };
-
   console.log(formData);
   return (
     <div className="RoutineExerciseAddDeleteForm pb-5">

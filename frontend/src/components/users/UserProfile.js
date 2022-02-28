@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Profile.css";
 
 import LoadingPage from "../common/LoadingPage";
@@ -12,7 +12,6 @@ import FitnessJourney from "../../api";
  */
 
 const UserProfile = () => {
-  const history = useHistory();
   const { username } = useParams();
   const [user, setUser] = useState(null);
 
@@ -61,16 +60,17 @@ const UserProfile = () => {
           <div className="row">
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <img
+                alt="User Avatar"
                 src={user.imageUrl}
                 className="img-thumbnail rounded mx-auto d-block"
               />
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">@{user.username}</h4>
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">@{user.username}</h4>
                 </div>
-                <div className="entry-content">
+                <div className="dashboard-content">
                   <p>{user.bio}</p>
                   <p>
                     <span className="fa fa-map-marker"></span> {user.city},
@@ -82,9 +82,9 @@ const UserProfile = () => {
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">Routines</h4>
-                  <div className="entry-content">
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">Routines</h4>
+                  <div className="dashboard-content">
                     <ul className="list-group list-group-flush">
                       {user.routines.map((routine) => (
                         <Link
@@ -103,9 +103,9 @@ const UserProfile = () => {
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">Workouts Logged</h4>
-                  <div className="entry-content">
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">Workouts Logged</h4>
+                  <div className="dashboard-content">
                     <ul className="list-group list-group-flush">
                       {user.logs.length ? (
                         user.logs.map((log) => (

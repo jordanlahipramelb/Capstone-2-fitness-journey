@@ -7,7 +7,7 @@ import "./LoadingPage.css";
 const LoadingPage = () => {
   return (
     <div className="LoadingPage">
-      <BallTriangle color="gray" height={100} width={100} />
+      <BallTriangle color="gray" />
     </div>
   );
 };

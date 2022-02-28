@@ -73,7 +73,7 @@ const Navigation = ({ logout }) => {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 

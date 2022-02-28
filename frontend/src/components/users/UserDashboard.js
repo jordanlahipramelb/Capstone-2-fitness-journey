@@ -6,7 +6,7 @@ import LoadingPage from "../common/LoadingPage";
 import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 
-/** Profile Component
+/** Current User Component
  *
  * Fetches user data from database.
  *
@@ -71,6 +71,7 @@ const CurrentUserProfile = () => {
           <div className="row">
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <img
+                alt="User's Avatar"
                 src={currentUser.imageUrl}
                 className="img-thumbnail rounded mx-auto d-block"
               />
@@ -88,10 +89,10 @@ const CurrentUserProfile = () => {
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">@{currentUser.username}</h4>
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">@{currentUser.username}</h4>
                 </div>
-                <div className="entry-content">
+                <div className="dashboard-content">
                   <p>{currentUser.bio}</p>
                   <p>
                     <span className="fa fa-map-marker"></span>{" "}
@@ -103,9 +104,9 @@ const CurrentUserProfile = () => {
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">Routines</h4>
-                  <div className="entry-content">
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">Routines</h4>
+                  <div className="dashboard-content">
                     <ul className="list-group list-group-flush">
                       {currentUser.routines.map((routine) => (
                         <Link
@@ -124,9 +125,9 @@ const CurrentUserProfile = () => {
             </div>
             <div className="col-sm-4 col-md-6 col-lg-6 mx-auto">
               <div className="panel">
-                <div className="entry">
-                  <h4 className="entry-title">Workouts Logged</h4>
-                  <div className="entry-content">
+                <div className="dashboard-panel">
+                  <h4 className="dashboard-title">Workouts Logged</h4>
+                  <div className="dashboard-content">
                     <ul className="list-group list-group-flush">
                       {currentUser.logs.map((log) => (
                         <Link

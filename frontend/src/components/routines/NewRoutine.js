@@ -34,8 +34,7 @@ const NewRoutine = () => {
         <div className="col-md-10 offset-md-1">
           <section id="breadcrumb">
             <nav aria-label="breadcrumb">
-              <div class="d-flex justify-content-between align-items-center">
-                <h2></h2>
+              <div class="d-flex justify-content-end">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
                     <Link to="/" style={{ textDecoration: "none" }}>
