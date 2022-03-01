@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="container">
-        <div className="copyright text-center pt-4">
+        <div className="copyright text-center pt-3">
           &copy; Copyright <b>Jordan Lahip-Ramelb</b>. All Rights Reserved
         </div>
       </div>
