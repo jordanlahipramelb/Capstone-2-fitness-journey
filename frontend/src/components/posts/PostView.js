@@ -59,30 +59,29 @@ const PostView = ({ post, toggleEdit, deletePost }) => {
 
         <section className="post">
           {sameUser ? userEditBtns() : null}
-          <div className="entry">
-            <h2 className="entry-title">{subject}</h2>
 
-            <div className="entry-meta">
-              <ul>
-                <li className="d-flex align-items-center">
-                  <i className="far fa-user"></i>
-                  <a
-                    href={`/athletes/${username}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    {username}
-                  </a>
-                </li>
+          <h2 className="post-title">{subject}</h2>
 
-                <li className="d-flex align-items-center">
-                  <i className="far fa-clock"></i>
-                  {date}
-                </li>
-              </ul>
-            </div>
-            <div className="entry-content mt-4">
-              <p>{body}</p>
-            </div>
+          <div className="post-meta">
+            <ul>
+              <li className="d-flex align-items-center">
+                <i className="far fa-user"></i>
+                <a
+                  href={`/athletes/${username}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  {username}
+                </a>
+              </li>
+
+              <li className="d-flex align-items-center">
+                <i className="far fa-clock"></i>
+                {date}
+              </li>
+            </ul>
+          </div>
+          <div className="post-content mt-4">
+            <p>{body}</p>
           </div>
         </section>
       </div>

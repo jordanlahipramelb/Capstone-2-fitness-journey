@@ -18,18 +18,18 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.entry-title {
+.post-title {
   font-size: 2em;
   font-weight: bold;
   padding: 0;
   margin: 0 0 20px 0;
 }
 
-.entry-meta {
+.post-meta {
   color: #838383;
 }
 
-.entry-meta ul {
+.post-meta ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -38,20 +38,14 @@
   margin: 0;
 }
 
-.entry-meta ul li:first-child {
+.post-meta ul li:first-child {
   padding-right: 20px;
 }
 
-.entry-meta i {
+.post-meta i {
   margin-right: 8px;
 }
 
-.entry-content p {
+.post-content p {
   line-height: 24px;
-}
-
-.entry-content h3 {
-  font-size: 22px;
-  margin-top: 30px;
-  font-weight: bold;
 }

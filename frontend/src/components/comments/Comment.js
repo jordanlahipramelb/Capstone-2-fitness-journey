@@ -31,6 +31,7 @@ const Comment = ({ id, username, body, date, deleteComment }) => {
           <i
             className="deleteBtn fa fa-times text-danger mr-2"
             onClick={handleDelete}
+            title="Delete Comment?"
           />
         )}
       </div>

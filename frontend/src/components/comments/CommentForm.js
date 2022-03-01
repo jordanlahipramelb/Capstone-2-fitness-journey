@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
-import { Box, TextField, Icon, InputAdornment } from "@mui/material";
+import { Box, TextField, IconButton, InputAdornment } from "@mui/material";
 
 import "./CommentForm.css";
 
@@ -52,13 +52,13 @@ const CommentForm = ({ postId, addComment }) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Icon
+                <IconButton
                   baseClassName="fas"
-                  className="fa-plus-circle"
-                  type="submit"
+                  className="fas fa-plus-circle"
                   edge="end"
                   color="primary"
                   title="Add Comment"
+                  type="submit"
                 />
               </InputAdornment>
             ),

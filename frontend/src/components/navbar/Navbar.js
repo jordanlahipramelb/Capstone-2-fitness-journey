@@ -41,7 +41,6 @@ const Navigation = ({ logout }) => {
         </li>
         <li className="nav-item">
           <Link to="/athlete" className="nav-link">
-            {/* {currentUser.first_name || currentUser.username} */}
             Dashboard
           </Link>
         </li>
@@ -75,6 +74,9 @@ const Navigation = ({ logout }) => {
   return (
     <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
       <Container>
+        <Navbar.Brand className="title" href="/">
+          <i className="fas fa-dumbbell"></i>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
