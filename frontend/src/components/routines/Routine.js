@@ -17,7 +17,7 @@ import RoutineDetailsForm from "./RoutineDetailsForm";
  *
  *
  * Parent for
- * - RoutineForm
+ * - RoutineDetailsForm
  * - RoutineView
  */
 

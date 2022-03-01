@@ -7,15 +7,16 @@ import "./Navbar.css";
 /** Site-wide navigation bar
  *
  * Rendered by app.
- * logOut function prop passed in by App.
+ * logout function prop passed in by App.
  *
  */
 
 const Navigation = ({ logout }) => {
-  /** currentUser: Provided from UserContext in App in order to obtain currentUser, which verifies if a user is logged in. */
+  /** Provided from UserContext in App in order to obtain currentUser, which verifies if a user is logged in. */
   const { currentUser } = useContext(UserContext);
 
-  // Navigation renders if user is logged in
+  /** Links that renders in the navigation bar if user is logged in.  */
+
   const loggedInUser = () => {
     return (
       <>
@@ -53,7 +54,8 @@ const Navigation = ({ logout }) => {
     );
   };
 
-  // Navigation renders if user is logged out
+  /** Links that renders in the navigation bar if user is not logged in.  */
+
   const loggedOutUser = () => {
     return (
       <>
@@ -72,7 +74,7 @@ const Navigation = ({ logout }) => {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
+    <Navbar bg="dark" expand="md" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand className="title" href="/">
           <i className="fas fa-dumbbell"></i>

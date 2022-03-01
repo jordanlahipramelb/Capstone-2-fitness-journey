@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 
 import FitnessJourney from "../../api";
 import LoadingPage from "../common/LoadingPage";
 import "./RoutineExerciseAddDeleteForm.css";
+
+/** Routine Exercise Add Delete Form Component
+ *
+ * Consists of 2 forms that add an exercise to a routine
+ *    Add: exercise name, number of sets, and number of reps.
+ *    Delete: routines_exercises_id
+ *
+ * Child of RoutineView
+ */
 
 const RoutineExerciseAddDeleteForm = ({
   addExercise,
@@ -56,7 +71,6 @@ const RoutineExerciseAddDeleteForm = ({
     deleteExercise(formData.routines_exercises_id);
   };
 
-  console.log(formData);
   return (
     <div className="RoutineExerciseAddDeleteForm pb-5">
       <div className="row">
@@ -70,7 +84,6 @@ const RoutineExerciseAddDeleteForm = ({
                     <FormControl fullWidth>
                       <InputLabel id="dayOfWeek">Day</InputLabel>
                       <Select
-                        className=""
                         label="Day"
                         name="dayOfWeek"
                         labelId="dayOfWeek"
@@ -93,42 +106,26 @@ const RoutineExerciseAddDeleteForm = ({
                   </div>
                   <div className="col">
                     <FormControl fullWidth>
-                      <InputLabel id="sets">Sets</InputLabel>
-                      <Select
-                        className=""
+                      <TextField
+                        type="number"
                         label="Sets"
                         name="sets"
-                        labelId="sets"
                         value={formData.sets}
                         onChange={handleInputChange}
                         required
-                      >
-                        {[...Array(21)].map((evt, i) => (
-                          <MenuItem value={i} key={i}>
-                            {i}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      />
                     </FormControl>
                   </div>
                   <div className="col">
                     <FormControl fullWidth>
-                      <InputLabel id="reps">Reps</InputLabel>
-                      <Select
-                        className=""
+                      <TextField
+                        type="number"
                         label="Reps"
-                        labelId="reps"
                         name="reps"
                         value={formData.reps}
                         onChange={handleInputChange}
                         required
-                      >
-                        {[...Array(51)].map((evt, i) => (
-                          <MenuItem value={i} key={i}>
-                            {i}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      />
                     </FormControl>
                   </div>
                 </div>

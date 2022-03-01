@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Box, TextField } from "@mui/material";
 import "./PostForm.css";
 
-/** Reusable Post Edit Form Component
+/** Post Form Component
  *
- * Can be utilized to edit/add data.
+ * Allows input of subject and body of post
+ *
+ * Child of NewPost Component
  */
 
 const PostForm = ({ save, post, cancel }) => {

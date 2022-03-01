@@ -11,6 +11,14 @@ import {
 } from "@mui/material";
 import "./RegisterForm.css";
 
+/** Register Form Component
+ *
+ * register function passed in from App
+ *
+ * - formData: data retrieved from inputs
+ * - formErrors: errors that are pushed from the backend if inputted data does not meet requirements
+ */
+
 const RegisterForm = ({ register }) => {
   const history = useHistory();
   const [formData, setFormData] = useState({
@@ -24,7 +32,7 @@ const RegisterForm = ({ register }) => {
     bio: "",
     fitnessType: "",
     imageUrl:
-      "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+      "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg", // Default image photo
   });
   const [formErrors, setFormErrors] = useState([]);
   const states = [
@@ -90,6 +98,7 @@ const RegisterForm = ({ register }) => {
   const listTypes = map(fitnessTypes);
 
   /** Handle form submission. */
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let result = await register(formData);
@@ -102,6 +111,7 @@ const RegisterForm = ({ register }) => {
   };
 
   /** Updates form field when typing */
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((data) => ({ ...data, [name]: value }));

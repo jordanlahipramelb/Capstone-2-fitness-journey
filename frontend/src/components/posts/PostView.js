@@ -5,7 +5,7 @@ import UserContext from "../auth/UserContext";
 import "./PostView.css";
 
 /** Render a Single Post
- *
+ *  /forum/:id
  *
  * - show edit/delete buttons (& call parent on action)
  *
@@ -13,14 +13,22 @@ import "./PostView.css";
 
 const PostView = ({ post, toggleEdit, deletePost }) => {
   const { username, subject, body, date } = post;
-  const { currentUser } = useContext(UserContext);
-  let sameUser;
 
+  /** Provided from UserContext in App in order to obtain currentUser, which verifies if a user is logged in. */
+
+  const { currentUser } = useContext(UserContext);
+
+  /** sameUser is true if currentUser username matches username of comment */
+
+  let sameUser;
   if (currentUser.username === username) {
     sameUser = true;
   } else {
     sameUser = false;
   }
+
+  /** User edit buttons if post is same user */
+
   const userEditBtns = () => {
     return (
       <div className="PostView-right">

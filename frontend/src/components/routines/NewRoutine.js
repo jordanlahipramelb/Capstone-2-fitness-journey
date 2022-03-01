@@ -5,6 +5,11 @@ import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 import RoutineForm from "./RoutineForm";
 
+/** A simple component that renders the RoutineForm
+ *
+ * Consists of functions passed to RoutineForm
+ */
+
 const NewRoutine = () => {
   const history = useHistory();
   const { currentUser } = useContext(UserContext);

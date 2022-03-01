@@ -5,10 +5,22 @@ import SearchForm from "../common/SearchForm";
 import LoadingPage from "../common/LoadingPage";
 import PostCard from "./PostCard";
 
+/** Post List Component
+ *
+ * Renders list of posts via cards in database
+ *
+ * posts: posts in database
+ *
+ * PostList -> SearchForm
+ *          -> PostCard
+ *
+ */
+
 const PostList = () => {
   const [posts, setPosts] = useState(null);
 
   /** Allows use of async search function */
+
   useEffect(function getPostsOnMount() {
     search();
   }, []);
@@ -20,8 +32,11 @@ const PostList = () => {
   };
 
   /** If no posts, return Loading component */
+
   if (!posts) return <LoadingPage />;
+
   /** If no posts and there are 0 posts in state */
+
   if (!posts && posts.length === 0) {
     return <h3 className="text-center">No posts present.</h3>;
   }

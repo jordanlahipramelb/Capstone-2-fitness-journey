@@ -5,10 +5,23 @@ import SearchForm from "../common/SearchForm";
 import LoadingPage from "../common/LoadingPage";
 import RoutineCard from "./RoutineCard";
 
+/** Routine List Component
+ * /routines
+ *
+ * Renders list of routines via cards in database
+ *
+ * routines: routines in database
+ *
+ * RoutineList -> SearchForm
+ *             -> RoutineCard
+ *
+ */
+
 const RoutineList = () => {
   const [routines, setRoutines] = useState(null);
 
   /** Allows use of async search function */
+
   useEffect(function getRoutinesOnMount() {
     search();
   }, []);
@@ -20,8 +33,11 @@ const RoutineList = () => {
   };
 
   /** If no routines, return Loading component */
+
   if (!routines) return <LoadingPage />;
+
   /** If no routines and there are 0 routines in state */
+
   if (!routines && routines.length === 0) {
     return <h3 className="text-center">No routines present.</h3>;
   }

@@ -5,7 +5,7 @@ import "./ExerciseDetails.css";
 
 /** Renders single exercise
  *
-
+ * Child of RoutineExerciseList Component
  */
 
 const RoutineExercise = ({ id, name, sets, reps }) => {

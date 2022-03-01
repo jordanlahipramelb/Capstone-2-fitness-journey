@@ -5,11 +5,24 @@ import LoadingPage from "../common/LoadingPage";
 import ExerciseCard from "./ExerciseCard";
 import { Link } from "react-router-dom";
 
+/** Exercise List Component
+ * /exercises
+ *
+ * Renders list of exercises via cards in database
+ *
+ * exercises: exercises in database
+ *
+ * ExerciseList -> SearchForm
+ *              -> ExerciseCard
+ *
+ */
+
 const ExerciseList = () => {
   console.debug("ExerciseList");
   const [exercises, setExercises] = useState(null);
 
   /** Allows use of async search function */
+
   useEffect(function getExercisesOnMount() {
     search();
   }, []);
@@ -21,13 +34,15 @@ const ExerciseList = () => {
   };
 
   /** If no exercises, return Loading component */
+
   if (!exercises) return <LoadingPage />;
+
   /** If no exercises and there are 0 exercises in state */
+
   if (!exercises && exercises.length === 0) {
     return <h3 className="text-center">No exercises present.</h3>;
   }
 
-  console.log(exercises);
   return (
     <div className="ExerciseList py-4">
       <div className="container">

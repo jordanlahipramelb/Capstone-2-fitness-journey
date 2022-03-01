@@ -3,6 +3,13 @@ import { Box, TextField } from "@mui/material";
 import "./RoutineDetailsForm.css";
 import { Link } from "react-router-dom";
 
+/** Routine Details Form Component
+ *
+ * Allows editing of routine name and description
+ *
+ * Child of Routine Component
+ */
+
 const RoutineDetailsForm = ({ routine, toggleEdit, updateRoutine }) => {
   const [formData, setFormData] = useState({
     username: routine[0].username,

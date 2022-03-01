@@ -5,10 +5,17 @@ import FitnessJourney from "../../api";
 import UserContext from "../auth/UserContext";
 import LogForm from "./LogForm";
 
+/** A simple component that renders the LogForm
+ *
+ * Consists of functions passed to LogForm
+ */
+
 const NewLog = () => {
   const history = useHistory();
   const { currentUser } = useContext(UserContext);
   const username = currentUser.username;
+
+  /** Set up date format */
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");

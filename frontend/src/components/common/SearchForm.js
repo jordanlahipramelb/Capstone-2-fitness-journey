@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { Box, TextField, IconButton, InputAdornment } from "@mui/material";
 import "./SearchForm.css";
 
+/** Search Form Component
+ *
+ * Child of ___List Components
+ * Used to search for titles in list
+ *
+ * searchTerm: term retrieved from input
+ *
+ */
+
 const SearchForm = ({ searchFor }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   /** Handles submission of form */
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     searchFor(searchTerm.trim() || undefined);
@@ -14,6 +24,7 @@ const SearchForm = ({ searchFor }) => {
   };
 
   /** Updates form field when typing */
+
   const handleChange = (evt) => {
     setSearchTerm(evt.target.value);
   };

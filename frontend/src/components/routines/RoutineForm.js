@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Box, TextField } from "@mui/material";
 import "./RoutineForm.css";
 
-const RoutineForm = ({ routine, addRoutine, cancelRoutine }) => {
+/** Routine Form Component
+ *
+ * Allows input of name and description of routine
+ *
+ * Child of NewRoutine Component
+ */
+
+const RoutineForm = ({ routine, addRoutine }) => {
   const [formData, setFormData] = useState({
     username: routine.username,
     name: routine.name,

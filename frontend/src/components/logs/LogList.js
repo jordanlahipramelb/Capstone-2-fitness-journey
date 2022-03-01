@@ -5,10 +5,23 @@ import LoadingPage from "../common/LoadingPage";
 import SearchForm from "../common/SearchForm";
 import LogCard from "./LogCard";
 
+/** Log List Component
+ * /logs
+ *
+ * Renders list of logs via cards in database
+ *
+ * logs: logs in database
+ *
+ * LogList -> SearchForm
+ *         -> LogCard
+ *
+ */
+
 const LogList = () => {
   const [logs, setLogs] = useState(null);
 
   /** Allows use of async search function */
+
   useEffect(function getLogsOnMount() {
     search();
   }, []);
@@ -20,8 +33,11 @@ const LogList = () => {
   };
 
   /** If no logs, return Loading component */
+
   if (!logs) return <LoadingPage />;
+
   /** If no logs and there are 0 logs in state */
+
   if (!logs && logs.length === 0) {
     return <h3 className="text-center">No logs present.</h3>;
   }

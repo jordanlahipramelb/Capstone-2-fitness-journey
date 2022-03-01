@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  InputAdornment,
+  TextField,
+  OutlinedInput,
+  FormHelperText,
+} from "@mui/material";
 import LoadingPage from "../common/LoadingPage";
+
+/** Log Entry Form Component
+ *
+ * Form that sends a log entry to a log consisting of the routine/exercise id, set number, reps, and weight
+ *
+ * formData: log entry data
+ *
+ * Child of LogView
+ *
+ */
 
 const LogEntryForm = ({ logEntries, routinesWithExercises, addEntry }) => {
   const { logId } = useParams();
@@ -33,7 +51,6 @@ const LogEntryForm = ({ logEntries, routinesWithExercises, addEntry }) => {
 
   if (!logEntries || !routinesWithExercises) return <LoadingPage />;
 
-  console.log(formData);
   return (
     <div className="LogEntryForm pb-5">
       <div className="row">
@@ -51,7 +68,6 @@ const LogEntryForm = ({ logEntries, routinesWithExercises, addEntry }) => {
                       <Select
                         className="form-control form-control-sm"
                         name="routine_exercise_id"
-                        labelId="routine_exercise_id"
                         label="Routine/Exercise"
                         value={formData.routine_exercise_id}
                         onChange={handleInputChange}
@@ -74,62 +90,48 @@ const LogEntryForm = ({ logEntries, routinesWithExercises, addEntry }) => {
                 <div className="row">
                   <div className="col">
                     <FormControl fullWidth>
-                      <InputLabel id="set_number">Set #</InputLabel>
-                      <Select
-                        className=""
+                      <TextField
+                        type="number"
                         label="Set #"
                         name="set_number"
-                        labelId="set_number"
                         value={formData.set_number}
                         onChange={handleInputChange}
                         required
-                      >
-                        {[...Array(21)].map((evt, i) => (
-                          <MenuItem value={i} key={i}>
-                            {i}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      />
                     </FormControl>
                   </div>
                   <div className="col">
                     <FormControl fullWidth>
-                      <InputLabel id="reps"># of Reps</InputLabel>
-                      <Select
-                        className=""
+                      <TextField
+                        type="number"
                         label="# of Reps"
-                        labelId="reps"
                         name="reps"
                         value={formData.reps}
                         onChange={handleInputChange}
                         required
-                      >
-                        {[...Array(51)].map((evt, i) => (
-                          <MenuItem value={i} key={i}>
-                            {i}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      />
                     </FormControl>
                   </div>
                   <div className="col">
                     <FormControl fullWidth>
-                      <InputLabel id="weight">Weight</InputLabel>
-                      <Select
-                        className=""
-                        label="weight"
-                        labelId="weight"
+                      <OutlinedInput
+                        type="number"
+                        label="Weight"
                         name="weight"
+                        endAdornment={
+                          <InputAdornment position="end">lb</InputAdornment>
+                        }
+                        aria-describedby="outlined-weight-helper-text"
+                        inputProps={{
+                          "aria-label": "weight",
+                        }}
                         value={formData.weight}
                         onChange={handleInputChange}
                         required
-                      >
-                        {[...Array(500)].map((evt, i) => (
-                          <MenuItem value={i} key={i}>
-                            {i}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      />
+                      <FormHelperText id="outlined-weight-helper-text">
+                        Weight
+                      </FormHelperText>
                     </FormControl>
                   </div>
                 </div>

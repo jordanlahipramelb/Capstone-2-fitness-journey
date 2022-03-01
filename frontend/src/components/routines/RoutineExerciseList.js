@@ -4,9 +4,6 @@ import ExerciseDetails from "./ExerciseDetails";
 /** Renders list of exercises in routine
  *
  * Exercises are passed down from props.
- * Renders RoutineExercise components.
- *
- * deleteExercise function passed down from Routine component
  */
 
 const RoutineExerciseList = ({ exercises = [] }) => {

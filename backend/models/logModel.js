@@ -97,7 +97,7 @@ class Log {
           FULL JOIN routines_exercises
             ON logs_entries.routine_exercise_id = routines_exercises.id
           FULL JOIN exercises
-            ON logs_entries.routine_exercise_id = exercises.id
+            ON routines_exercises.exercise_id = exercises.id
       WHERE logs.id = $1
       GROUP BY logs.id
       ORDER BY logs.id`,
@@ -212,6 +212,8 @@ class Log {
     );
 
     const logEntry = result.rows[0];
+
+    console.log(logEntry);
 
     return logEntry;
   }

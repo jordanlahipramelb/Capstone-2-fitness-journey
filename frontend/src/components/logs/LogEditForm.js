@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import "./LogForm.css";
 import { Box, TextField } from "@mui/material";
 
+/** Log Edit Form
+ *
+ * Edits the date of a log
+ *
+ * Child of Log Component
+ */
+
 const LogEditForm = ({ log, updateLog, cancel }) => {
   const [formData, setFormData] = useState({
     date: log.date,

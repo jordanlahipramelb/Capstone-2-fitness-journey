@@ -15,6 +15,8 @@ import FitnessJourney from "../../api";
  * Decides, from its own state, whether to show the edit form or the simple PostView component.
  * This also handles editing, deleting, comment-adding, and comment-deleting.
  *
+ * post: post data retrieved through API
+ *
  *
  * Parent for
  * - PostForm

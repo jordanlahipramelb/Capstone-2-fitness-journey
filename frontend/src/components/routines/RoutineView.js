@@ -7,6 +7,9 @@ import LoadingPage from "../common/LoadingPage";
 import RoutineExerciseAddDeleteForm from "./RoutineExerciseAddDeleteForm";
 
 /** Render a single routine
+ *  /routines/:id
+ *
+ * Child of Routine
  *
  * - show edit/delete buttons (& call parent on action)
  */
@@ -19,14 +22,20 @@ const RoutineView = ({
   deleteExercise,
   deleteRoutine,
 }) => {
-  const { currentUser } = useContext(UserContext);
-  let sameUser;
+  /** Provided from UserContext in App in order to obtain currentUser, which verifies if a user is logged in. */
 
+  const { currentUser } = useContext(UserContext);
+
+  /** sameUser is true if currentUser username matches username of comment */
+
+  let sameUser;
   if (currentUser.username === routine[0].username) {
     sameUser = true;
   } else {
     sameUser = false;
   }
+
+  /** User edit buttons if routine is same user */
 
   const userEditBtns = () => {
     return (
@@ -45,6 +54,10 @@ const RoutineView = ({
     );
   };
 
+  /** User entry form
+   * Renders if current user is the same user as the routine user
+   */
+
   const userForm = () => {
     return (
       <>
@@ -56,6 +69,8 @@ const RoutineView = ({
       </>
     );
   };
+
+  /** Render loading if routine not yet mounted */
 
   if (!routine[0]) return <LoadingPage />;
 
@@ -105,8 +120,8 @@ const RoutineView = ({
 
         <div className="row">
           {routine.map((data) => (
-            <div className="col-lg-6">
-              <div className="card my-3 p-2" key={data.dayofweek}>
+            <div className="col-lg-6" key={data.dayofweek}>
+              <div className="card my-3 p-2">
                 {data.exercises.length === 0 ? (
                   <div className="card-body">
                     <p className="text-center">
@@ -114,7 +129,7 @@ const RoutineView = ({
                     </p>
                   </div>
                 ) : (
-                  <div className="card-body">
+                  <div className="card-body" key={data.dayofweek}>
                     <h4 className="card-title">Day {data.dayofweek}</h4>
                     <RoutineExerciseList exercises={data.exercises} />
                   </div>

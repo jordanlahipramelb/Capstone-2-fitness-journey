@@ -7,6 +7,10 @@ import "./LogView.css";
 import LoadingPage from "../common/LoadingPage";
 
 /** Render a single log
+ * /logs/:id
+ *
+ * Parent of LogEntryForm
+ * Child of Log -> LogView
  *
  * - show edit/delete buttons (& call parent on action)
  */
@@ -20,14 +24,20 @@ const LogView = ({
   addEntry,
   deleteEntry,
 }) => {
-  const { currentUser } = useContext(UserContext);
-  let sameUser;
+  /** Provided from UserContext in App in order to obtain currentUser, which verifies if a user is logged in. */
 
+  const { currentUser } = useContext(UserContext);
+
+  /** sameUser is true if currentUser username matches username of comment */
+
+  let sameUser;
   if (currentUser.username === log.username) {
     sameUser = true;
   } else {
     sameUser = false;
   }
+
+  /** User edit buttons if log is same user */
 
   const userEditBtns = () => {
     return (
@@ -46,6 +56,10 @@ const LogView = ({
     );
   };
 
+  /** User entry form
+   * Renders if current user is the same user as the log user
+   */
+
   const userForm = () => {
     return (
       <>
@@ -57,6 +71,8 @@ const LogView = ({
       </>
     );
   };
+
+  /** Render loading if log not yet mounted */
 
   if (!log) return <LoadingPage />;
 

@@ -4,6 +4,14 @@ import Alert from "../common/Alert";
 import { Box, TextField } from "@mui/material";
 import "./LoginForm.css";
 
+/** Login Form Component
+ *
+ * login function prop passed in through App
+ *
+ * - formData: data retrieved from inputs
+ * - formErrors: errors that are pushed from the backend if inputted data does not meet requirements
+ */
+
 const LoginForm = ({ login }) => {
   const [formData, setFormData] = useState({
     username: "",
@@ -29,6 +37,7 @@ const LoginForm = ({ login }) => {
   };
 
   /** Updates form field when typing */
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((data) => ({

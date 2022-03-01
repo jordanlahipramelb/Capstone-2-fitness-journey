@@ -8,14 +8,20 @@ import LogEditForm from "./LogEditForm";
 
 /** Main Log Component
  *
- * Receives log data from state.
+ * Received log data from state.
  *
  * Decides, from its own state, whether to show the edit form or the simple LogView component.
  * This also handles editing and deleting a log.
  *
+ * log: log data retrieved through API (username, date)
+ * logEntries: log entries retrieved through API (id, log_id, name, set_number, reps)
+ *      Passed to LogView
+ * routinesWithExercises: routines/exercises in database (routineId, routineName, routineExerciseId, dayofweek, exerciseName, reps, sets)
+ *      Passed to LogView
+ *
  *
  * Parent for
- * - LogForm
+ * - LogEditForm
  * - LogView
  */
 
@@ -109,6 +115,8 @@ const Log = () => {
   };
 
   const cancel = () => history.push(`/logs/${logId}`);
+
+  console.log(routinesWithExercises);
 
   return (
     <div className="Log py-4">

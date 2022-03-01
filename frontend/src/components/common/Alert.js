@@ -2,7 +2,7 @@ import React from "react";
 
 /** Component for rendering alerts.
  *
- * { LoginForm, SignupForm, ProfileForm } -> Alert
+ * { LoginForm, RegisterForm, ProfileForm } -> Alert
  **/
 
 const Alert = ({ type = "danger", messages = [] }) => {

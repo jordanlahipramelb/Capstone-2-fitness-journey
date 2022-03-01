@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
+/** Footer Component
+ *
+ * Sitewide
+ * Located in App component
+ */
+
 const Footer = () => {
   return (
     <footer id="footer">
@@ -65,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="container">
-        <div className="copyright">
+        <div className="copyright text-center pt-4">
           &copy; Copyright <b>Jordan Lahip-Ramelb</b>. All Rights Reserved
         </div>
       </div>

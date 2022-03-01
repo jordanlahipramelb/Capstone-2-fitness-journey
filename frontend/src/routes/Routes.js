@@ -22,6 +22,13 @@ import NewLog from "../components/logs/NewLog";
 import Log from "../components/logs/Log";
 import LogList from "../components/logs/LogList";
 
+/** Routes Component
+ *
+ * Consists of all possible routes in the app
+ *
+ * Child of App
+ */
+
 const Routes = ({ login, register }) => {
   return (
     <Switch>
@@ -37,61 +44,61 @@ const Routes = ({ login, register }) => {
         <RegisterForm register={register} />
       </Route>
 
-      <Route exact path="/exercises">
+      <ProtectedRoutes exact path="/exercises">
         <ExerciseList />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/exercises/:id">
+      <ProtectedRoutes exact path="/exercises/:id">
         <ExerciseDetails />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/routines/new">
+      <ProtectedRoutes exact path="/routines/new">
         <NewRoutine />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/routines">
+      <ProtectedRoutes exact path="/routines">
         <RoutineList />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/routines/:routineId">
+      <ProtectedRoutes exact path="/routines/:routineId">
         <Routine />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/forum/new">
+      <ProtectedRoutes exact path="/forum/new">
         <NewPost />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/forum">
+      <ProtectedRoutes exact path="/forum">
         <PostList />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/forum/:postId">
+      <ProtectedRoutes exact path="/forum/:postId">
         <Post />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/athlete">
+      <ProtectedRoutes exact path="/athlete">
         <UserDashboard />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/athletes/:username">
+      <ProtectedRoutes exact path="/athletes/:username">
         <UserProfile />
-      </Route>
+      </ProtectedRoutes>
 
       <ProtectedRoutes exact path="/athlete/edit">
         <ProfileForm />
       </ProtectedRoutes>
 
-      <Route exact path="/logs/new">
+      <ProtectedRoutes exact path="/logs/new">
         <NewLog />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/logs">
+      <ProtectedRoutes exact path="/logs">
         <LogList />
-      </Route>
+      </ProtectedRoutes>
 
-      <Route exact path="/logs/:logId">
+      <ProtectedRoutes exact path="/logs/:logId">
         <Log />
-      </Route>
+      </ProtectedRoutes>
 
       <Redirect to="/" />
     </Switch>

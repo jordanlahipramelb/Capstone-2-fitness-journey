@@ -7,7 +7,10 @@ import UserContext from "../auth/UserContext";
 import "./PostForm.css";
 import { Link } from "react-router-dom";
 
-/** A simple component that renders the PostForm */
+/** A simple component that renders the PostForm
+ *
+ * Consists of functions passed to PostForm
+ */
 
 const NewPost = () => {
   const history = useHistory();

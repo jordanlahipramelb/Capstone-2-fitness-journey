@@ -13,6 +13,11 @@ import UserContext from "../auth/UserContext";
 import { Link } from "react-router-dom";
 import "./ProfileForm.css";
 
+/** Profile Form component
+ *
+ * Allows updating of user profile data
+ */
+
 const ProfileForm = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -133,6 +138,7 @@ const ProfileForm = () => {
   };
 
   /** Handle form data changing */
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((data) => ({
